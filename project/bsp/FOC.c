@@ -72,9 +72,30 @@ float getCorrectedElectricalAngle(float shaft_angle)
     return corr_angle;
 }
 
+//Ud强拖
+void strong_drag(float Ud)
+{
+	float Ualpha=0.0f,Ubate=0.0f;
+	float Uq = 0.0f;
+	//求电角度
+	float angle_el = getCorrectedElectricalAngle(0.0f);
+	
+	//park逆变换
+	Ualpha = -Uq * fast_sin(angle_el) + Ud * fast_cos(angle_el);
+	Ubate  =  Uq * fast_cos(angle_el) + Ud * fast_sin(angle_el);
+	
+	//clarke逆变换
+	Ua = Ualpha + Udc/2;
+	Ub = (sqrt3 * Ubate - Ualpha)/2 + Udc/2;
+	Uc = (-sqrt3 * Ubate - Ualpha)/2 + Udc/2;
+	
+	setpwm(Ua,Ub,Uc);
+}
+
+
 void angle_init(float (*read_angle_func)(void))
 {
-	setPhaseVoltage(0.0f, 2.0f, 0.0f); // 锁定转子
+	strong_drag(2.0f); // Ud强拖
     delay_ms(1000);
 
     // 多次采样减少抖动
