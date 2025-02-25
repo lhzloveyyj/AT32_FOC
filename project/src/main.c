@@ -32,6 +32,7 @@
 #include "wk_spi.h"
 #include "wk_tmr.h"
 #include "wk_usart.h"
+#include "wk_dma.h"
 #include "wk_gpio.h"
 #include "wk_system.h"
 
@@ -51,7 +52,7 @@
 
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
-
+#define time_pwm	6000
 /* add user code end private define */
 
 /* private macro -------------------------------------------------------------*/
@@ -100,6 +101,16 @@ int main(void)
   /* timebase config. */
   wk_timebase_init();
 
+  /* init dma1 channel1 */
+  wk_dma1_channel1_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL1, 
+                        (uint32_t)&ADC3->odt, 
+                        DMA1_CHANNEL1_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL1_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL1, TRUE);
+
   /* init usart1 function. */
   wk_usart1_init();
 
@@ -136,6 +147,8 @@ int main(void)
   /* add user code begin 2 */
   delay_init();
   
+  adc_tigger(time_pwm);
+  
   angle_init(MT_2_ReadAngle);
   
   tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
@@ -147,7 +160,9 @@ int main(void)
     //delay_ms(500);
 	  //can_transmit_data();
 	//float x_2=MT_2_ReadAngle();
-	  printf("%lf,%lf,%lf\r\n",Ua,Ub,Uc);
+	 // printf("%lf,%lf,%lf\r\n",Ua,Ub,Uc);
+	  
+	  printf("%d,%d\r\n",AD_Value[0],AD_Value[1]);
 	//float x_1=MT_1_ReadAngle();
 	//printf("%lf,%lf\r\n",x_1,x_2);
 //	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, 1500);

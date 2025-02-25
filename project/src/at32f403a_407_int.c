@@ -242,7 +242,7 @@ void TMR3_GLOBAL_IRQHandler(void)
 	}
 	float angle_2 = MT_2_ReadAngle();
 	
-	setPhaseVoltage(2,0,- angle_2);
+	setPhaseVoltage(AD_Value[0],AD_Value[1],- angle_2);
 	
 	tmr_flag_clear(TMR3, TMR_OVF_FLAG);
   /* add user code end TMR3_GLOBAL_IRQ 0 */

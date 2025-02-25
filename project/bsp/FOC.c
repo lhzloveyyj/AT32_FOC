@@ -15,8 +15,19 @@
 #define sqrt3_2			0.866f				//根号3/2
 #define _3PI_2			4.712388f			//PI/3
 #define EPSILON 		1e-6 				// 精度阈值
+#define time2_pwm		6000
 
 float  zero = 0.0f;	
+uint16_t AD_Value[2]={0};
+
+typedef struct {
+    float i_d;  // d轴电流
+    float i_q;  // q轴电流
+    float v_d;  // d轴电压
+    float v_q;  // q轴电压
+    float theta; // 电机角度
+    float omega; // 电机角速度
+} MotorState;
 
 void setpwm(float Ua,float Ub,float Uc);
 
@@ -83,6 +94,11 @@ void angle_init(float (*read_angle_func)(void))
     printf("初始化完成\r\n");
 }
 
+void adc_tigger(int time_pwm)
+{
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm-10);
+}
+
 float pwm_a=0,pwm_b=0,pwm_c=0;
 void setpwm(float Ua,float Ub,float Uc)
 {
@@ -97,21 +113,46 @@ void setpwm(float Ua,float Ub,float Uc)
 	pwm_c = limit(Uc / Udc , 0.0f , 1.0f);
 	
 	//PWM写入
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_a * 6000);
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * 6000);
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_c * 6000);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_a * time2_pwm);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * time2_pwm);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_c * time2_pwm);
+}
+
+// Clarke变换（电流）
+void clarke_transform(float Ia, float Ib, float *Ialpha, float *Ibeta) {
+    *Ialpha = Ia;
+    *Ibeta = (1 / sqrt3) * (Ia + 2 * Ib);  // Clarke变换公式，线性组合
+}
+
+// Park变换（电流）
+void park_transform(float Ialpha, float Ibeta, float angle_el, float *Id, float *Iq) {
+    *Id = Ialpha * fast_cos(angle_el) + Ibeta * fast_sin(angle_el);  // Park变换公式
+    *Iq = -Ialpha * fast_sin(angle_el) + Ibeta * fast_cos(angle_el);
 }
 
 // FOC核心函数：输入Uq、Ud和电角度，输出三路PWM
-static float Ualpha=0.0f,Ubate=0.0f;
+float Ualpha=0.0f,Ubate=0.0f;
+float Ialpha=0.0f,Ibeta=0.0f;
+
 float Ua=0.0f,Ub=0.0f,Uc=0.0f;
-void setPhaseVoltage(float Uq, float Ud, float angle_)
+float Uq=0.0f,Ud=0.0f;
+float Iq=0.0f,Id=0.0f;
+void setPhaseVoltage(uint16_t Ia, uint16_t Ib, float angle)
 {
 	//力矩限幅
 	Uq = limit(Uq,-Udc/2,Udc/2);
 	
 	//求电角度
-	float angle_el = getCorrectedElectricalAngle(angle_);
+	float angle_el = getCorrectedElectricalAngle(angle);
+	
+	//Clarke变换
+	clarke_transform(Ia, Ib, &Ialpha, &Ibeta) ;
+	
+	//Park变换
+	park_transform(Ialpha, Ibeta, angle_el, &Id, &Iq);
+	
+	Uq = 2.0f;
+	Ud = 0.0f;
 	
 	//park逆变换
 	Ualpha = -Uq * fast_sin(angle_el) + Ud * fast_cos(angle_el);

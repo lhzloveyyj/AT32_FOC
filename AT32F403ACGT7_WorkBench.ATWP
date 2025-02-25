@@ -22,7 +22,9 @@
         </Mode>
         <Parameters>
             <ParametersSub name="OrdinaryTriggerSource" value="ADC3_ORDINARY_TRIG_TMR2CH3"/>
+            <ParametersSub name="NbrOfOrdinarySequence" value="2"/>
             <ParametersSub name="Channel_OrdinarySequence_1" value="ADC_CHANNEL_0"/>
+            <ParametersSub name="Channel_OrdinarySequence_2" value="ADC_CHANNEL_1"/>
         </Parameters>
     </ADC3>
     <CAN1>
@@ -124,8 +126,8 @@
             <ModeSub name="Mode" value="Asynchronous"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="BaudRate" value="921600"/>
-            <ParametersSub name="RealBaudRate" value="923077"/>
+            <ParametersSub name="BaudRate" value="1152000"/>
+            <ParametersSub name="RealBaudRate" value="1153846"/>
         </Parameters>
     </USART1>
     <USART3>
@@ -136,10 +138,16 @@
             <ParametersSub name="RealBaudRate" value="115163"/>
         </Parameters>
     </USART3>
+    <DMA>
+        <ADC3>
+            <ParametersSub name="Instance" value="DMA1_Channel1"/>
+        </ADC3>
+    </DMA>
     <NVIC>
         <SysTick_Handler>1;15;0;0;0</SysTick_Handler>
         <FLASH_IRQHandler>0;0;0;0;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;0;0;0;0</CRM_IRQHandler>
+        <DMA1_Channel1_IRQHandler>0;0;0;0;0</DMA1_Channel1_IRQHandler>
         <ADC1_2_IRQHandler>0;1;0;0;0</ADC1_2_IRQHandler>
         <USBFS_H_CAN1_TX_IRQHandler>0;0;0;0;0</USBFS_H_CAN1_TX_IRQHandler>
         <USBFS_L_CAN1_RX0_IRQHandler>0;0;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>
@@ -210,7 +218,7 @@
     </PINInfo>
     <ProjectInfomation>
         <ProjectName>AT32F403ACGT7_WorkBench</ProjectName>
-        <ProjectLocation>E:/机器人/FOC驱动板</ProjectLocation>
+        <ProjectLocation>E:/机器人/FOC驱动板/FOC_Software</ProjectLocation>
         <ToolchainIDE>MDK_V5</ToolchainIDE>
         <ARMCompiler>0</ARMCompiler>
         <KeepUserCode>true</KeepUserCode>

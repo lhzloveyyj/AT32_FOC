@@ -16,6 +16,7 @@
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_can.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_crm.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_debug.h
+.\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_dma.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_flash.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_gpio.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_misc.h
@@ -29,6 +30,7 @@
 .\objects\main.o: ..\inc\wk_spi.h
 .\objects\main.o: ..\inc\wk_tmr.h
 .\objects\main.o: ..\inc\wk_usart.h
+.\objects\main.o: ..\inc\wk_dma.h
 .\objects\main.o: ..\inc\wk_gpio.h
 .\objects\main.o: ..\inc\wk_system.h
 .\objects\main.o: ..\bsp\delay.h
