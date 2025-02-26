@@ -68,6 +68,7 @@ void PendSV_Handler(void);
 void SysTick_Handler(void);
 
 void TMR3_GLOBAL_IRQHandler(void);
+void TMR5_GLOBAL_IRQHandler(void);
 /* add user code begin exported functions */
 
 /* add user code end exported functions */

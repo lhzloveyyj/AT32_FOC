@@ -138,6 +138,9 @@ int main(void)
   /* init tmr4 function. */
   wk_tmr4_init();
 
+  /* init tmr5 function. */
+  wk_tmr5_init();
+
   /* init can1 function. */
   wk_can1_init();
 
@@ -149,7 +152,13 @@ int main(void)
   
   adc_tigger(time_pwm);
   
+  delay_ms(10);
+  
+  first_get(&voltage_a_offset,&voltage_b_offset);
+  
   angle_init(MT_2_ReadAngle);
+  
+  tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
   tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
   /* add user code end 2 */
@@ -162,7 +171,11 @@ int main(void)
 	//float x_2=MT_2_ReadAngle();
 	 // printf("%lf,%lf,%lf\r\n",Ua,Ub,Uc);
 	  
-	  printf("%d,%d\r\n",AD_Value[0],AD_Value[1]);
+	 
+	  ////printf("%d,%d\r\n",voltage_a , voltage_b);
+	  //printf("%lf,%lf\r\n",Ia,Ib);
+	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);
+	  printf("%lf,%lf\r\n",Id,Iq);
 	//float x_1=MT_1_ReadAngle();
 	//printf("%lf,%lf\r\n",x_1,x_2);
 //	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, 1500);

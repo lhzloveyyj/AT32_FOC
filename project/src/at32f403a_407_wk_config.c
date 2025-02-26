@@ -189,6 +189,9 @@ void wk_periph_clock_config(void)
   /* enable tmr4 periph clock */
   crm_periph_clock_enable(CRM_TMR4_PERIPH_CLOCK, TRUE);
 
+  /* enable tmr5 periph clock */
+  crm_periph_clock_enable(CRM_TMR5_PERIPH_CLOCK, TRUE);
+
   /* enable spi2 periph clock */
   crm_periph_clock_enable(CRM_SPI2_PERIPH_CLOCK, TRUE);
 
@@ -216,6 +219,7 @@ void wk_nvic_config(void)
   NVIC_SetPriority(PendSV_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
   NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 15, 0));
   nvic_irq_enable(TMR3_GLOBAL_IRQn, 0, 0);
+  nvic_irq_enable(TMR5_GLOBAL_IRQn, 1, 0);
 }
 
 /* add user code begin 1 */

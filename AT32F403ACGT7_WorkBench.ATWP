@@ -121,6 +121,15 @@
             <ModeSub name="Activated" value="TRUE"/>
         </Mode>
     </TMR4>
+    <TMR5>
+        <Mode>
+            <ModeSub name="Activated" value="TRUE"/>
+        </Mode>
+        <Parameters>
+            <ParametersSub name="DividerValue" value="9"/>
+            <ParametersSub name="Period" value="23999"/>
+        </Parameters>
+    </TMR5>
     <USART1>
         <Mode>
             <ModeSub name="Mode" value="Asynchronous"/>
@@ -158,9 +167,10 @@
         <TMR4_GLOBAL_IRQHandler>0;0;0;0;0</TMR4_GLOBAL_IRQHandler>
         <SPI1_IRQHandler>0;0;0;0;0</SPI1_IRQHandler>
         <SPI2_I2S2EXT_IRQHandler>0;0;0;0;0</SPI2_I2S2EXT_IRQHandler>
-        <USART1_IRQHandler>0;0;0;0;0</USART1_IRQHandler>
+        <USART1_IRQHandler>0;1;0;0;0</USART1_IRQHandler>
         <USART3_IRQHandler>0;0;0;0;0</USART3_IRQHandler>
         <ADC3_IRQHandler>0;0;0;0;0</ADC3_IRQHandler>
+        <TMR5_GLOBAL_IRQHandler>1;1;0;0;0</TMR5_GLOBAL_IRQHandler>
     </NVIC>
     <ClockConfiguration>
         <rtcsel>0</rtcsel>

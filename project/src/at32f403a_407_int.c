@@ -33,6 +33,7 @@
 #include "LED.h"
 #include "MT6701.h"
 #include "foc.h"
+#include "filter.h"
 
 /* add user code end private includes */
 
@@ -233,16 +234,9 @@ void SysTick_Handler(void)
 void TMR3_GLOBAL_IRQHandler(void)
 {
   /* add user code begin TMR3_GLOBAL_IRQ 0 */
-	static int t;
-	t++;
-	if(t==5000)
-	{
-		at32_led_toggle(LED0);
-		t=0;
-	}
 	float angle_2 = MT_2_ReadAngle();
 	
-	setPhaseVoltage(AD_Value[0],AD_Value[1],- angle_2);
+	setPhaseVoltage(AD_Value[1],AD_Value[0],angle_2);
 	
 	tmr_flag_clear(TMR3, TMR_OVF_FLAG);
   /* add user code end TMR3_GLOBAL_IRQ 0 */
@@ -251,6 +245,32 @@ void TMR3_GLOBAL_IRQHandler(void)
   /* add user code begin TMR3_GLOBAL_IRQ 1 */
 
   /* add user code end TMR3_GLOBAL_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles TMR5 handler.
+  * @param  none
+  * @retval none
+  */
+void TMR5_GLOBAL_IRQHandler(void)
+{
+  /* add user code begin TMR5_GLOBAL_IRQ 0 */
+	static int t;
+	t++;
+	if(t==1000)
+	{
+		at32_led_toggle(LED0);
+		t=0;
+	}
+	
+	
+	tmr_flag_clear(TMR5, TMR_OVF_FLAG);
+  /* add user code end TMR5_GLOBAL_IRQ 0 */
+
+
+  /* add user code begin TMR5_GLOBAL_IRQ 1 */
+
+  /* add user code end TMR5_GLOBAL_IRQ 1 */
 }
 
 /* add user code begin 1 */

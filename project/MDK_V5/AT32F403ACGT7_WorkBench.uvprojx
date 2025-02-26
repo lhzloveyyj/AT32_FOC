@@ -553,6 +553,11 @@
               <FileType>1</FileType>
               <FilePath>..\bsp\led.c</FilePath>
             </File>
+            <File>
+              <FileName>filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\filter.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
