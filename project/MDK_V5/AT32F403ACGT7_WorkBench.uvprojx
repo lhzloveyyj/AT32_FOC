@@ -558,6 +558,11 @@
               <FileType>1</FileType>
               <FilePath>..\bsp\filter.c</FilePath>
             </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\PID.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -13,6 +13,7 @@ pwm4 - time2_ch1 - Uc - Ic
 #include "delay.h"
 #include "stdio.h"
 #include "mt6701.h"
+#include "PID.h"
 
 #define volatge_high 	12.0f				//电压限制值
 #define Udc 			12.0f				//母线电压
@@ -33,6 +34,26 @@ uint16_t AD_Value[2]={0};
 
 uint16_t voltage_a_offset = 0;
 uint16_t voltage_b_offset = 0;
+
+//PI结构体初始化
+// 定义PI控制器结构体并初始化
+PIController pi_Id = { 
+    .Kp = 0.01f,           // 比例系数
+    .Ki = 0.1f,           // 积分系数
+    .integral = 0.0f,     // 积分项初始值
+    .output = 0.0f,       // 控制器输出初始值
+    .output_max = 10.0f,  // 输出最大值
+    .output_min = -10.0f  // 输出最小值
+};
+
+PIController pi_Iq = { 
+    .Kp = 0.01f,           // 比例系数
+    .Ki = 0.1f,           // 积分系数
+    .integral = 0.0f,     // 积分项初始值
+    .output = 0.0f,       // 控制器输出初始值
+    .output_max = 6.0f,  // 输出最大值
+    .output_min = -6.0f  // 输出最小值
+};
 
 typedef struct {
     float i_d;  // d轴电流
@@ -189,6 +210,7 @@ void park_transform(float Ialpha, float Ibeta, float angle_el, float *Id, float 
     *Iq = -Ialpha * fast_sin(angle_el) + Ibeta * fast_cos(angle_el);
 }
 
+
 // FOC核心函数：输入Uq、Ud和电角度，输出三路PWM
 float Ualpha=0.0f,Ubate=0.0f;
 float Ialpha=0.0f,Ibeta=0.0f;
@@ -210,18 +232,17 @@ void setPhaseVoltage(uint16_t V_a, uint16_t V_b, float angle)
 	current_transformation(voltage_a, voltage_b, &Ia, &Ib);
 	
 	//Clarke变换
-	clarke_transform(Ia, Ib, &Ialpha, &Ibeta) ;
+	clarke_transform(-Ia, -Ib, &Ialpha, &Ibeta) ;
 	
 	//求电角度
 	float angle_el = getCorrectedElectricalAngle(angle);
 	
 	//Park变换
 	park_transform(Ialpha, Ibeta, angle_el, &Id, &Iq);
-	
-	
-	
-	Uq =  2.0f;
-	Ud = 0.0f;
+	//Iq -> PI -> Ud
+	Ud = PI_Compute(&pi_Id, 0.0f, Id);
+	Uq = PI_Compute(&pi_Iq, 10.0f, Iq);
+	//Ud = 0.0f;
 	
 	//park逆变换
 	Ualpha = -Uq * fast_sin(angle_el) + Ud * fast_cos(angle_el);

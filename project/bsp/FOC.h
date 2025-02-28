@@ -9,6 +9,7 @@ extern float Ia , Ib ;
 extern int voltage_a ,voltage_b ;
 extern float Ialpha, Ibeta;
 extern float Iq , Id;
+extern float Uq, Ud;
 
 extern uint16_t AD_Value[2];
 extern uint16_t voltage_a_offset, voltage_b_offset;

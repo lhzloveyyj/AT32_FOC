@@ -28,3 +28,4 @@
 .\objects\foc.o: ..\bsp\delay.h
 .\objects\foc.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\foc.o: ..\bsp\mt6701.h
+.\objects\foc.o: ..\bsp\PID.h

@@ -167,28 +167,25 @@ int main(void)
   {
     /* add user code begin 3 */
     //delay_ms(500);
-	  //can_transmit_data();
 	//float x_2=MT_2_ReadAngle();
-	 // printf("%lf,%lf,%lf\r\n",Ua,Ub,Uc);
+	  /*********************************************
+	  闭环前，UA,UB,UC在6V的三相正弦波
 	  
-	 
-	  ////printf("%d,%d\r\n",voltage_a , voltage_b);
+	  问题:Iq闭环后，Ub电压维持在6V,UA,UC为0-12V并且互补，并且不是正弦波
+	  **********************************************/
+	  printf("%lf,%lf,%lf\r\n",Ua,Ub,Uc);
+	  
+	 /*********************************************
+	  闭环前，IA,IB,IC在0V的三相正弦波
+	  
+	  问题:Iq闭环后，voltage_a和voltage_b为杂波，a是负值，b是正值
+	  **********************************************/
+	  //printf("%d,%d\r\n",voltage_a , voltage_b);
 	  //printf("%lf,%lf\r\n",Ia,Ib);
 	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);
-	  printf("%lf,%lf\r\n",Id,Iq);
-	//float x_1=MT_1_ReadAngle();
-	//printf("%lf,%lf\r\n",x_1,x_2);
-//	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, 1500);
-//	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, 1500);
-	//tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, 1500);
-	//tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, 1500);
-//	  
-//	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, 3000);
-//	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, 3000);
-//	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, 3000);
-//	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, 3000);
-	  //printf("%d\r\n",adc_ordinary_conversion_data_get(ADC1));
-	  //printf("%d\r\n",adc_ordinary_conversion_data_get(ADC1));
+	  //printf("%lf,%lf\r\n",Id,Iq);
+	  //printf("%lf\r\n",Ud);
+
     /* add user code end 3 */
   }
 }
