@@ -234,9 +234,8 @@ void SysTick_Handler(void)
 void TMR3_GLOBAL_IRQHandler(void)
 {
   /* add user code begin TMR3_GLOBAL_IRQ 0 */
-	float angle_2 = MT_2_ReadAngle();
 	
-	setPhaseVoltage(AD_Value[1],AD_Value[0],angle_2);
+	setPhaseVoltage(AD_Value[1], AD_Value[0], PMotor_2);
 	
 	tmr_flag_clear(TMR3, TMR_OVF_FLAG);
   /* add user code end TMR3_GLOBAL_IRQ 0 */

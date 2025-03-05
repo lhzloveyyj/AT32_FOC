@@ -156,7 +156,7 @@ int main(void)
   
   first_get(&voltage_a_offset,&voltage_b_offset);
   
-  angle_init(MT_2_ReadAngle);
+  angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
@@ -166,20 +166,15 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
-    //delay_ms(500);
-	//float x_2=MT_2_ReadAngle();
-	  /*********************************************
-	  ±Õ»·Ç°£¬UA,UB,UCÔÚ6VµÄÈıÏàÕıÏÒ²¨
+	  //æœºæ¢°è§’åº¦
+	  //printf("%lf\r\n",PMotor_2->mechanical_angle);
+	  //ç”µè§’åº¦
+	  //printf("%lf,%lf\r\n",PMotor_2->elec_angle,PMotor_2->corr_angle);
+	  //æ ¡æ­£åçš„ç”µè§’åº¦
+	  //printf("%lf\r\n",PMotor_2->corr_angle);
+	  //ä¸‰ç›¸ç”µå‹
+	  //printf("%lf,%lf,%lf\r\n",PMotor_2->Ua,PMotor_2->Ub,PMotor_2->Uc);
 	  
-	  ÎÊÌâ:Iq±Õ»·ºó£¬UbµçÑ¹Î¬³ÖÔÚ6V,UA,UCÎª0-12V²¢ÇÒ»¥²¹£¬²¢ÇÒ²»ÊÇÕıÏÒ²¨
-	  **********************************************/
-	  printf("%lf,%lf,%lf\r\n",Ua,Ub,Uc);
-	  
-	 /*********************************************
-	  ±Õ»·Ç°£¬IA,IB,ICÔÚ0VµÄÈıÏàÕıÏÒ²¨
-	  
-	  ÎÊÌâ:Iq±Õ»·ºó£¬voltage_aºÍvoltage_bÎªÔÓ²¨£¬aÊÇ¸ºÖµ£¬bÊÇÕıÖµ
-	  **********************************************/
 	  //printf("%d,%d\r\n",voltage_a , voltage_b);
 	  //printf("%lf,%lf\r\n",Ia,Ib);
 	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);

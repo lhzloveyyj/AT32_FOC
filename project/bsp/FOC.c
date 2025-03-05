@@ -3,7 +3,6 @@ pwm6 - time2_ch4 - Ua - Ia - ADC3_IN1 - AD_Value[1]
 pwm5 - time2_ch2 - Ub - Ib - ADC3_IN0 - AD_Value[0]
 pwm4 - time2_ch1 - Uc - Ic
 
-
 ******************************************************************************/
 
 #include "at32f403a_407.h"              // Device header
@@ -15,148 +14,155 @@ pwm4 - time2_ch1 - Uc - Ic
 #include "mt6701.h"
 #include "PID.h"
 
-#define volatge_high 	12.0f				//µçÑ¹ÏŞÖÆÖµ
-#define Udc 			12.0f				//Ä¸ÏßµçÑ¹
-#define sqrt3			1.732f				//¸ùºÅ3
-#define polePairs 	 	11 					// µç»úµÄ¼«¶ÔÊı
-#define _2PI 	 		6.28318f 			// 2PI
-#define _PI 	 		3.14159f 			// PI
-#define sqrt3_2			0.866f				//¸ùºÅ3/2
-#define _3PI_2			4.712388f			//PI/3
-#define EPSILON 		1e-6 				// ¾«¶ÈãĞÖµ
-#define time2_pwm		6000				//time2 PWMÂıÕ¼¿Õ±È
-#define ADC_reference_voltage 3.3f			// ADC²Î¿¼µçÑ¹
-#define	Rs				0.01f				//²ÉÑùµç×èÖµ(R)
-#define Gain			50.0f					//µçÁ÷·Å´ó±¶Êı
+#define VOLTAGE_HIGH 	12.0f 				//ç”µå‹é™åˆ¶å€¼
+#define UDC 			12.0f               //æ¯çº¿ç”µå‹
+#define SQRT3 			1.732f              //æ ¹å·3
+#define POLE_PAIRS 		11                  // ç”µæœºçš„æå¯¹æ•°
+#define _2PI 			6.28318f            // 2PI
+#define _PI 	 		3.14159f            // PI
+#define SQRT3_2			0.866f              //æ ¹å·3/2
+#define _3PI_2			4.712388f           //PI/3
+#define EPSILON 		1e-6                // ç²¾åº¦é˜ˆå€¼
+#define TIME2_PWM 		6000                //time2 PWMæ…¢å ç©ºæ¯”
+#define ADC_REF_VOLTAGE 3.3f                // ADCå‚è€ƒç”µå‹
+#define RS 				0.01f               //é‡‡æ ·ç”µé˜»å€¼(R)
+#define GAIN 			50.0f               //ç”µæµæ”¾å¤§å€æ•°
+                                            
+uint16_t AD_Value[2] = {0};                
+uint16_t voltage_a_offset = 0;              	
+uint16_t voltage_b_offset = 0; 
 
-float  zero = 0.0f;	
-uint16_t AD_Value[2]={0};
 
-uint16_t voltage_a_offset = 0;
-uint16_t voltage_b_offset = 0;
+// PI æ§åˆ¶å™¨åˆå§‹åŒ–
+PIController pi_Id = {0.01f, 0.1f, 0.0f, 0.0f, 10.0f, -10.0f};
+PIController pi_Iq = {0.01f, 0.1f, 0.0f, 0.0f, 6.0f, -6.0f};
 
-//PI½á¹¹Ìå³õÊ¼»¯
-// ¶¨ÒåPI¿ØÖÆÆ÷½á¹¹Ìå²¢³õÊ¼»¯
-PIController pi_Id = { 
-    .Kp = 0.01f,           // ±ÈÀıÏµÊı
-    .Ki = 0.1f,           // »ı·ÖÏµÊı
-    .integral = 0.0f,     // »ı·ÖÏî³õÊ¼Öµ
-    .output = 0.0f,       // ¿ØÖÆÆ÷Êä³ö³õÊ¼Öµ
-    .output_max = 10.0f,  // Êä³ö×î´óÖµ
-    .output_min = -10.0f  // Êä³ö×îĞ¡Öµ
+static void setpwm(FOC_State *foc);
+static float limit(float in_vo, float low, float high);
+static float Angle_limit(float angle);
+static void _electricalAngle(PFOC_State pFOC) ;
+static void strong_drag_Angle(PFOC_State pFOC);
+static void getCorrectedElectricalAngle(PFOC_State pFOC) ;
+static void strong_drag(PFOC_State pFOC) ;
+void angle_init(PFOC_State pFOC);
+void adc_tigger(int time_pwm);
+void first_get(uint16_t *Ua_offset, uint16_t *Ub_offset);
+static void current_transformation(int Va, int Vb, FOC_State *foc);
+static void clarke_transform(PFOC_State pFOC) ;
+static void park_transform(PFOC_State pFOC);
+static void inv_park_transform(PFOC_State pFOC);
+static void inv_clarke_transform(PFOC_State pFOC);
+static void FocContorl(PFOC_State pFOC);
+void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC );
+
+// å®šä¹‰motor_1
+FOC_State Motor_2 = {
+    .Ualpha = 0.0f, .Ubeta = 0.0f, 	
+    .Ialpha = 0.0f, .Ibeta = 0.0f, 	
+    .Ia = 0.0f, .Ib = 0.0f, 			
+    .Ua = 0.0f, .Ub = 0.0f, .Uc = 0.0f, 		
+    .Uq = 0.0f, .Ud = 0.0f, 			
+    .Iq = 0.0f, .Id = 0.0f, 			
+    .mechanical_angle = 0.0f, 
+    .elec_angle = 0.0f,       
+    .corr_angle = 0.0f,       
+    .zero = 0.0f, 			
+
+    .Get_mechanical_angle = MT_2_ReadAngle  
 };
 
-PIController pi_Iq = { 
-    .Kp = 0.01f,           // ±ÈÀıÏµÊı
-    .Ki = 0.1f,           // »ı·ÖÏµÊı
-    .integral = 0.0f,     // »ı·ÖÏî³õÊ¼Öµ
-    .output = 0.0f,       // ¿ØÖÆÆ÷Êä³ö³õÊ¼Öµ
-    .output_max = 6.0f,  // Êä³ö×î´óÖµ
-    .output_min = -6.0f  // Êä³ö×îĞ¡Öµ
-};
+PFOC_State PMotor_2 = &Motor_2;
 
-typedef struct {
-    float i_d;  // dÖáµçÁ÷
-    float i_q;  // qÖáµçÁ÷
-    float v_d;  // dÖáµçÑ¹
-    float v_q;  // qÖáµçÑ¹
-    float theta; // µç»ú½Ç¶È
-    float omega; // µç»ú½ÇËÙ¶È
-} MotorState;
-
-void setpwm(float Ua,float Ub,float Uc);
-
-//·ùÖµÏŞÖÆº¯Êı
-float limit(float in_vo,float low,float high)
-{
-	if(in_vo>=high)
-		in_vo=high;
-	else if(in_vo<=low)
-		in_vo=low;
-	else
-		in_vo=in_vo;
-	return in_vo;
+// é™å¹…å‡½æ•°
+static float limit(float in_vo, float low, float high) {
+    if (in_vo >= high) return high;
+    if (in_vo <= low) return low;
+    return in_vo;
 }
 
-// °Ñ½Ç¶ÈÖµ¹éÒ»»¯ÔÚ [0, 2pi]
-float Angle_limit(float angle)
-{
-    float a = fmod(angle, _2PI); // fmod()º¯ÊıÓÃÓÚ¸¡µãÊıµÄÈ¡ÓàÔËËã
+// è§’åº¦é™å¹…å‡½æ•°ï¼Œä¿è¯è§’åº¦åœ¨ [0, 2PI] ä¹‹é—´
+static float Angle_limit(float angle) {
+    float a = fmod(angle, _2PI);
     return a >= 0.0f ? a : (a + _2PI);
 }
 
-// µç½Ç¶È = »úĞµ½Ç¶È * ¼«¶ÔÊı
-float _electricalAngle(float shaft_angle)
-{
-    return Angle_limit(shaft_angle * polePairs );
+// è®¡ç®—ç”µè§’åº¦
+static void _electricalAngle(PFOC_State pFOC) {
+    pFOC->mechanical_angle = pFOC->Get_mechanical_angle();
+    pFOC->elec_angle = Angle_limit(pFOC->mechanical_angle * POLE_PAIRS);
 }
 
-// ¼õÈ¥ÁãµçÎ»²¢¹éÒ»»¯
-float getCorrectedElectricalAngle(float shaft_angle)
+// å‡å»é›¶ç”µä½å¹¶å½’ä¸€åŒ–
+static void getCorrectedElectricalAngle(PFOC_State pFOC) 
 {
-    float elec_angle = _electricalAngle(shaft_angle);
-    // ¼õÈ¥ÁãµçÎ»
-    float corr_angle = elec_angle - zero;
-	// ¹éÒ»»¯µ½ [0, 2¦Ğ)
-    corr_angle = Angle_limit(corr_angle);
+    _electricalAngle(pFOC);
+    pFOC->corr_angle = Angle_limit(pFOC->elec_angle - pFOC->zero);
+    if (fabs(pFOC->corr_angle - _2PI) < EPSILON) pFOC->corr_angle = 0.0f;
+}
+
+// å¼ºæ‹–ç”µè§’åº¦
+static void strong_drag_Angle(PFOC_State pFOC)
+{
+    pFOC->mechanical_angle = 0.0f;
+	pFOC->elec_angle = Angle_limit(pFOC->mechanical_angle * POLE_PAIRS);
+	pFOC->corr_angle = Angle_limit(pFOC->elec_angle - pFOC->zero);
+	if (fabs(pFOC->corr_angle - _2PI) < EPSILON) pFOC->corr_angle = 0.0f;
+}
+
+
+// å¼ºæ‹–æ¨¡å¼
+static void strong_drag(PFOC_State pFOC) {
     
-	// ĞŞÕı 2PI ÎÊÌâ
-    if (fabs(corr_angle - _2PI) < EPSILON) 
-        corr_angle = 0.0f;
+	pFOC->Ud = 2.0f;
+	pFOC->Uq = 0.0f;
+
 	
-    return corr_angle;
+    strong_drag_Angle(pFOC);
+
+    
+    inv_park_transform(pFOC);
+
+    
+    inv_clarke_transform(pFOC);
+    
+    setpwm(pFOC);
 }
 
-//UdÇ¿ÍÏ
-void strong_drag(float Ud)
-{
-	float Ualpha=0.0f,Ubate=0.0f;
-	float Uq = 0.0f;
-	//Çóµç½Ç¶È
-	float angle_el = getCorrectedElectricalAngle(0.0f);
-	
-	//parkÄæ±ä»»
-	Ualpha = -Uq * fast_sin(angle_el) + Ud * fast_cos(angle_el);
-	Ubate  =  Uq * fast_cos(angle_el) + Ud * fast_sin(angle_el);
-	
-	//clarkeÄæ±ä»»
-	Ua = Ualpha + Udc/2;
-	Ub = (sqrt3 * Ubate - Ualpha)/2 + Udc/2;
-	Uc = (-sqrt3 * Ubate - Ualpha)/2 + Udc/2;
-	
-	setpwm(Ua,Ub,Uc);
-}
-
-//ÁãµçÎ»Ğ£×¼
-void angle_init(float (*read_angle_func)(void))
-{
-	strong_drag(2.0f); // UdÇ¿ÍÏ
+// è§’åº¦åˆå§‹åŒ–
+void angle_init(PFOC_State pFOC)
+{	
+    strong_drag(pFOC); 
     delay_ms(1000);
 
-    // ¶à´Î²ÉÑù¼õÉÙ¶¶¶¯
     float sum = 0;
     int samples = 10;
+	_electricalAngle(pFOC);
     for (int i = 0; i < samples; i++) {
-		/**************************************************/
-		//BUG : ²»Ê¹ÓÃÕâ¸öprintfÔòÁãµçÎ»Ğ£×¼ºó²»Îª0
-		/**************************************************/
-		printf("%lf\r\n",_electricalAngle(read_angle_func()));
-        sum += _electricalAngle(read_angle_func());
-        delay_ms(10); // Ã¿´Î²ÉÑù¼ä¸ô 10ms
+		_electricalAngle(pFOC);
+        /**************************************************/
+        // BUG : 
+        /**************************************************/
+        printf("_electricalAngle : %lf\r\n", pFOC->elec_angle);
+        sum += pFOC->elec_angle;
+        delay_ms(10); 
     }
-    zero = sum / samples;
-
-    printf("ÁãµçÎ»½Ç¶È: %f,%lf\r\n", zero,getCorrectedElectricalAngle(read_angle_func()));
-    printf("³õÊ¼»¯Íê³É\r\n");
+    pFOC->zero = sum / samples;
+	
+	getCorrectedElectricalAngle(pFOC);
+	
+    printf("pFOC->zero is : %f, pFOC->corr_angle is : %lf\r\n", pFOC->zero, pFOC->corr_angle);
+	if(0 == pFOC->corr_angle){
+		printf("angle_init OK !\r\n");
+	}
 }
 
-//ADC´¥·¢
+//å®šæ—¶å™¨è§¦å‘ADCé‡‡æ ·
 void adc_tigger(int time_pwm)
 {
 	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm-10);
 }
 
-//ÉÏµç¶ÁÈ¡Æ«ÖÃµçÑ¹
+//è·å–ç”µå‹åç½®
 void first_get(uint16_t *Ua_offset,uint16_t *Ub_offset)
 {
 	for(int i=0;i<16;i++)
@@ -172,88 +178,89 @@ void first_get(uint16_t *Ua_offset,uint16_t *Ub_offset)
 	
 }
 
-//µçÑ¹×ª»¯µçÁ÷º¯Êı
-void current_transformation(int Ua, int Ub, float *Ia, float *Ib)
+//ç”µæµè½¬æ¢
+static void current_transformation(int Va, int Vb, PFOC_State pFOC)
 {
-	*Ia = Ua/4096.0f * ADC_reference_voltage * Gain;
-	*Ib = Ub/4096.0f * ADC_reference_voltage * Gain;
+	pFOC->Ia = Va/4096.0f * ADC_REF_VOLTAGE * GAIN;
+	pFOC->Ib = Vb/4096.0f * ADC_REF_VOLTAGE * GAIN;
 }
 
-float pwm_a=0,pwm_b=0,pwm_c=0;
-void setpwm(float Ua,float Ub,float Uc)
+//è®¾ç½®PWM
+static void setpwm(PFOC_State pFOC)
 {
-	//Êä³öÏŞ·ù
-	Ua = limit(Ua,0.0f,volatge_high);
-	Ub = limit(Ub,0.0f,volatge_high);
-	Uc = limit(Uc,0.0f,volatge_high);
+    pFOC->Ua = limit(pFOC->Ua, 0.0f, VOLTAGE_HIGH);
+    pFOC->Ub = limit(pFOC->Ub, 0.0f, VOLTAGE_HIGH);
+    pFOC->Uc = limit(pFOC->Uc, 0.0f, VOLTAGE_HIGH);
+    
+    float pwm_a = limit(pFOC->Ua / UDC, 0.0f, 1.0f);
+    float pwm_b = limit(pFOC->Ub / UDC, 0.0f, 1.0f);
+    float pwm_c = limit(pFOC->Uc / UDC, 0.0f, 1.0f);
 	
-	//PWMÏŞ·ù
-	pwm_a = limit(Ua / Udc , 0.0f , 1.0f);
-	pwm_b = limit(Ub / Udc , 0.0f , 1.0f);
-	pwm_c = limit(Uc / Udc , 0.0f , 1.0f);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * TIME2_PWM);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * TIME2_PWM);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * TIME2_PWM);
+}
+
+// Clarke å˜æ¢
+static void clarke_transform(PFOC_State pFOC) {
+	//Uqç»™æ­£æ—¶Iqä¸ºè´Ÿï¼Œå› æ­¤å¯¹ç”µæµå–åï¼Œä¿è¯ä¸€è‡´
+	pFOC->Ia = -pFOC->Ia;
+	pFOC->Ib = -pFOC->Ib;
 	
-	//PWMĞ´Èë
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * time2_pwm);
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * time2_pwm);
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * time2_pwm);
+    pFOC->Ialpha = pFOC->Ia;
+    pFOC->Ibeta = (1 / SQRT3) * (pFOC->Ia + 2 * pFOC->Ib);
 }
 
-// Clarke±ä»»£¨µçÁ÷£©
-void clarke_transform(float Ia, float Ib, float *Ialpha, float *Ibeta) {
-    *Ialpha = Ia;
-    *Ibeta = (1 / sqrt3) * (Ia + 2 * Ib);  // Clarke±ä»»¹«Ê½£¬ÏßĞÔ×éºÏ
+// Park å˜æ¢
+static void park_transform(PFOC_State pFOC) {
+    pFOC->Id = pFOC->Ialpha * fast_cos(pFOC->corr_angle) + pFOC->Ibeta * fast_sin(pFOC->corr_angle);  
+    pFOC->Iq = -pFOC->Ialpha * fast_sin(pFOC->corr_angle) + pFOC->Ibeta * fast_cos(pFOC->corr_angle);
 }
 
-// Park±ä»»£¨µçÁ÷£©
-void park_transform(float Ialpha, float Ibeta, float angle_el, float *Id, float *Iq) {
-    *Id = Ialpha * fast_cos(angle_el) + Ibeta * fast_sin(angle_el);  // Park±ä»»¹«Ê½
-    *Iq = -Ialpha * fast_sin(angle_el) + Ibeta * fast_cos(angle_el);
-}
-
-
-// FOCºËĞÄº¯Êı£ºÊäÈëUq¡¢UdºÍµç½Ç¶È£¬Êä³öÈıÂ·PWM
-float Ualpha=0.0f,Ubate=0.0f;
-float Ialpha=0.0f,Ibeta=0.0f;
-float Ia = 0.0f, Ib = 0.0f;
-float Ua = 0.0f,Ub = 0.0f,Uc = 0.0f;
-float Uq=0.0f,Ud=0.0f;
-float Iq=0.0f,Id=0.0f;
-int voltage_a = 0,voltage_b = 0;
-void setPhaseVoltage(uint16_t V_a, uint16_t V_b, float angle)
+// é€† Park å˜æ¢
+static void inv_park_transform(PFOC_State pFOC)
 {
-//	//Á¦¾ØÏŞ·ù
-//	Uq = limit(Uq,-Udc/2,Udc/2);
+	pFOC->Ualpha = -pFOC->Uq * fast_sin(pFOC->corr_angle) + pFOC->Ud * fast_cos(pFOC->corr_angle);
+	pFOC->Ubeta  =  pFOC->Uq * fast_cos(pFOC->corr_angle) + pFOC->Ud * fast_sin(pFOC->corr_angle);
+}
+
+// é€† Clarke å˜æ¢
+static void inv_clarke_transform(PFOC_State pFOC)
+{
+	pFOC->Ua = pFOC->Ualpha + UDC/2;
+	pFOC->Ub = (SQRT3 * pFOC->Ubeta - pFOC->Ualpha)/2 + UDC/2;
+	pFOC->Uc = (-SQRT3 * pFOC->Ubeta - pFOC->Ualpha)/2 + UDC/2;
+}
+
+// FOC æ§åˆ¶ä¸»å‡½æ•°
+static void FocContorl(PFOC_State pFOC)
+{
+	//è®¡ç®—ç”µè§’åº¦
+	getCorrectedElectricalAngle(pFOC);
+	clarke_transform(pFOC) ;
+	park_transform(pFOC);
+	//PIDæ§åˆ¶å™¨
+	pFOC->Ud = PI_Compute(&pi_Id, 0.0f, pFOC->Id);
+	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
-	//¼õÈ¥Æ«ÖÃµçÑ¹
-	voltage_a = V_a - voltage_a_offset;
-	voltage_b = V_b - voltage_b_offset;
+	pFOC->Ud = 0.0f;
+	pFOC->Uq = 2.0f;
+	//é€†å˜æ¢
+	inv_park_transform(pFOC);
+	inv_clarke_transform(pFOC);
+	//è®¾ç½®PWM
+	setpwm(pFOC);
+}
+
+//FOCæ§åˆ¶
+void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC )
+{	
+	int voltage_a = V_a - voltage_a_offset;
+	int voltage_b = V_b - voltage_b_offset;
 	
-	//µçÑ¹»»ËãµçÁ÷
-	current_transformation(voltage_a, voltage_b, &Ia, &Ib);
+	current_transformation(voltage_a, voltage_b, pFOC);
 	
-	//Clarke±ä»»
-	clarke_transform(-Ia, -Ib, &Ialpha, &Ibeta) ;
-	
-	//Çóµç½Ç¶È
-	float angle_el = getCorrectedElectricalAngle(angle);
-	
-	//Park±ä»»
-	park_transform(Ialpha, Ibeta, angle_el, &Id, &Iq);
-	//Iq -> PI -> Ud
-	Ud = PI_Compute(&pi_Id, 0.0f, Id);
-	Uq = PI_Compute(&pi_Iq, 10.0f, Iq);
-	//Ud = 0.0f;
-	
-	//parkÄæ±ä»»
-	Ualpha = -Uq * fast_sin(angle_el) + Ud * fast_cos(angle_el);
-	Ubate  =  Uq * fast_cos(angle_el) + Ud * fast_sin(angle_el);
-	
-	//clarkeÄæ±ä»»
-	Ua = Ualpha + Udc/2;
-	Ub = (sqrt3 * Ubate - Ualpha)/2 + Udc/2;
-	Uc = (-sqrt3 * Ubate - Ualpha)/2 + Udc/2;
-	
-	setpwm(Ua,Ub,Uc);
+	FocContorl(pFOC);
 }
 
 
