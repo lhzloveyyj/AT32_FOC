@@ -1,4 +1,10 @@
 /******************************************************************************
+MOTOE_1
+pwm3 - time4_ch3 - Ua - Ia - ADC3_IN1 - AD_Value[1]
+pwm2 - time4_ch2 - Ub - Ib - ADC3_IN0 - AD_Value[0]
+pwm1 - time4_ch1 - Uc - Ic
+
+MOTOE_2
 pwm6 - time2_ch4 - Ua - Ia - ADC3_IN1 - AD_Value[1]
 pwm5 - time2_ch2 - Ub - Ib - ADC3_IN0 - AD_Value[0]
 pwm4 - time2_ch1 - Uc - Ic
@@ -23,7 +29,7 @@ pwm4 - time2_ch1 - Uc - Ic
 #define SQRT3_2			0.866f              //根号3/2
 #define _3PI_2			4.712388f           //PI/3
 #define EPSILON 		1e-6                // 精度阈值
-#define TIME2_PWM 		6000                //time2 PWM慢占空比
+#define TIME2_4_PWM 		6000                //time2 PWM慢占空比
 #define ADC_REF_VOLTAGE 3.3f                // ADC参考电压
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
@@ -53,9 +59,30 @@ static void park_transform(PFOC_State pFOC);
 static void inv_park_transform(PFOC_State pFOC);
 static void inv_clarke_transform(PFOC_State pFOC);
 static void FocContorl(PFOC_State pFOC);
+static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c);
+static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c);
 void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC );
 
 // 定义motor_1
+FOC_State Motor_1 = {
+    .Ualpha = 0.0f, .Ubeta = 0.0f, 	
+    .Ialpha = 0.0f, .Ibeta = 0.0f, 	
+    .Ia = 0.0f, .Ib = 0.0f, 			
+    .Ua = 0.0f, .Ub = 0.0f, .Uc = 0.0f, 		
+    .Uq = 0.0f, .Ud = 0.0f, 			
+    .Iq = 0.0f, .Id = 0.0f, 			
+    .mechanical_angle = 0.0f, 
+    .elec_angle = 0.0f,       
+    .corr_angle = 0.0f,       
+    .zero = 0.0f, 			
+
+    .Get_mechanical_angle = MT_1_ReadAngle	,
+	.SetPWM = setpwm1_channel
+};
+
+PFOC_State PMotor_1 = &Motor_1;
+
+// 定义motor_2
 FOC_State Motor_2 = {
     .Ualpha = 0.0f, .Ubeta = 0.0f, 	
     .Ialpha = 0.0f, .Ibeta = 0.0f, 	
@@ -68,7 +95,8 @@ FOC_State Motor_2 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
-    .Get_mechanical_angle = MT_2_ReadAngle  
+    .Get_mechanical_angle = MT_2_ReadAngle	,
+	.SetPWM = setpwm2_channel
 };
 
 PFOC_State PMotor_2 = &Motor_2;
@@ -185,6 +213,21 @@ static void current_transformation(int Va, int Vb, PFOC_State pFOC)
 	pFOC->Ib = Vb/4096.0f * ADC_REF_VOLTAGE * GAIN;
 }
 
+//电机1设置PWM占空比
+static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c)
+{
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, pwm_a * TIME2_4_PWM);
+    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, pwm_b * TIME2_4_PWM);
+    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, pwm_c * TIME2_4_PWM);
+}
+
+//电机2设置PWM占空比
+static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c)
+{
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * TIME2_4_PWM);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * TIME2_4_PWM);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * TIME2_4_PWM);
+}
 //设置PWM
 static void setpwm(PFOC_State pFOC)
 {
@@ -196,9 +239,7 @@ static void setpwm(PFOC_State pFOC)
     float pwm_b = limit(pFOC->Ub / UDC, 0.0f, 1.0f);
     float pwm_c = limit(pFOC->Uc / UDC, 0.0f, 1.0f);
 	
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * TIME2_PWM);
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * TIME2_PWM);
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * TIME2_PWM);
+    pFOC->SetPWM(pwm_a,pwm_b,pwm_c);
 }
 
 // Clarke 变换

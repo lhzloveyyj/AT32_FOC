@@ -156,6 +156,8 @@ int main(void)
   
   first_get(&voltage_a_offset,&voltage_b_offset);
   
+  angle_init(PMotor_1);
+  
   angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);

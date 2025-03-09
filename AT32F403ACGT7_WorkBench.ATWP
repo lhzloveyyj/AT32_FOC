@@ -108,7 +108,7 @@
             <ModeSub name="Activated" value="TRUE"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="DividerValue" value="9"/>
+            <ParametersSub name="DividerValue" value="4"/>
             <ParametersSub name="Period" value="2399"/>
         </Parameters>
     </TMR3>
@@ -120,6 +120,14 @@
             <ModeSub name="Channel4 mode" value="Output_CH4"/>
             <ModeSub name="Activated" value="TRUE"/>
         </Mode>
+        <Parameters>
+            <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
+            <ParametersSub name="Period" value="5999"/>
+            <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
+            <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
+            <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
+            <ParametersSub name="OCMode_4" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
+        </Parameters>
     </TMR4>
     <TMR5>
         <Mode>

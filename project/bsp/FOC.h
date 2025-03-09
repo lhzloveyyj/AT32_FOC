@@ -17,6 +17,7 @@ typedef struct {
     float zero; 			
 	
 	float (*Get_mechanical_angle)(void);
+	void (*SetPWM)(float pwm_a, float pwm_b, float pwm_c); 
 } FOC_State;
 
 typedef FOC_State *PFOC_State;
@@ -24,7 +25,8 @@ typedef FOC_State *PFOC_State;
 extern uint16_t AD_Value[2];
 extern uint16_t voltage_a_offset, voltage_b_offset;
 
-extern FOC_State Motor_2;
+extern PFOC_State PMotor_1;
+
 extern PFOC_State PMotor_2;
 							 
 void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC );		
