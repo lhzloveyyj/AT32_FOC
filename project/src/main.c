@@ -111,6 +111,16 @@ int main(void)
                         DMA1_CHANNEL1_BUFFER_SIZE);
   dma_channel_enable(DMA1_CHANNEL1, TRUE);
 
+  /* init dma1 channel2 */
+  wk_dma1_channel2_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL2, 
+                        (uint32_t)&ADC1->odt, 
+                        DMA1_CHANNEL2_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL2_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL2, TRUE);
+
   /* init usart1 function. */
   wk_usart1_init();
 
@@ -154,7 +164,8 @@ int main(void)
   
   delay_ms(10);
   
-  first_get(&voltage_a_offset,&voltage_b_offset);
+  first_get(PMotor_1);
+  first_get(PMotor_2);
   
   angle_init(PMotor_1);
   

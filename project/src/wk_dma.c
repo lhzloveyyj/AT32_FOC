@@ -63,6 +63,37 @@ void wk_dma1_channel1_init(void)
 }
 
 /**
+  * @brief  init dma1 channel2 for "adc1"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel2_init(void)
+{
+  /* add user code begin dma1_channel2 0 */
+
+  /* add user code end dma1_channel2 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL2);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_HALFWORD;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_HALFWORD;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = TRUE;
+  dma_init(DMA1_CHANNEL2, &dma_init_struct);
+
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL2, DMA_FLEXIBLE_ADC1);
+  /* add user code begin dma1_channel2 1 */
+
+  /* add user code end dma1_channel2 1 */
+}
+
+/**
   * @brief  config dma channel transfer parameter
   * @param  dmax_channely: DMAx_CHANNELy
   * @param  peripheral_base_addr: peripheral address.

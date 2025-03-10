@@ -5,6 +5,16 @@
 #include "at32f403a_407.h"              // Device header
 
 typedef struct {
+	uint16_t ad_A;
+	uint16_t ad_B;
+    uint16_t voltage_a_offset;
+    uint16_t voltage_b_offset;
+    uint8_t  Mflag;
+} Current_State;
+
+typedef struct {
+	Current_State current;
+	
     float Ualpha, Ubeta; 	
     float Ialpha, Ibeta; 	
     float Ia, Ib; 			
@@ -22,16 +32,15 @@ typedef struct {
 
 typedef FOC_State *PFOC_State;
 
-extern uint16_t AD_Value[2];
-extern uint16_t voltage_a_offset, voltage_b_offset;
+extern uint16_t Motor1_AD_Value[2];
+extern uint16_t Motor2_AD_Value[2];
 
 extern PFOC_State PMotor_1;
-
 extern PFOC_State PMotor_2;
 							 
-void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC );		
+void FocContorl(PFOC_State pFOC);	
 void angle_init(PFOC_State pFOC);
 void adc_tigger(int time_pwm);
-void first_get(uint16_t *Ua_offset,uint16_t *Ub_offset);
+void first_get(PFOC_State pFOC);
 
 #endif

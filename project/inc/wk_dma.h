@@ -60,6 +60,9 @@ extern "C" {
   /* init dma1 channel1 */
   void wk_dma1_channel1_init(void);
 
+  /* init dma1 channel2 */
+  void wk_dma1_channel2_init(void);
+
   /* config dma channel transfer parameter */
   /* user need to modify parameters memory_base_addr and buffer_size */
   void wk_dma_channel_config(dma_channel_type* dmax_channely, uint32_t peripheral_base_addr, uint32_t memory_base_addr, uint16_t buffer_size);

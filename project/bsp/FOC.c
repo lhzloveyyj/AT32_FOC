@@ -1,7 +1,7 @@
 /******************************************************************************
 MOTOE_1
-pwm3 - time4_ch3 - Ua - Ia - ADC3_IN1 - AD_Value[1]
-pwm2 - time4_ch2 - Ub - Ib - ADC3_IN0 - AD_Value[0]
+pwm3 - time4_ch3 - Ua - Ia - ADC1_IN9 - AD_Value[1]
+pwm2 - time4_ch2 - Ub - Ib - ADC1_IN8 - AD_Value[0]
 pwm1 - time4_ch1 - Uc - Ic
 
 MOTOE_2
@@ -34,9 +34,8 @@ pwm4 - time2_ch1 - Uc - Ic
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
                                             
-uint16_t AD_Value[2] = {0};                
-uint16_t voltage_a_offset = 0;              	
-uint16_t voltage_b_offset = 0; 
+uint16_t Motor1_AD_Value[2] = {0};
+uint16_t Motor2_AD_Value[2] = {0};
 
 
 // PI 控制器初始化
@@ -52,19 +51,24 @@ static void getCorrectedElectricalAngle(PFOC_State pFOC) ;
 static void strong_drag(PFOC_State pFOC) ;
 void angle_init(PFOC_State pFOC);
 void adc_tigger(int time_pwm);
-void first_get(uint16_t *Ua_offset, uint16_t *Ub_offset);
-static void current_transformation(int Va, int Vb, FOC_State *foc);
+void first_get(PFOC_State pFOC);
 static void clarke_transform(PFOC_State pFOC) ;
 static void park_transform(PFOC_State pFOC);
 static void inv_park_transform(PFOC_State pFOC);
 static void inv_clarke_transform(PFOC_State pFOC);
-static void FocContorl(PFOC_State pFOC);
+void FocContorl(PFOC_State pFOC);
 static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c);
 static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c);
-void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC );
 
 // 定义motor_1
 FOC_State Motor_1 = {
+	.current = {
+        .ad_A = 0,
+        .ad_B = 0,
+        .voltage_a_offset = 0,
+        .voltage_b_offset = 0,
+        .Mflag = 1
+    },
     .Ualpha = 0.0f, .Ubeta = 0.0f, 	
     .Ialpha = 0.0f, .Ibeta = 0.0f, 	
     .Ia = 0.0f, .Ib = 0.0f, 			
@@ -77,13 +81,20 @@ FOC_State Motor_1 = {
     .zero = 0.0f, 			
 
     .Get_mechanical_angle = MT_1_ReadAngle	,
-	.SetPWM = setpwm1_channel
+	.SetPWM = setpwm1_channel	,
 };
 
 PFOC_State PMotor_1 = &Motor_1;
 
 // 定义motor_2
 FOC_State Motor_2 = {
+	.current = {
+        .ad_A = 0,
+        .ad_B = 0,
+        .voltage_a_offset = 0,
+        .voltage_b_offset = 0,
+        .Mflag = 2
+    },
     .Ualpha = 0.0f, .Ubeta = 0.0f, 	
     .Ialpha = 0.0f, .Ibeta = 0.0f, 	
     .Ia = 0.0f, .Ib = 0.0f, 			
@@ -180,7 +191,7 @@ void angle_init(PFOC_State pFOC)
 	
     printf("pFOC->zero is : %f, pFOC->corr_angle is : %lf\r\n", pFOC->zero, pFOC->corr_angle);
 	if(0 == pFOC->corr_angle){
-		printf("angle_init OK !\r\n");
+		printf("motor %d angle_init OK !\r\n",pFOC->current.Mflag);
 	}
 }
 
@@ -191,26 +202,30 @@ void adc_tigger(int time_pwm)
 }
 
 //获取电压偏置
-void first_get(uint16_t *Ua_offset,uint16_t *Ub_offset)
+void first_get(PFOC_State pFOC)
 {
+	pFOC->current.ad_B = 0;
+	pFOC->current.ad_A = 0;
+	
 	for(int i=0;i<16;i++)
-	{
-		*Ub_offset += AD_Value[0];
-		*Ua_offset += AD_Value[1];
+	{	
+		if(1 == pFOC->current.Mflag){
+		pFOC->current.ad_B += Motor1_AD_Value[0];
+		pFOC->current.ad_A += Motor1_AD_Value[1];
+		}
+		
+		else if(2 == pFOC->current.Mflag){
+		pFOC->current.ad_B += Motor2_AD_Value[0];
+		pFOC->current.ad_A += Motor2_AD_Value[1];
+		}
+		
 //		printf("%d	Ua voltage offset is %d \r\n Ub voltage offset is  %d\r\n",i,AD_Value[1],AD_Value[0]);
 	}
-	*Ua_offset = *Ua_offset>>4;
-	*Ub_offset = *Ub_offset>>4;
+	pFOC->current.voltage_a_offset = pFOC->current.ad_A>>4;
+	pFOC->current.voltage_b_offset = pFOC->current.ad_B>>4;
 	
-	printf("Ua voltage offset is %d Ub \r\n voltage offset is  %d\r\n",*Ua_offset,*Ub_offset);
-	
-}
-
-//电流转换
-static void current_transformation(int Va, int Vb, PFOC_State pFOC)
-{
-	pFOC->Ia = Va/4096.0f * ADC_REF_VOLTAGE * GAIN;
-	pFOC->Ib = Vb/4096.0f * ADC_REF_VOLTAGE * GAIN;
+	printf("motor %d : Ua voltage offset is %d , Ub \r\n voltage offset is  %d\r\n",
+		pFOC->current.Mflag,pFOC->current.voltage_a_offset,pFOC->current.voltage_b_offset);
 }
 
 //电机1设置PWM占空比
@@ -274,10 +289,24 @@ static void inv_clarke_transform(PFOC_State pFOC)
 }
 
 // FOC 控制主函数
-static void FocContorl(PFOC_State pFOC)
+void FocContorl(PFOC_State pFOC)
 {
 	//计算电角度
 	getCorrectedElectricalAngle(pFOC);
+	
+	if(1 == pFOC->current.Mflag){
+	pFOC->current.ad_A = Motor1_AD_Value[1];
+	pFOC->current.ad_B = Motor1_AD_Value[0];
+	}
+	
+	else if(2 == pFOC->current.Mflag){
+	pFOC->current.ad_A = Motor2_AD_Value[1];
+	pFOC->current.ad_B = Motor2_AD_Value[0];
+	}
+	
+	pFOC->Ia = (pFOC->current.ad_A - pFOC->current.voltage_a_offset)/4096.0f * ADC_REF_VOLTAGE * GAIN;
+	pFOC->Ib = (pFOC->current.ad_B - pFOC->current.voltage_a_offset)/4096.0f * ADC_REF_VOLTAGE * GAIN;
+	
 	clarke_transform(pFOC) ;
 	park_transform(pFOC);
 	//PID控制器
@@ -293,16 +322,6 @@ static void FocContorl(PFOC_State pFOC)
 	setpwm(pFOC);
 }
 
-//FOC控制
-void setPhaseVoltage(uint16_t V_a, uint16_t V_b, PFOC_State pFOC )
-{	
-	int voltage_a = V_a - voltage_a_offset;
-	int voltage_b = V_b - voltage_b_offset;
-	
-	current_transformation(voltage_a, voltage_b, pFOC);
-	
-	FocContorl(pFOC);
-}
 
 
 
