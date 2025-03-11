@@ -336,7 +336,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--no-multibyte-chars</MiscControls>
               <Define>AT32F403ACGT7,USE_STDPERIPH_DRIVER,AT_START_F403A_V1</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\libraries\drivers\inc;..\..\libraries\cmsis\cm4\core_support;..\..\libraries\cmsis\cm4\device_support;..\inc;..\bsp</IncludePath>
@@ -562,6 +562,11 @@
               <FileName>PID.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>LOG.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\LOG.c</FilePath>
             </File>
           </Files>
         </Group>

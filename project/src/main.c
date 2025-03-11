@@ -42,6 +42,7 @@
 #include "delay.h"
 #include "mt6701.h"
 #include "FOC.h"
+#include "LOG.h"
 
 /* add user code end private includes */
 
@@ -53,6 +54,8 @@
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
 #define time_pwm	6000
+#define	Motor1_debug	1
+#define	Motor2_debug	0	
 /* add user code end private define */
 
 /* private macro -------------------------------------------------------------*/
@@ -160,7 +163,10 @@ int main(void)
   /* add user code begin 2 */
   delay_init();
   
-  adc_tigger(time_pwm);
+  Product_Overview();
+  
+  M1_adc_tigger(time_pwm);
+  M2_adc_tigger(time_pwm);
   
   delay_ms(10);
   
@@ -179,6 +185,10 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
+	  #if Motor1_debug
+	  printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
+	  #elif	Motor2_debug
+	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
 	  //机械角度
 	  //printf("%lf\r\n",PMotor_2->mechanical_angle);
 	  //电角度
@@ -193,7 +203,7 @@ int main(void)
 	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);
 	  //printf("%lf,%lf\r\n",Id,Iq);
 	  //printf("%lf\r\n",Ud);
-
+	  #endif
     /* add user code end 3 */
   }
 }

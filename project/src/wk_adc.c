@@ -77,7 +77,7 @@ void wk_adc1_init(void)
 
   /* adc_ordinary_conversionmode-------------------------------------------- */
   adc_ordinary_channel_set(ADC1, ADC_CHANNEL_8, 1, ADC_SAMPLETIME_1_5);
-  adc_ordinary_channel_set(ADC1, ADC_CHANNEL_8, 2, ADC_SAMPLETIME_1_5);
+  adc_ordinary_channel_set(ADC1, ADC_CHANNEL_9, 2, ADC_SAMPLETIME_1_5);
 
   adc_ordinary_conversion_trigger_set(ADC1, ADC12_ORDINARY_TRIG_TMR4CH4, TRUE);
 

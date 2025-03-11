@@ -37,3 +37,4 @@
 .\objects\main.o: ..\bsp\mt6701.h
 .\objects\main.o: ..\bsp\FOC.h
 .\objects\main.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\main.o: ..\bsp\LOG.h

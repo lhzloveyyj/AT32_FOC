@@ -14,7 +14,7 @@
             <ParametersSub name="OrdinaryTriggerSource" value="ADC12_ORDINARY_TRIG_TMR4CH4"/>
             <ParametersSub name="NbrOfOrdinarySequence" value="2"/>
             <ParametersSub name="Channel_OrdinarySequence_1" value="ADC_CHANNEL_8"/>
-            <ParametersSub name="Channel_OrdinarySequence_2" value="ADC_CHANNEL_8"/>
+            <ParametersSub name="Channel_OrdinarySequence_2" value="ADC_CHANNEL_9"/>
         </Parameters>
     </ADC1>
     <ADC3>

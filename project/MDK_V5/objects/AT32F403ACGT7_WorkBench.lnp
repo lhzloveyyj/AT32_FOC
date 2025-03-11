@@ -32,6 +32,7 @@
 ".\objects\led.o"
 ".\objects\filter.o"
 ".\objects\pid.o"
+".\objects\log.o"
 --library_type=microlib --strict --scatter ".\objects\AT32F403ACGT7_WorkBench.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

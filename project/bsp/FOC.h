@@ -40,7 +40,8 @@ extern PFOC_State PMotor_2;
 							 
 void FocContorl(PFOC_State pFOC);	
 void angle_init(PFOC_State pFOC);
-void adc_tigger(int time_pwm);
+void M1_adc_tigger(int time_pwm);
+void M2_adc_tigger(int time_pwm);
 void first_get(PFOC_State pFOC);
 
 #endif

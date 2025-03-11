@@ -50,7 +50,8 @@ static void strong_drag_Angle(PFOC_State pFOC);
 static void getCorrectedElectricalAngle(PFOC_State pFOC) ;
 static void strong_drag(PFOC_State pFOC) ;
 void angle_init(PFOC_State pFOC);
-void adc_tigger(int time_pwm);
+void M1_adc_tigger(int time_pwm);
+void M2_adc_tigger(int time_pwm);
 void first_get(PFOC_State pFOC);
 static void clarke_transform(PFOC_State pFOC) ;
 static void park_transform(PFOC_State pFOC);
@@ -196,7 +197,12 @@ void angle_init(PFOC_State pFOC)
 }
 
 //定时器触发ADC采样
-void adc_tigger(int time_pwm)
+void M1_adc_tigger(int time_pwm)
+{
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm-10);
+}
+
+void M2_adc_tigger(int time_pwm)
 {
 	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm-10);
 }

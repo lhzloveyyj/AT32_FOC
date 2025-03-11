@@ -87,10 +87,10 @@ void wk_tmr2_init(void)
   gpio_pin_remap_config(TMR2_GMUX_01, TRUE); 
 
   /* configure counter settings */
+  tmr_base_init(TMR2, 5999, 0);
   tmr_cnt_dir_set(TMR2, TMR_COUNT_TWO_WAY_1);
   tmr_clock_source_div_set(TMR2, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR2, FALSE);
-  tmr_base_init(TMR2, 5999, 0);
 
   /* configure primary mode settings */
   tmr_sub_sync_mode_set(TMR2, FALSE);
@@ -177,10 +177,10 @@ void wk_tmr3_init(void)
   /* add user code end tmr3_init 1 */
 
   /* configure counter settings */
+  tmr_base_init(TMR3, 2399, 4);
   tmr_cnt_dir_set(TMR3, TMR_COUNT_UP);
   tmr_clock_source_div_set(TMR3, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR3, FALSE);
-  tmr_base_init(TMR3, 2399, 4);
 
   /* configure primary mode settings */
   tmr_sub_sync_mode_set(TMR3, FALSE);
@@ -254,10 +254,10 @@ void wk_tmr4_init(void)
   gpio_init(GPIOB, &gpio_init_struct);
 
   /* configure counter settings */
+  tmr_base_init(TMR4, 5999, 0);
   tmr_cnt_dir_set(TMR4, TMR_COUNT_TWO_WAY_1);
   tmr_clock_source_div_set(TMR4, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR4, FALSE);
-  tmr_base_init(TMR4, 5999, 0);
 
   /* configure primary mode settings */
   tmr_sub_sync_mode_set(TMR4, FALSE);
@@ -344,10 +344,10 @@ void wk_tmr5_init(void)
   /* add user code end tmr5_init 1 */
 
   /* configure counter settings */
+  tmr_base_init(TMR5, 23999, 9);
   tmr_cnt_dir_set(TMR5, TMR_COUNT_UP);
   tmr_clock_source_div_set(TMR5, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR5, FALSE);
-  tmr_base_init(TMR5, 23999, 9);
 
   /* configure primary mode settings */
   tmr_sub_sync_mode_set(TMR5, FALSE);
