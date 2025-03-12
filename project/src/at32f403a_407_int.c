@@ -34,6 +34,7 @@
 #include "MT6701.h"
 #include "foc.h"
 #include "filter.h"
+#include <stdio.h>
 
 /* add user code end private includes */
 
@@ -224,6 +225,54 @@ void SysTick_Handler(void)
   /* add user code begin SysTick_IRQ 1 */
 
   /* add user code end SysTick_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles USB Low  Priority or CAN1 RX0 handler.
+  * @param  none
+  * @retval none
+  */
+void USBFS_L_CAN1_RX0_IRQHandler(void)
+{
+  /* add user code begin USBFS_L_CAN1_RX0_IRQ 0 */
+	can_rx_message_type rx_message_struct;
+	static int times;
+	if(can_flag_get(CAN1,CAN_RF0MN_FLAG) != RESET)
+	{
+		times ++;
+		can_message_receive(CAN1, CAN_RX_FIFO0, &rx_message_struct);
+		printf("%d	can1 rx data \r\n",times);
+		//printf("rx_message_struct.standard_id:%02x \r\n",rx_message_struct.standard_id);
+//		if(rx_message_struct.standard_id == FILTER_STD_ID1||rx_message_struct.extended_id==FILTER_EXT_ID1)
+//		{
+//			printf("rx data:\r\n");
+//			for(i=0;i<8;i++)
+//			{
+//				 printf("%02x ",rx_message_struct.data[i]);
+//			}
+//			 printf("\r\n");
+//		}	
+	}
+
+  /* add user code end USBFS_L_CAN1_RX0_IRQ 0 */
+  /* add user code begin USBFS_L_CAN1_RX0_IRQ 1 */
+
+  /* add user code end USBFS_L_CAN1_RX0_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles CAN1 SE handler.
+  * @param  none
+  * @retval none
+  */
+void CAN1_SE_IRQHandler(void)
+{
+  /* add user code begin CAN1_SE_IRQ 0 */
+
+  /* add user code end CAN1_SE_IRQ 0 */
+  /* add user code begin CAN1_SE_IRQ 1 */
+
+  /* add user code end CAN1_SE_IRQ 1 */
 }
 
 /**

@@ -28,3 +28,4 @@
 .\objects\at32f403a_407_int.o: ..\bsp\foc.h
 .\objects\at32f403a_407_int.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\at32f403a_407_int.o: ..\bsp\filter.h
+.\objects\at32f403a_407_int.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdio.h

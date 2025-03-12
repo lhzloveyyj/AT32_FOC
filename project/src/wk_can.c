@@ -104,8 +104,40 @@ void wk_can1_init(void)
 
   can_filter_init(CAN1, &can_filter_init_struct);
 
-  /* add user code begin can1_init 2 */
+  /*can_filter_1_config--------------------------------------------------------------*/
+  can_filter_init_struct.filter_activate_enable = TRUE;
+  can_filter_init_struct.filter_number = 1;
+  can_filter_init_struct.filter_fifo = CAN_FILTER_FIFO1;
+  can_filter_init_struct.filter_bit = CAN_FILTER_16BIT;  
+  can_filter_init_struct.filter_mode = CAN_FILTER_MODE_ID_MASK;  
+  /*Standard identifier + Mask Mode + Data/Remote frame: id/mask 11bit --------------*/
+  can_filter_init_struct.filter_id_high = 0x0 << 5;
+  can_filter_init_struct.filter_id_low = 0x0 << 5;
+  can_filter_init_struct.filter_mask_high = 0x0 << 5;
+  can_filter_init_struct.filter_mask_low = 0x0 << 5;
 
+  can_filter_init(CAN1, &can_filter_init_struct);
+
+  /**
+   * Users need to configure CAN1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding CAN1 interrupt.
+   *     --can_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f403a_407_int.c file.
+   *     --void USBFS_L_CAN1_RX0_IRQHandler(void)
+   *     --void CAN1_SE_IRQHandler(void)
+   */
+
+  /*can1 rx0 interrupt config--------------------------------------------------------*/ 
+  //can_interrupt_enable(CAN1, CAN_RF0MIEN_INT, TRUE);
+
+  /*can1 se interrupt config---------------------------------------------------------*/ 
+  //can_interrupt_enable(CAN1, CAN_ETRIEN_INT, TRUE);
+  //can_interrupt_enable(CAN1, CAN_EOIEN_INT, TRUE);
+
+  /* add user code begin can1_init 2 */
+	can_interrupt_enable(CAN1, CAN_RF0MIEN_INT | CAN_RF1MIEN_INT, TRUE);
+	can_interrupt_enable(CAN1, CAN_ETRIEN_INT, TRUE);
+	can_interrupt_enable(CAN1, CAN_EOIEN_INT, TRUE);
   /* add user code end can1_init 2 */
 }
 

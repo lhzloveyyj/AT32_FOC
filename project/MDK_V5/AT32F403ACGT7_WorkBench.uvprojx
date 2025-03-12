@@ -568,6 +568,11 @@
               <FileType>1</FileType>
               <FilePath>..\bsp\LOG.c</FilePath>
             </File>
+            <File>
+              <FileName>CAN.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\CAN.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

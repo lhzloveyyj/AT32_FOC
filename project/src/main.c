@@ -43,6 +43,7 @@
 #include "mt6701.h"
 #include "FOC.h"
 #include "LOG.h"
+#include "CAN.h"
 
 /* add user code end private includes */
 
@@ -185,8 +186,10 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
+	  can1_transmit_data_sid();
+	  delay_ms(300);
 	  #if Motor1_debug
-	  printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
+	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
 	  #elif	Motor2_debug
 	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
 	  //机械角度

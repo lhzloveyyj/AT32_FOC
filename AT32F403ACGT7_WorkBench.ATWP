@@ -36,10 +36,14 @@
         <Parameters>
             <ParametersSub name="BaudRate" value="500"/>
             <ParametersSub name="Sample_Point" value="87.5"/>
+            <ParametersSub name="BaudRate_Deviation_Tolerance" value="TRUE"/>
+            <ParametersSub name="BaudRate_Deviation" value="2"/>
             <ParametersSub name="BaudRate_Division" value="30"/>
             <ParametersSub name="BTS1" value="CAN_BTS1_6TQ"/>
             <ParametersSub name="BTS2" value="CAN_BTS2_1TQ"/>
             <ParametersSub name="RSAW" value="CAN_RSAW_1TQ"/>
+            <ParametersSub name="Filter_1_Enable" value="TRUE"/>
+            <ParametersSub name="Filter_1_FIFO_select" value="CAN_FILTER_FIFO1"/>
         </Parameters>
     </CAN1>
     <CRM>
@@ -173,18 +177,18 @@
         <DMA1_Channel2_IRQHandler>0;0;0;0;0</DMA1_Channel2_IRQHandler>
         <ADC1_2_IRQHandler>0;1;0;0;0</ADC1_2_IRQHandler>
         <USBFS_H_CAN1_TX_IRQHandler>0;0;0;0;0</USBFS_H_CAN1_TX_IRQHandler>
-        <USBFS_L_CAN1_RX0_IRQHandler>0;0;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>
+        <USBFS_L_CAN1_RX0_IRQHandler>1;1;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>
         <CAN1_RX1_IRQHandler>0;0;0;0;0</CAN1_RX1_IRQHandler>
-        <CAN1_SE_IRQHandler>0;0;0;0;0</CAN1_SE_IRQHandler>
+        <CAN1_SE_IRQHandler>1;1;0;0;0</CAN1_SE_IRQHandler>
         <TMR2_GLOBAL_IRQHandler>0;0;0;0;0</TMR2_GLOBAL_IRQHandler>
-        <TMR3_GLOBAL_IRQHandler>1;0;0;0;0</TMR3_GLOBAL_IRQHandler>
+        <TMR3_GLOBAL_IRQHandler>1;1;0;0;0</TMR3_GLOBAL_IRQHandler>
         <TMR4_GLOBAL_IRQHandler>0;0;0;0;0</TMR4_GLOBAL_IRQHandler>
         <SPI1_IRQHandler>0;0;0;0;0</SPI1_IRQHandler>
         <SPI2_I2S2EXT_IRQHandler>0;0;0;0;0</SPI2_I2S2EXT_IRQHandler>
         <USART1_IRQHandler>0;1;0;0;0</USART1_IRQHandler>
         <USART3_IRQHandler>0;0;0;0;0</USART3_IRQHandler>
         <ADC3_IRQHandler>0;0;0;0;0</ADC3_IRQHandler>
-        <TMR5_GLOBAL_IRQHandler>1;1;0;0;0</TMR5_GLOBAL_IRQHandler>
+        <TMR5_GLOBAL_IRQHandler>1;4;0;0;0</TMR5_GLOBAL_IRQHandler>
     </NVIC>
     <ClockConfiguration>
         <rtcsel>0</rtcsel>
