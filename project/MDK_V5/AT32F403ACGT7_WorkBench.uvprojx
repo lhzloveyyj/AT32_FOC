@@ -573,6 +573,11 @@
               <FileType>1</FileType>
               <FilePath>..\bsp\CAN.c</FilePath>
             </File>
+            <File>
+              <FileName>SVPWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\SVPWM.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -19,20 +19,8 @@ pwm4 - time2_ch1 - Uc - Ic
 #include "stdio.h"
 #include "mt6701.h"
 #include "PID.h"
-
-#define VOLTAGE_HIGH 	12.0f 				//电压限制值
-#define UDC 			12.0f               //母线电压
-#define SQRT3 			1.732f              //根号3
-#define POLE_PAIRS 		11                  // 电机的极对数
-#define _2PI 			6.28318f            // 2PI
-#define _PI 	 		3.14159f            // PI
-#define SQRT3_2			0.866f              //根号3/2
-#define _3PI_2			4.712388f           //PI/3
-#define EPSILON 		1e-6                // 精度阈值
-#define TIME2_4_PWM 		6000                //time2 PWM慢占空比
-#define ADC_REF_VOLTAGE 3.3f                // ADC参考电压
-#define RS 				0.01f               //采样电阻值(R)
-#define GAIN 			50.0f               //电流放大倍数
+#include "foc_config.h"
+#include "SVpwm.h"
                                             
 uint16_t Motor1_AD_Value[2] = {0};
 uint16_t Motor2_AD_Value[2] = {0};
@@ -312,6 +300,7 @@ void FocContorl(PFOC_State pFOC)
 	
 	pFOC->Ia = (pFOC->current.ad_A - pFOC->current.voltage_a_offset)/4096.0f * ADC_REF_VOLTAGE * GAIN;
 	pFOC->Ib = (pFOC->current.ad_B - pFOC->current.voltage_a_offset)/4096.0f * ADC_REF_VOLTAGE * GAIN;
+	pFOC->Ia = 0 - pFOC->Ia - pFOC->Ib;
 	
 	clarke_transform(pFOC) ;
 	park_transform(pFOC);
@@ -321,9 +310,12 @@ void FocContorl(PFOC_State pFOC)
 	
 	pFOC->Ud = 0.0f;
 	pFOC->Uq = 2.0f;
-	//逆变换
+	//逆park变换
 	inv_park_transform(pFOC);
+	SVpwm(PSVpwm_1, pFOC->Ualpha, pFOC->Ubeta);
+	//逆clarke变换
 	inv_clarke_transform(pFOC);
+	
 	//设置PWM
 	setpwm(pFOC);
 }

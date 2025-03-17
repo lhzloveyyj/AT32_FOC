@@ -44,6 +44,7 @@
 #include "FOC.h"
 #include "LOG.h"
 #include "CAN.h"
+#include "SVPWM.h"
 
 /* add user code end private includes */
 
@@ -186,12 +187,15 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
-	  can1_transmit_data_sid();
-	  delay_ms(300);
-	  #if Motor1_debug
-	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
-	  #elif	Motor2_debug
-	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
+	  //can1_transmit_data_sid();
+	  //delay_ms(300);
+	  printf("%d,%lf,%lf\r\n", PSVpwm_1->sector, PMotor_1->Ua,PMotor_1->Ub);
+	  //printf("%lf,%lf,%lf\r\n",PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
+	  //printf("%lf,%lf,%lf\r\n",PMotor_1->Ua, PMotor_1->Ub, PMotor_1->Uc);
+//	  #if Motor1_debug
+//	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
+//	  #elif	Motor2_debug
+//	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
 	  //机械角度
 	  //printf("%lf\r\n",PMotor_2->mechanical_angle);
 	  //电角度
@@ -206,7 +210,7 @@ int main(void)
 	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);
 	  //printf("%lf,%lf\r\n",Id,Iq);
 	  //printf("%lf\r\n",Ud);
-	  #endif
+	  //#endif
     /* add user code end 3 */
   }
 }
