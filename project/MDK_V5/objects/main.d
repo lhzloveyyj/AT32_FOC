@@ -36,7 +36,7 @@
 .\objects\main.o: ..\bsp\delay.h
 .\objects\main.o: ..\bsp\mt6701.h
 .\objects\main.o: ..\bsp\FOC.h
-.\objects\main.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\main.o: ..\bsp\SVPWM.h
 .\objects\main.o: ..\bsp\LOG.h
 .\objects\main.o: ..\bsp\CAN.h
-.\objects\main.o: ..\bsp\SVPWM.h
+.\objects\main.o: ..\bsp\foc_config.h

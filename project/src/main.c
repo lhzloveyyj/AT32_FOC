@@ -45,6 +45,7 @@
 #include "LOG.h"
 #include "CAN.h"
 #include "SVPWM.h"
+#include "foc_config.h"
 
 /* add user code end private includes */
 
@@ -56,8 +57,6 @@
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
 #define time_pwm	6000
-#define	Motor1_debug	1
-#define	Motor2_debug	0	
 /* add user code end private define */
 
 /* private macro -------------------------------------------------------------*/
@@ -177,7 +176,7 @@ int main(void)
   
   angle_init(PMotor_1);
   
-  //angle_init(PMotor_2);
+  angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
@@ -189,30 +188,32 @@ int main(void)
     /* add user code begin 3 */
 	  //can1_transmit_data_sid();
 	  //delay_ms(300);
-	  //printf("%d,%lf,%lf\r\n", PSVpwm_1->sector, PMotor_1->Ua,PMotor_1->Ub);
-	  printf("%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
-	  //printf("%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->ua, PSVpwm_1->ub, PSVpwm_1->uc);
-	  //printf("%d,%d,%lf,%lf,%lf\r\n",PSVpwm_1->times, PSVpwm_1->sector, PSVpwm_1->t4, PSVpwm_1->t6, PSVpwm_1->t7);
-	  //printf("%lf,%lf,%lf\r\n",PMotor_1->Ua, PMotor_1->Ub, PMotor_1->Uc);
-//	  #if Motor1_debug
-//	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
-//	  #elif	Motor2_debug
-//	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
-	  //机械角度
-	  //printf("%lf\r\n",PMotor_2->mechanical_angle);
-	  //电角度
-	  //printf("%lf,%lf\r\n",PMotor_2->elec_angle,PMotor_2->corr_angle);
-	  //校正后的电角度
-	  //printf("%lf\r\n",PMotor_2->corr_angle);
-	  //三相电压
-	  //printf("%lf,%lf,%lf\r\n",PMotor_2->Ua,PMotor_2->Ub,PMotor_2->Uc);
+	  #if Motor_debug == 1
+	  //SVPWM	sector,Ta,Tb,Tc
+	  //printf("motor 1 :	%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
+	  //AD原始数据
+	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
+	  //三相电流
+	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib);
+	  //三相电流
+	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib);
+	  //clarke 变换后的 Ialpha	Ibeta
+	  //printf("motor 1 :	%lf,%lf\r\n", PMotor_1->Ialpha, PMotor_1->Ibeta);
+	  //Park 变换后的 Iq	Id
+	  printf("motor 1 Iq Id:	%lf,%lf\r\n", PMotor_1->Iq, PMotor_1->Id);
+	  #elif Motor_debug == 2
+	  //SVPWM	sector,Ta,Tb,Tc
+	  //printf("motor 2 :	%d,%lf,%lf,%lf\r\n",PSVpwm_2->sector, PSVpwm_2->Ta, PSVpwm_2->Tb, PSVpwm_2->Tc);
+	  //AD原始数据
+	  //printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
+	  //三相电流
+	  //printf("motor 2 :	%lf,%lf,%lf\r\n", PMotor_2->Ia, PMotor_2->Ib, 1 - PMotor_2->Ia - PMotor_2->Ib);
+	  //clarke 变换后的 Ialpha	Ibeta
+	  //printf("motor 2 :	%lf,%lf\r\n", PMotor_2->Ialpha, PMotor_2->Ibeta);
+	  //Park 变换后的 Ialpha	Ibeta
+	  //printf("motor 2 Iq Id:	%lf,%lf\r\n", PMotor_2->Iq, PMotor_2->Id);
 	  
-	  //printf("%d,%d\r\n",voltage_a , voltage_b);
-	  //printf("%lf,%lf\r\n",Ia,Ib);
-	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);
-	  //printf("%lf,%lf\r\n",Id,Iq);
-	  //printf("%lf\r\n",Ud);
-	  //#endif
+	  #endif
     /* add user code end 3 */
   }
 }

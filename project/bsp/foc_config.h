@@ -1,5 +1,5 @@
-#ifndef __FILTER_H
-#define __FILTER_H
+#ifndef __FOC_CONFIG_H
+#define __FOC_CONFIG_H
 
 #include "at32f403a_407.h"              // Device header
 
@@ -18,5 +18,6 @@
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
 
+#define	Motor_debug	1
 
 #endif

@@ -25,6 +25,30 @@ SVpwm_State SVpwm_1 = {
 
 PSVpwm_State PSVpwm_1  = &SVpwm_1;
 
+SVpwm_State SVpwm_2 = {
+	.Ts = 1.0f	,
+	.sector = 0	,
+	.Ta = 0.0f	,
+	.Tb = 0.0f	,
+	.Tc = 0.0f	,
+	
+	.ua = 0.0f	,
+	.ub = 0.0f	,
+	.uc = 0.0f	,
+	
+	.t1 = 0.0f	,
+	.t2 = 0.0f	,
+	.t3 = 0.0f	,
+	.t4 = 0.0f	,
+	.t5 = 0.0f	,
+	.t6 = 0.0f	,
+	.t7 = 0.0f	,
+	
+	.times = 0	,
+};
+
+PSVpwm_State PSVpwm_2  = &SVpwm_2;
+
 void SVpwm(PSVpwm_State PSVpwm, float U_alpha, float U_beta)
 {
 	PSVpwm->K = SQRT3 * PSVpwm->Ts / UDC ;

@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\objects\AT32F403ACGT7_WorkBench.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\objects\AT32F403ACGT7_WorkBench.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Mar 18 21:55:09 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Tue Mar 18 23:08:11 2025
 <BR><P>
-<H3>Maximum Stack Usage =        288 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        272 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; angle_init &rArr; strong_drag &rArr; strong_drag_Angle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
 <P>
@@ -536,8 +536,8 @@ Global Symbols
 <P><STRONG><a name="[b]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, at32f403a_407_int.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_at32f403a_407.o(RESET)
 </UL>
-<P><STRONG><a name="[74]"></a>FocContorl</STRONG> (Thumb, 270 bytes, Stack size 8 bytes, foc.o(i.FocContorl))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = FocContorl &rArr; getCorrectedElectricalAngle &rArr; _electricalAngle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[74]"></a>FocContorl</STRONG> (Thumb, 268 bytes, Stack size 16 bytes, foc.o(i.FocContorl))
+<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = FocContorl &rArr; getCorrectedElectricalAngle &rArr; _electricalAngle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SVpwm
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PI_Compute
@@ -632,8 +632,8 @@ Global Symbols
 <P><STRONG><a name="[5c]"></a>SystemInit</STRONG> (Thumb, 100 bytes, Stack size 0 bytes, system_at32f403a_407.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_at32f403a_407.o(.text)
 </UL>
-<P><STRONG><a name="[2b]"></a>TMR3_GLOBAL_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = TMR3_GLOBAL_IRQHandler &rArr; FocContorl &rArr; getCorrectedElectricalAngle &rArr; _electricalAngle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[2b]"></a>TMR3_GLOBAL_IRQHandler</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = TMR3_GLOBAL_IRQHandler &rArr; FocContorl &rArr; getCorrectedElectricalAngle &rArr; _electricalAngle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tmr_flag_clear
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FocContorl
@@ -1010,8 +1010,8 @@ Global Symbols
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wk_debug_config
 </UL>
 
-<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 294 bytes, Stack size 40 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = main &rArr; angle_init &rArr; strong_drag &rArr; strong_drag_Angle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
+<P><STRONG><a name="[5b]"></a>main</STRONG> (Thumb, 270 bytes, Stack size 24 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = main &rArr; angle_init &rArr; strong_drag &rArr; strong_drag_Angle &rArr; Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wk_usart3_init
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wk_usart1_init
@@ -1536,8 +1536,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = Angle_limit &rArr; __hardfp_fmod &rArr; _drem &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_fmod
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strong_drag_Angle
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getCorrectedElectricalAngle

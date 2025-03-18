@@ -45,7 +45,7 @@ static void clarke_transform(PFOC_State pFOC) ;
 static void park_transform(PFOC_State pFOC);
 static void inv_park_transform(PFOC_State pFOC);
 static void inv_clarke_transform(PFOC_State pFOC);
-void FocContorl(PFOC_State pFOC);
+void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm);
 static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c);
 static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c);
 
@@ -290,7 +290,7 @@ static void inv_clarke_transform(PFOC_State pFOC)
 }
 
 // FOC 控制主函数
-void FocContorl(PFOC_State pFOC)
+void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 {
 	//计算电角度
 	getCorrectedElectricalAngle(pFOC);
@@ -316,16 +316,17 @@ void FocContorl(PFOC_State pFOC)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 6.0f;
+	pFOC->Uq = 2.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
-	SVpwm(PSVpwm_1, pFOC->Ualpha, pFOC->Ubeta);
+    
+	SVpwm(PSVpwm, pFOC->Ualpha, pFOC->Ubeta);
+	
 	//逆clarke变换
 	//inv_clarke_transform(pFOC);
 	
-	//设置PWM
-	//setpwm(pFOC);
-	setSVpwm(pFOC, PSVpwm_1);
+	//设置SVPWM
+	setSVpwm(pFOC, PSVpwm);
 }
 
 

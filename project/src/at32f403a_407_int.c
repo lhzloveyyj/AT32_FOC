@@ -284,8 +284,8 @@ void TMR3_GLOBAL_IRQHandler(void)
 {
   /* add user code begin TMR3_GLOBAL_IRQ 0 */
 	
-	//FocContorl(PMotor_2);
-	FocContorl(PMotor_1);
+	FocContorl(PMotor_2, PSVpwm_2);
+	FocContorl(PMotor_1, PSVpwm_1);
 	
 	tmr_flag_clear(TMR3, TMR_OVF_FLAG);
   /* add user code end TMR3_GLOBAL_IRQ 0 */

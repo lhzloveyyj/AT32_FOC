@@ -23,6 +23,7 @@
 .\objects\foc.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\foc.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
 .\objects\foc.o: ..\bsp\foc.h
+.\objects\foc.o: ..\bsp\SVPWM.h
 .\objects\foc.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\foc.o: ..\bsp\fast_sin.h
 .\objects\foc.o: ..\bsp\delay.h
@@ -30,4 +31,3 @@
 .\objects\foc.o: ..\bsp\mt6701.h
 .\objects\foc.o: ..\bsp\PID.h
 .\objects\foc.o: ..\bsp\foc_config.h
-.\objects\foc.o: ..\bsp\SVpwm.h

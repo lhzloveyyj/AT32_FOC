@@ -1,7 +1,7 @@
 #ifndef __FOC_H
 #define __FOC_H
 
-#include "math.h"
+#include "SVPWM.h"
 #include "at32f403a_407.h"              // Device header
 
 typedef struct {
@@ -38,7 +38,7 @@ extern uint16_t Motor2_AD_Value[2];
 extern PFOC_State PMotor_1;
 extern PFOC_State PMotor_2;
 							 
-void FocContorl(PFOC_State pFOC);	
+void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm);	
 void angle_init(PFOC_State pFOC);
 void M1_adc_tigger(int time_pwm);
 void M2_adc_tigger(int time_pwm);

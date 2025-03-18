@@ -19,6 +19,7 @@ typedef struct {
 typedef 	SVpwm_State 	*PSVpwm_State;
 
 extern PSVpwm_State PSVpwm_1 ;
+extern PSVpwm_State PSVpwm_2 ;
 
 void SVpwm(PSVpwm_State PSVpwm, float U_alpha, float U_beta);
 
