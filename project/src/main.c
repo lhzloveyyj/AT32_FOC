@@ -177,7 +177,7 @@ int main(void)
   
   angle_init(PMotor_1);
   
-  angle_init(PMotor_2);
+  //angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
@@ -189,8 +189,10 @@ int main(void)
     /* add user code begin 3 */
 	  //can1_transmit_data_sid();
 	  //delay_ms(300);
-	  printf("%d,%lf,%lf\r\n", PSVpwm_1->sector, PMotor_1->Ua,PMotor_1->Ub);
-	  //printf("%lf,%lf,%lf\r\n",PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
+	  //printf("%d,%lf,%lf\r\n", PSVpwm_1->sector, PMotor_1->Ua,PMotor_1->Ub);
+	  printf("%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
+	  //printf("%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->ua, PSVpwm_1->ub, PSVpwm_1->uc);
+	  //printf("%d,%d,%lf,%lf,%lf\r\n",PSVpwm_1->times, PSVpwm_1->sector, PSVpwm_1->t4, PSVpwm_1->t6, PSVpwm_1->t7);
 	  //printf("%lf,%lf,%lf\r\n",PMotor_1->Ua, PMotor_1->Ub, PMotor_1->Uc);
 //	  #if Motor1_debug
 //	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);

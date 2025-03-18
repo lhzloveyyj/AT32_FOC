@@ -251,6 +251,13 @@ static void setpwm(PFOC_State pFOC)
     pFOC->SetPWM(pwm_a,pwm_b,pwm_c);
 }
 
+//设置PWM
+static void setSVpwm(PFOC_State pFOC, PSVpwm_State PSVpwm)
+{
+	
+    pFOC->SetPWM(PSVpwm->Ta, PSVpwm->Tb, PSVpwm->Tc);
+}
+
 // Clarke 变换
 static void clarke_transform(PFOC_State pFOC) {
 	//Uq给正时Iq为负，因此对电流取反，保证一致
@@ -309,15 +316,16 @@ void FocContorl(PFOC_State pFOC)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 2.0f;
+	pFOC->Uq = 6.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
 	SVpwm(PSVpwm_1, pFOC->Ualpha, pFOC->Ubeta);
 	//逆clarke变换
-	inv_clarke_transform(pFOC);
+	//inv_clarke_transform(pFOC);
 	
 	//设置PWM
-	setpwm(pFOC);
+	//setpwm(pFOC);
+	setSVpwm(pFOC, PSVpwm_1);
 }
 
 

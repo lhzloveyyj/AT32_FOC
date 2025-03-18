@@ -12,9 +12,8 @@ typedef struct {
 	float sum, k_svpwm;
 	
 	float K;
-	float u1;
-	float u2;
-	float u3;
+	
+	int times ;
 } SVpwm_State;
 
 typedef 	SVpwm_State 	*PSVpwm_State;
