@@ -87,7 +87,7 @@ void wk_tmr2_init(void)
   gpio_pin_remap_config(TMR2_GMUX_01, TRUE); 
 
   /* configure counter settings */
-  tmr_base_init(TMR2, 5999, 0);
+  tmr_base_init(TMR2, 4999, 0);
   tmr_cnt_dir_set(TMR2, TMR_COUNT_TWO_WAY_1);
   tmr_clock_source_div_set(TMR2, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR2, FALSE);
@@ -161,47 +161,6 @@ void wk_tmr2_init(void)
 }
 
 /**
-  * @brief  init tmr3 function.
-  * @param  none
-  * @retval none
-  */
-void wk_tmr3_init(void)
-{
-  /* add user code begin tmr3_init 0 */
-
-  /* add user code end tmr3_init 0 */
-
-
-  /* add user code begin tmr3_init 1 */
-
-  /* add user code end tmr3_init 1 */
-
-  /* configure counter settings */
-  tmr_base_init(TMR3, 2399, 4);
-  tmr_cnt_dir_set(TMR3, TMR_COUNT_UP);
-  tmr_clock_source_div_set(TMR3, TMR_CLOCK_DIV1);
-  tmr_period_buffer_enable(TMR3, FALSE);
-
-  /* configure primary mode settings */
-  tmr_sub_sync_mode_set(TMR3, FALSE);
-  tmr_primary_mode_select(TMR3, TMR_PRIMARY_SEL_RESET);
-
-  tmr_counter_enable(TMR3, TRUE);
-
-  /**
-   * Users need to configure TMR3 interrupt functions according to the actual application.
-   * 1. Call the below function to enable the corresponding TMR3 interrupt.
-   *     --tmr_interrupt_enable(...)
-   * 2. Add the user's interrupt handler code into the below function in the at32f403a_407_int.c file.
-   *     --void TMR3_GLOBAL_IRQHandler(void)
-   */
-
-  /* add user code begin tmr3_init 2 */
-	
-  /* add user code end tmr3_init 2 */
-}
-
-/**
   * @brief  init tmr4 function.
   * @param  none
   * @retval none
@@ -254,7 +213,7 @@ void wk_tmr4_init(void)
   gpio_init(GPIOB, &gpio_init_struct);
 
   /* configure counter settings */
-  tmr_base_init(TMR4, 5999, 0);
+  tmr_base_init(TMR4, 4999, 0);
   tmr_cnt_dir_set(TMR4, TMR_COUNT_TWO_WAY_1);
   tmr_clock_source_div_set(TMR4, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR4, FALSE);

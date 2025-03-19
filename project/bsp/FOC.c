@@ -29,7 +29,7 @@ pwm4 - time2_ch1 - Uc - Ic
 #define SQRT3_2			0.866f              //根号3/2
 #define _3PI_2			4.712388f           //PI/3
 #define EPSILON 		1e-6                // 精度阈值
-#define TIME2_4_PWM 		6000                //time2 PWM慢占空比
+#define ALL_Duty 		6000                //time2 PWM慢占空比
 #define ADC_REF_VOLTAGE 3.3f                // ADC参考电压
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
@@ -199,12 +199,12 @@ void angle_init(PFOC_State pFOC)
 //定时器触发ADC采样
 void M1_adc_tigger(int time_pwm)
 {
-	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm-10);
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm * 0.95);
 }
 
 void M2_adc_tigger(int time_pwm)
 {
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm-10);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm * 0.95);
 }
 
 //获取电压偏置
@@ -237,17 +237,17 @@ void first_get(PFOC_State pFOC)
 //电机1设置PWM占空比
 static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c)
 {
-	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, pwm_a * TIME2_4_PWM);
-    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, pwm_b * TIME2_4_PWM);
-    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, pwm_c * TIME2_4_PWM);
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, pwm_a * ALL_Duty * 0.9);
+    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, pwm_b * ALL_Duty * 0.9);
+    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, pwm_c * ALL_Duty * 0.9);
 }
 
 //电机2设置PWM占空比
 static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c)
 {
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * TIME2_4_PWM);
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * TIME2_4_PWM);
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * TIME2_4_PWM);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * ALL_Duty * 0.9);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * ALL_Duty * 0.9);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * ALL_Duty * 0.9);
 }
 //设置PWM
 static void setpwm(PFOC_State pFOC)
@@ -320,7 +320,7 @@ void FocContorl(PFOC_State pFOC)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 2.0f;
+	pFOC->Uq = 0.5f;
 	//逆变换
 	inv_park_transform(pFOC);
 	inv_clarke_transform(pFOC);

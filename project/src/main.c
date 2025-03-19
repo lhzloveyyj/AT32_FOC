@@ -53,7 +53,7 @@
 
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
-#define time_pwm	6000
+#define time_pwm	4999
 #define	Motor1_debug	1
 #define	Motor2_debug	0	
 /* add user code end private define */
@@ -145,9 +145,6 @@ int main(void)
   /* init tmr2 function. */
   wk_tmr2_init();
 
-  /* init tmr3 function. */
-  wk_tmr3_init();
-
   /* init tmr4 function. */
   wk_tmr4_init();
 
@@ -179,16 +176,20 @@ int main(void)
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
-  tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
+  adc_interrupt_enable(ADC1, ADC_CCE_INT, TRUE);
+  adc_interrupt_enable(ADC3, ADC_CCE_INT, TRUE);
+  
+  //tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
+//  tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, time_pwm * 0.9);
+//    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, time_pwm * 0.9);
+//    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, time_pwm * 0.9);
   /* add user code end 2 */
 
   while(1)
   {
     /* add user code begin 3 */
-	  #if Motor1_debug
 	  printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
-	  #elif	Motor2_debug
-	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
+	
 	  //机械角度
 	  //printf("%lf\r\n",PMotor_2->mechanical_angle);
 	  //电角度
@@ -196,14 +197,13 @@ int main(void)
 	  //校正后的电角度
 	  //printf("%lf\r\n",PMotor_2->corr_angle);
 	  //三相电压
-	  //printf("%lf,%lf,%lf\r\n",PMotor_2->Ua,PMotor_2->Ub,PMotor_2->Uc);
+	  //printf("%lf,%lf,%lf\r\n",PMotor_1->Ua,PMotor_1->Ub,PMotor_1->Uc);
 	  
 	  //printf("%d,%d\r\n",voltage_a , voltage_b);
 	  //printf("%lf,%lf\r\n",Ia,Ib);
 	  //printf("%lf,%lf\r\n",Ialpha,Ibeta);
 	  //printf("%lf,%lf\r\n",Id,Iq);
 	  //printf("%lf\r\n",Ud);
-	  #endif
     /* add user code end 3 */
   }
 }
