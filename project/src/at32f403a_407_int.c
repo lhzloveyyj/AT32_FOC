@@ -228,6 +228,21 @@ void SysTick_Handler(void)
 }
 
 /**
+  * @brief  this function handles ADC1 & ADC2 handler.
+  * @param  none
+  * @retval none
+  */
+void ADC1_2_IRQHandler(void)
+{
+  /* add user code begin ADC1_2_IRQ 0 */
+	FocContorl(PMotor_1, PSVpwm_1);
+  /* add user code end ADC1_2_IRQ 0 */
+  /* add user code begin ADC1_2_IRQ 1 */
+
+  /* add user code end ADC1_2_IRQ 1 */
+}
+
+/**
   * @brief  this function handles USB Low  Priority or CAN1 RX0 handler.
   * @param  none
   * @retval none
@@ -276,24 +291,18 @@ void CAN1_SE_IRQHandler(void)
 }
 
 /**
-  * @brief  this function handles TMR3 handler.
+  * @brief  this function handles ADC3 handler.
   * @param  none
   * @retval none
   */
-void TMR3_GLOBAL_IRQHandler(void)
+void ADC3_IRQHandler(void)
 {
-  /* add user code begin TMR3_GLOBAL_IRQ 0 */
-	
+  /* add user code begin ADC3_IRQ 0 */
 	FocContorl(PMotor_2, PSVpwm_2);
-	FocContorl(PMotor_1, PSVpwm_1);
-	
-	tmr_flag_clear(TMR3, TMR_OVF_FLAG);
-  /* add user code end TMR3_GLOBAL_IRQ 0 */
+  /* add user code end ADC3_IRQ 0 */
+  /* add user code begin ADC3_IRQ 1 */
 
-
-  /* add user code begin TMR3_GLOBAL_IRQ 1 */
-
-  /* add user code end TMR3_GLOBAL_IRQ 1 */
+  /* add user code end ADC3_IRQ 1 */
 }
 
 /**

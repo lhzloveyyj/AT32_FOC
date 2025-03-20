@@ -84,6 +84,14 @@ void wk_adc1_init(void)
   adc_ordinary_part_mode_enable(ADC1, FALSE);
 
   adc_dma_mode_enable(ADC1, TRUE);
+  /**
+   * Users need to configure ADC1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding ADC1 interrupt.
+   *     --adc_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f403a_407_int.c file.
+   *     --void ADC1_2_IRQHandler(void)
+   */
+
   /* add user code begin adc1_init 2 */
   
   /* add user code end adc1_init 2 */
@@ -151,6 +159,14 @@ void wk_adc3_init(void)
   adc_ordinary_part_mode_enable(ADC3, FALSE);
 
   adc_dma_mode_enable(ADC3, TRUE);
+  /**
+   * Users need to configure ADC3 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding ADC3 interrupt.
+   *     --adc_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f403a_407_int.c file.
+   *     --void ADC3_IRQHandler(void)
+   */
+
   /* add user code begin adc3_init 2 */
 
   /* add user code end adc3_init 2 */

@@ -33,9 +33,11 @@ Section Cross References
     main.o(i.main) refers to foc.o(i.first_get) for first_get
     main.o(i.main) refers to foc.o(i.angle_init) for angle_init
     main.o(i.main) refers to at32f403a_407_tmr.o(i.tmr_interrupt_enable) for tmr_interrupt_enable
+    main.o(i.main) refers to at32f403a_407_adc.o(i.adc_interrupt_enable) for adc_interrupt_enable
     main.o(i.main) refers to f2d.o(.text) for __aeabi_f2d
     main.o(i.main) refers to printfa.o(i.__0printf) for __2printf
     main.o(i.main) refers to foc.o(.data) for Motor2_AD_Value
+    main.o(i.main) refers to svpwm.o(.data) for PSVpwm_1
     at32f403a_407_wk_config.o(i.wk_nvic_config) refers to at32f403a_407_misc.o(i.nvic_priority_group_config) for nvic_priority_group_config
     at32f403a_407_wk_config.o(i.wk_nvic_config) refers to at32f403a_407_wk_config.o(i.__NVIC_GetPriorityGrouping) for __NVIC_GetPriorityGrouping
     at32f403a_407_wk_config.o(i.wk_nvic_config) refers to at32f403a_407_wk_config.o(i.NVIC_EncodePriority) for NVIC_EncodePriority
@@ -54,10 +56,12 @@ Section Cross References
     at32f403a_407_wk_config.o(i.wk_system_clock_config) refers to at32f403a_407_crm.o(i.crm_sysclk_switch) for crm_sysclk_switch
     at32f403a_407_wk_config.o(i.wk_system_clock_config) refers to at32f403a_407_crm.o(i.crm_sysclk_switch_status_get) for crm_sysclk_switch_status_get
     at32f403a_407_wk_config.o(i.wk_system_clock_config) refers to system_at32f403a_407.o(i.system_core_clock_update) for system_core_clock_update
-    at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler) refers to foc.o(i.FocContorl) for FocContorl
-    at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler) refers to at32f403a_407_tmr.o(i.tmr_flag_clear) for tmr_flag_clear
-    at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler) refers to svpwm.o(.data) for PSVpwm_2
-    at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler) refers to foc.o(.data) for PMotor_2
+    at32f403a_407_int.o(i.ADC1_2_IRQHandler) refers to foc.o(i.FocContorl) for FocContorl
+    at32f403a_407_int.o(i.ADC1_2_IRQHandler) refers to svpwm.o(.data) for PSVpwm_1
+    at32f403a_407_int.o(i.ADC1_2_IRQHandler) refers to foc.o(.data) for PMotor_1
+    at32f403a_407_int.o(i.ADC3_IRQHandler) refers to foc.o(i.FocContorl) for FocContorl
+    at32f403a_407_int.o(i.ADC3_IRQHandler) refers to svpwm.o(.data) for PSVpwm_2
+    at32f403a_407_int.o(i.ADC3_IRQHandler) refers to foc.o(.data) for PMotor_2
     at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler) refers to led.o(i.at32_led_toggle) for at32_led_toggle
     at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler) refers to at32f403a_407_tmr.o(i.tmr_flag_clear) for tmr_flag_clear
     at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler) refers to at32f403a_407_int.o(.data) for t
@@ -106,10 +110,10 @@ Section Cross References
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_gpio.o(i.gpio_default_para_init) for gpio_default_para_init
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_gpio.o(i.gpio_init) for gpio_init
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_gpio.o(i.gpio_pin_remap_config) for gpio_pin_remap_config
+    wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_cnt_dir_set) for tmr_cnt_dir_set
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_clock_source_div_set) for tmr_clock_source_div_set
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_period_buffer_enable) for tmr_period_buffer_enable
-    wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set) for tmr_sub_sync_mode_set
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_primary_mode_select) for tmr_primary_mode_select
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_output_channel_config) for tmr_output_channel_config
@@ -117,19 +121,19 @@ Section Cross References
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_output_channel_buffer_enable) for tmr_output_channel_buffer_enable
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_output_channel_immediately_set) for tmr_output_channel_immediately_set
     wk_tmr.o(i.wk_tmr2_init) refers to at32f403a_407_tmr.o(i.tmr_counter_enable) for tmr_counter_enable
+    wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_cnt_dir_set) for tmr_cnt_dir_set
     wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_clock_source_div_set) for tmr_clock_source_div_set
     wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_period_buffer_enable) for tmr_period_buffer_enable
-    wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set) for tmr_sub_sync_mode_set
     wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_primary_mode_select) for tmr_primary_mode_select
     wk_tmr.o(i.wk_tmr3_init) refers to at32f403a_407_tmr.o(i.tmr_counter_enable) for tmr_counter_enable
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_gpio.o(i.gpio_default_para_init) for gpio_default_para_init
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_gpio.o(i.gpio_init) for gpio_init
+    wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_cnt_dir_set) for tmr_cnt_dir_set
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_clock_source_div_set) for tmr_clock_source_div_set
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_period_buffer_enable) for tmr_period_buffer_enable
-    wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set) for tmr_sub_sync_mode_set
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_primary_mode_select) for tmr_primary_mode_select
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_output_channel_config) for tmr_output_channel_config
@@ -137,10 +141,10 @@ Section Cross References
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_output_channel_buffer_enable) for tmr_output_channel_buffer_enable
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_output_channel_immediately_set) for tmr_output_channel_immediately_set
     wk_tmr.o(i.wk_tmr4_init) refers to at32f403a_407_tmr.o(i.tmr_counter_enable) for tmr_counter_enable
+    wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_cnt_dir_set) for tmr_cnt_dir_set
     wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_clock_source_div_set) for tmr_clock_source_div_set
     wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_period_buffer_enable) for tmr_period_buffer_enable
-    wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_base_init) for tmr_base_init
     wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set) for tmr_sub_sync_mode_set
     wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_primary_mode_select) for tmr_primary_mode_select
     wk_tmr.o(i.wk_tmr5_init) refers to at32f403a_407_tmr.o(i.tmr_counter_enable) for tmr_counter_enable
@@ -256,9 +260,10 @@ Section Cross References
     startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.DebugMon_Handler) for DebugMon_Handler
     startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.PendSV_Handler) for PendSV_Handler
     startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.SysTick_Handler) for SysTick_Handler
+    startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.ADC1_2_IRQHandler) for ADC1_2_IRQHandler
     startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.USBFS_L_CAN1_RX0_IRQHandler) for USBFS_L_CAN1_RX0_IRQHandler
     startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.CAN1_SE_IRQHandler) for CAN1_SE_IRQHandler
-    startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler) for TMR3_GLOBAL_IRQHandler
+    startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.ADC3_IRQHandler) for ADC3_IRQHandler
     startup_at32f403a_407.o(RESET) refers to at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler) for TMR5_GLOBAL_IRQHandler
     startup_at32f403a_407.o(.text) refers to system_at32f403a_407.o(i.SystemInit) for SystemInit
     startup_at32f403a_407.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
@@ -293,7 +298,13 @@ Section Cross References
     foc.o(i.FocContorl) refers to svpwm.o(i.SVpwm) for SVpwm
     foc.o(i.FocContorl) refers to foc.o(i.setSVpwm) for setSVpwm
     foc.o(i.FocContorl) refers to foc.o(.data) for Motor1_AD_Value
+    foc.o(i.M1_adc_tigger) refers to dflti.o(.text) for __aeabi_i2d
+    foc.o(i.M1_adc_tigger) refers to dmul.o(.text) for __aeabi_dmul
+    foc.o(i.M1_adc_tigger) refers to dfixui.o(.text) for __aeabi_d2uiz
     foc.o(i.M1_adc_tigger) refers to at32f403a_407_tmr.o(i.tmr_channel_value_set) for tmr_channel_value_set
+    foc.o(i.M2_adc_tigger) refers to dflti.o(.text) for __aeabi_i2d
+    foc.o(i.M2_adc_tigger) refers to dmul.o(.text) for __aeabi_dmul
+    foc.o(i.M2_adc_tigger) refers to dfixui.o(.text) for __aeabi_d2uiz
     foc.o(i.M2_adc_tigger) refers to at32f403a_407_tmr.o(i.tmr_channel_value_set) for tmr_channel_value_set
     foc.o(i._electricalAngle) refers to foc.o(i.Angle_limit) for Angle_limit
     foc.o(i.angle_init) refers to foc.o(i.strong_drag) for strong_drag
@@ -315,7 +326,13 @@ Section Cross References
     foc.o(i.park_transform) refers to foc.o(i.fast_cos) for fast_cos
     foc.o(i.park_transform) refers to foc.o(i.fast_sin) for fast_sin
     foc.o(i.setpwm) refers to foc.o(i.limit) for limit
+    foc.o(i.setpwm1_channel) refers to f2d.o(.text) for __aeabi_f2d
+    foc.o(i.setpwm1_channel) refers to dmul.o(.text) for __aeabi_dmul
+    foc.o(i.setpwm1_channel) refers to dfixui.o(.text) for __aeabi_d2uiz
     foc.o(i.setpwm1_channel) refers to at32f403a_407_tmr.o(i.tmr_channel_value_set) for tmr_channel_value_set
+    foc.o(i.setpwm2_channel) refers to f2d.o(.text) for __aeabi_f2d
+    foc.o(i.setpwm2_channel) refers to dmul.o(.text) for __aeabi_dmul
+    foc.o(i.setpwm2_channel) refers to dfixui.o(.text) for __aeabi_d2uiz
     foc.o(i.setpwm2_channel) refers to at32f403a_407_tmr.o(i.tmr_channel_value_set) for tmr_channel_value_set
     foc.o(i.strong_drag) refers to foc.o(i.strong_drag_Angle) for strong_drag_Angle
     foc.o(i.strong_drag) refers to foc.o(i.inv_park_transform) for inv_park_transform
@@ -604,6 +621,12 @@ Section Cross References
     printfa.o(i._printf_pre_padding) refers (Special) to iusefp.o(.text) for __I$use$fp
     printfa.o(i._snputc) refers (Special) to iusefp.o(.text) for __I$use$fp
     printfa.o(i._sputc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dmul.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dflti.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dflti.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    dfixui.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dfixui.o(.text) refers to llushr.o(.text) for __aeabi_llsr
     f2d.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     cdcmple.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
     d2f.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
@@ -627,17 +650,16 @@ Section Cross References
     errno.o(i.__aeabi_errno_addr) refers to errno.o(.data) for .data
     errno.o(i.__read_errno) refers to errno.o(.data) for .data
     errno.o(i.__set_errno) refers to errno.o(.data) for .data
+    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
     dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
     dadd.o(.text) refers to depilogue.o(.text) for _double_epilogue
-    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
     ddiv.o(.text) refers to depilogue.o(.text) for _double_round
     drem.o(.text) refers to depilogue.o(.text) for _double_epilogue
     dfixul.o(.text) refers to llushr.o(.text) for __aeabi_llsr
     dfixul.o(.text) refers to llshl.o(.text) for __aeabi_llsl
     init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
-    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
-    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
 
 
 ==============================================================================
@@ -814,7 +836,6 @@ Removing Unused input sections from the image.
     Removing at32f403a_407_adc.o(i.adc_combine_ordinary_conversion_data_get), (12 bytes).
     Removing at32f403a_407_adc.o(i.adc_flag_clear), (6 bytes).
     Removing at32f403a_407_adc.o(i.adc_flag_get), (16 bytes).
-    Removing at32f403a_407_adc.o(i.adc_interrupt_enable), (22 bytes).
     Removing at32f403a_407_adc.o(i.adc_interrupt_flag_get), (84 bytes).
     Removing at32f403a_407_adc.o(i.adc_ordinary_conversion_data_get), (8 bytes).
     Removing at32f403a_407_adc.o(i.adc_ordinary_part_count_set), (12 bytes).
@@ -985,7 +1006,7 @@ Removing Unused input sections from the image.
     Removing svpwm.o(.revsh_text), (4 bytes).
     Removing svpwm.o(.rrx_text), (6 bytes).
 
-340 unused section(s) (total 12888 bytes) removed from the image.
+339 unused section(s) (total 12866 bytes) removed from the image.
 
 ==============================================================================
 
@@ -996,38 +1017,38 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
@@ -1035,9 +1056,11 @@ Image Symbol Table
     ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
-    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  fepilogue.o ABSOLUTE
+    ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
     ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixul.o ABSOLUTE
+    ../fplib/microlib/fpfix.c                0x00000000   Number         0  dfixui.o ABSOLUTE
+    ../fplib/microlib/fpflt.c                0x00000000   Number         0  dflti.o ABSOLUTE
     ../fplib/microlib/fpmul.c                0x00000000   Number         0  dmul.o ABSOLUTE
     ../fplib/microlib/fprem.c                0x00000000   Number         0  drem.o ABSOLUTE
     ../mathlib/dunder.c                      0x00000000   Number         0  dunder.o ABSOLUTE
@@ -1134,215 +1157,219 @@ Image Symbol Table
     __lit__00000000                          0x08000198   Data           4  entry2.o(.ARM.Collect$$$$00002712)
     .text                                    0x0800019c   Section       36  startup_at32f403a_407.o(.text)
     $v0                                      0x0800019c   Number         0  startup_at32f403a_407.o(.text)
-    .text                                    0x080001c0   Section        0  f2d.o(.text)
-    .text                                    0x080001e8   Section       48  cdcmple.o(.text)
-    .text                                    0x08000218   Section        0  d2f.o(.text)
-    .text                                    0x08000250   Section        0  uidiv.o(.text)
-    .text                                    0x0800027c   Section        0  uldiv.o(.text)
-    .text                                    0x080002de   Section        0  fepilogue.o(.text)
-    .text                                    0x080002de   Section        0  iusefp.o(.text)
-    .text                                    0x0800034c   Section        0  dadd.o(.text)
-    .text                                    0x0800049a   Section        0  dmul.o(.text)
-    .text                                    0x0800057e   Section        0  ddiv.o(.text)
-    .text                                    0x0800065c   Section        0  drem.o(.text)
-    .text                                    0x080006e2   Section        0  dfixul.o(.text)
-    .text                                    0x08000714   Section       48  cdrcmple.o(.text)
-    .text                                    0x08000744   Section       36  init.o(.text)
-    .text                                    0x08000768   Section        0  llshl.o(.text)
-    .text                                    0x08000786   Section        0  llushr.o(.text)
-    .text                                    0x080007a6   Section        0  llsshr.o(.text)
-    .text                                    0x080007ca   Section        0  depilogue.o(.text)
-    .text                                    0x08000884   Section        0  __dczerorl2.o(.text)
-    i.Angle_limit                            0x080008dc   Section        0  foc.o(i.Angle_limit)
-    Angle_limit                              0x080008dd   Thumb Code    88  foc.o(i.Angle_limit)
-    i.BusFault_Handler                       0x08000940   Section        0  at32f403a_407_int.o(i.BusFault_Handler)
-    i.CAN1_SE_IRQHandler                     0x08000944   Section        0  at32f403a_407_int.o(i.CAN1_SE_IRQHandler)
-    i.DebugMon_Handler                       0x08000946   Section        0  at32f403a_407_int.o(i.DebugMon_Handler)
-    i.FocContorl                             0x08000948   Section        0  foc.o(i.FocContorl)
-    i.HardFault_Handler                      0x08000a70   Section        0  at32f403a_407_int.o(i.HardFault_Handler)
-    i.M1_adc_tigger                          0x08000a74   Section        0  foc.o(i.M1_adc_tigger)
-    i.M2_adc_tigger                          0x08000a8c   Section        0  foc.o(i.M2_adc_tigger)
-    i.MT_1_ReadAngle                         0x08000aa0   Section        0  mt6701.o(i.MT_1_ReadAngle)
-    i.MT_2_ReadAngle                         0x08000b2c   Section        0  mt6701.o(i.MT_2_ReadAngle)
-    i.MemManage_Handler                      0x08000bbc   Section        0  at32f403a_407_int.o(i.MemManage_Handler)
-    i.NMI_Handler                            0x08000bc0   Section        0  at32f403a_407_int.o(i.NMI_Handler)
-    i.NVIC_EncodePriority                    0x08000bc2   Section        0  at32f403a_407_wk_config.o(i.NVIC_EncodePriority)
-    NVIC_EncodePriority                      0x08000bc3   Thumb Code    64  at32f403a_407_wk_config.o(i.NVIC_EncodePriority)
-    i.PI_Compute                             0x08000c02   Section        0  pid.o(i.PI_Compute)
-    i.PendSV_Handler                         0x08000cbc   Section        0  at32f403a_407_int.o(i.PendSV_Handler)
-    i.Product_Overview                       0x08000cc0   Section        0  log.o(i.Product_Overview)
-    i.SPIx_ReadWriteByte                     0x08000e78   Section        0  mt6701.o(i.SPIx_ReadWriteByte)
-    i.SVC_Handler                            0x08000ecc   Section        0  at32f403a_407_int.o(i.SVC_Handler)
-    i.SVpwm                                  0x08000ed0   Section        0  svpwm.o(i.SVpwm)
-    i.SysTick_Handler                        0x080013f4   Section        0  at32f403a_407_int.o(i.SysTick_Handler)
-    i.SystemInit                             0x080013f8   Section        0  system_at32f403a_407.o(i.SystemInit)
-    i.TMR3_GLOBAL_IRQHandler                 0x08001468   Section        0  at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler)
-    i.TMR5_GLOBAL_IRQHandler                 0x080014a0   Section        0  at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler)
-    i.USBFS_L_CAN1_RX0_IRQHandler            0x080014d4   Section        0  at32f403a_407_int.o(i.USBFS_L_CAN1_RX0_IRQHandler)
-    i.UsageFault_Handler                     0x08001520   Section        0  at32f403a_407_int.o(i.UsageFault_Handler)
-    i.__0printf                              0x08001524   Section        0  printfa.o(i.__0printf)
-    i.__NVIC_GetPriorityGrouping             0x08001544   Section        0  at32f403a_407_wk_config.o(i.__NVIC_GetPriorityGrouping)
-    __NVIC_GetPriorityGrouping               0x08001545   Thumb Code    10  at32f403a_407_wk_config.o(i.__NVIC_GetPriorityGrouping)
-    i.__NVIC_SetPriority                     0x08001554   Section        0  at32f403a_407_wk_config.o(i.__NVIC_SetPriority)
-    __NVIC_SetPriority                       0x08001555   Thumb Code    32  at32f403a_407_wk_config.o(i.__NVIC_SetPriority)
-    i.__hardfp_fabs                          0x0800157c   Section        0  fabs.o(i.__hardfp_fabs)
-    i.__hardfp_fmod                          0x08001590   Section        0  fmod.o(i.__hardfp_fmod)
-    i.__mathlib_dbl_invalid                  0x08001698   Section        0  dunder.o(i.__mathlib_dbl_invalid)
-    i.__scatterload_copy                     0x080016b8   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x080016c6   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x080016c8   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.__set_errno                            0x080016d8   Section        0  errno.o(i.__set_errno)
-    i._electricalAngle                       0x080016e4   Section        0  foc.o(i._electricalAngle)
-    _electricalAngle                         0x080016e5   Thumb Code    38  foc.o(i._electricalAngle)
-    i._fp_digits                             0x0800170c   Section        0  printfa.o(i._fp_digits)
-    _fp_digits                               0x0800170d   Thumb Code   366  printfa.o(i._fp_digits)
-    i._printf_core                           0x08001890   Section        0  printfa.o(i._printf_core)
-    _printf_core                             0x08001891   Thumb Code  1704  printfa.o(i._printf_core)
-    i._printf_post_padding                   0x08001f44   Section        0  printfa.o(i._printf_post_padding)
-    _printf_post_padding                     0x08001f45   Thumb Code    36  printfa.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x08001f68   Section        0  printfa.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x08001f69   Thumb Code    46  printfa.o(i._printf_pre_padding)
-    i.adc_base_config                        0x08001f96   Section        0  at32f403a_407_adc.o(i.adc_base_config)
-    i.adc_base_default_para_init             0x08001fc2   Section        0  at32f403a_407_adc.o(i.adc_base_default_para_init)
-    i.adc_calibration_init                   0x08001fd0   Section        0  at32f403a_407_adc.o(i.adc_calibration_init)
-    i.adc_calibration_init_status_get        0x08001fdc   Section        0  at32f403a_407_adc.o(i.adc_calibration_init_status_get)
-    i.adc_calibration_start                  0x08001fee   Section        0  at32f403a_407_adc.o(i.adc_calibration_start)
-    i.adc_calibration_status_get             0x08001ffa   Section        0  at32f403a_407_adc.o(i.adc_calibration_status_get)
-    i.adc_combine_mode_select                0x0800200c   Section        0  at32f403a_407_adc.o(i.adc_combine_mode_select)
-    i.adc_dma_mode_enable                    0x08002020   Section        0  at32f403a_407_adc.o(i.adc_dma_mode_enable)
-    i.adc_enable                             0x0800202a   Section        0  at32f403a_407_adc.o(i.adc_enable)
-    i.adc_ordinary_channel_set               0x08002034   Section        0  at32f403a_407_adc.o(i.adc_ordinary_channel_set)
-    i.adc_ordinary_conversion_trigger_set    0x080020dc   Section        0  at32f403a_407_adc.o(i.adc_ordinary_conversion_trigger_set)
-    i.adc_ordinary_part_mode_enable          0x08002110   Section        0  at32f403a_407_adc.o(i.adc_ordinary_part_mode_enable)
-    i.angle_init                             0x0800211c   Section        0  foc.o(i.angle_init)
-    i.at32_led_toggle                        0x08002254   Section        0  led.o(i.at32_led_toggle)
-    i.can_base_init                          0x08002288   Section        0  at32f403a_407_can.o(i.can_base_init)
-    i.can_baudrate_set                       0x08002344   Section        0  at32f403a_407_can.o(i.can_baudrate_set)
-    i.can_default_para_init                  0x080023d6   Section        0  at32f403a_407_can.o(i.can_default_para_init)
-    i.can_filter_init                        0x080023e8   Section        0  at32f403a_407_can.o(i.can_filter_init)
-    i.can_flag_get                           0x0800254c   Section        0  at32f403a_407_can.o(i.can_flag_get)
-    i.can_interrupt_enable                   0x0800263c   Section        0  at32f403a_407_can.o(i.can_interrupt_enable)
-    i.can_message_receive                    0x0800264e   Section        0  at32f403a_407_can.o(i.can_message_receive)
-    i.can_receive_fifo_release               0x0800273e   Section        0  at32f403a_407_can.o(i.can_receive_fifo_release)
-    i.clarke_transform                       0x08002758   Section        0  foc.o(i.clarke_transform)
-    clarke_transform                         0x08002759   Thumb Code    62  foc.o(i.clarke_transform)
-    i.crm_adc_clock_div_set                  0x0800279c   Section        0  at32f403a_407_crm.o(i.crm_adc_clock_div_set)
-    i.crm_ahb_div_set                        0x080027bc   Section        0  at32f403a_407_crm.o(i.crm_ahb_div_set)
-    i.crm_apb1_div_set                       0x080027d0   Section        0  at32f403a_407_crm.o(i.crm_apb1_div_set)
-    i.crm_apb2_div_set                       0x080027e4   Section        0  at32f403a_407_crm.o(i.crm_apb2_div_set)
-    i.crm_auto_step_mode_enable              0x080027f8   Section        0  at32f403a_407_crm.o(i.crm_auto_step_mode_enable)
-    i.crm_clock_source_enable                0x08002820   Section        0  at32f403a_407_crm.o(i.crm_clock_source_enable)
-    i.crm_clocks_freq_get                    0x08002880   Section        0  at32f403a_407_crm.o(i.crm_clocks_freq_get)
-    i.crm_flag_get                           0x080029ac   Section        0  at32f403a_407_crm.o(i.crm_flag_get)
-    i.crm_hext_stable_wait                   0x080029dc   Section        0  at32f403a_407_crm.o(i.crm_hext_stable_wait)
-    i.crm_periph_clock_enable                0x08002a0c   Section        0  at32f403a_407_crm.o(i.crm_periph_clock_enable)
-    i.crm_pll_config                         0x08002a50   Section        0  at32f403a_407_crm.o(i.crm_pll_config)
-    i.crm_reset                              0x08002acc   Section        0  at32f403a_407_crm.o(i.crm_reset)
-    i.crm_sysclk_switch                      0x08002b24   Section        0  at32f403a_407_crm.o(i.crm_sysclk_switch)
-    i.crm_sysclk_switch_status_get           0x08002b60   Section        0  at32f403a_407_crm.o(i.crm_sysclk_switch_status_get)
-    i.delay_init                             0x08002b70   Section        0  delay.o(i.delay_init)
-    i.delay_ms                               0x08002ba8   Section        0  delay.o(i.delay_ms)
-    i.dma_channel_enable                     0x08002c1c   Section        0  at32f403a_407_dma.o(i.dma_channel_enable)
-    i.dma_default_para_init                  0x08002c26   Section        0  at32f403a_407_dma.o(i.dma_default_para_init)
-    i.dma_flexible_config                    0x08002c3e   Section        0  at32f403a_407_dma.o(i.dma_flexible_config)
-    i.dma_init                               0x08002cd6   Section        0  at32f403a_407_dma.o(i.dma_init)
-    i.dma_reset                              0x08002d34   Section        0  at32f403a_407_dma.o(i.dma_reset)
-    i.fast_cos                               0x08002da4   Section        0  foc.o(i.fast_cos)
-    fast_cos                                 0x08002da5   Thumb Code   164  foc.o(i.fast_cos)
-    i.fast_sin                               0x08002e68   Section        0  foc.o(i.fast_sin)
-    fast_sin                                 0x08002e69   Thumb Code   168  foc.o(i.fast_sin)
-    i.first_get                              0x08002f30   Section        0  foc.o(i.first_get)
-    i.fputc                                  0x08002fa0   Section        0  usart_1.o(i.fputc)
-    i.getCorrectedElectricalAngle            0x08002fd4   Section        0  foc.o(i.getCorrectedElectricalAngle)
-    getCorrectedElectricalAngle              0x08002fd5   Thumb Code   116  foc.o(i.getCorrectedElectricalAngle)
-    i.gpio_bits_reset                        0x08003058   Section        0  at32f403a_407_gpio.o(i.gpio_bits_reset)
-    i.gpio_bits_set                          0x0800305c   Section        0  at32f403a_407_gpio.o(i.gpio_bits_set)
-    i.gpio_default_para_init                 0x08003060   Section        0  at32f403a_407_gpio.o(i.gpio_default_para_init)
-    i.gpio_init                              0x08003076   Section        0  at32f403a_407_gpio.o(i.gpio_init)
-    i.gpio_pin_remap_config                  0x08003120   Section        0  at32f403a_407_gpio.o(i.gpio_pin_remap_config)
-    i.inv_clarke_transform                   0x0800316c   Section        0  foc.o(i.inv_clarke_transform)
-    inv_clarke_transform                     0x0800316d   Thumb Code    90  foc.o(i.inv_clarke_transform)
-    i.inv_park_transform                     0x080031d0   Section        0  foc.o(i.inv_park_transform)
-    inv_park_transform                       0x080031d1   Thumb Code   106  foc.o(i.inv_park_transform)
-    i.limit                                  0x0800323a   Section        0  foc.o(i.limit)
-    limit                                    0x0800323b   Thumb Code    42  foc.o(i.limit)
-    i.main                                   0x08003264   Section        0  main.o(i.main)
-    i.nvic_irq_enable                        0x080033b4   Section        0  at32f403a_407_misc.o(i.nvic_irq_enable)
-    i.nvic_priority_group_config             0x0800347c   Section        0  at32f403a_407_misc.o(i.nvic_priority_group_config)
-    i.park_transform                         0x080034a4   Section        0  foc.o(i.park_transform)
-    park_transform                           0x080034a5   Thumb Code   106  foc.o(i.park_transform)
-    i.setSVpwm                               0x0800350e   Section        0  foc.o(i.setSVpwm)
-    setSVpwm                                 0x0800350f   Thumb Code    36  foc.o(i.setSVpwm)
-    i.setpwm                                 0x08003534   Section        0  foc.o(i.setpwm)
-    setpwm                                   0x08003535   Thumb Code   210  foc.o(i.setpwm)
-    i.setpwm1_channel                        0x0800360c   Section        0  foc.o(i.setpwm1_channel)
-    setpwm1_channel                          0x0800360d   Thumb Code    96  foc.o(i.setpwm1_channel)
-    i.setpwm2_channel                        0x08003674   Section        0  foc.o(i.setpwm2_channel)
-    setpwm2_channel                          0x08003675   Thumb Code   100  foc.o(i.setpwm2_channel)
-    i.spi_crc_enable                         0x080036dc   Section        0  at32f403a_407_spi.o(i.spi_crc_enable)
-    i.spi_crc_polynomial_set                 0x080036e6   Section        0  at32f403a_407_spi.o(i.spi_crc_polynomial_set)
-    i.spi_default_para_init                  0x080036f0   Section        0  at32f403a_407_spi.o(i.spi_default_para_init)
-    i.spi_enable                             0x08003706   Section        0  at32f403a_407_spi.o(i.spi_enable)
-    i.spi_i2s_data_receive                   0x08003710   Section        0  at32f403a_407_spi.o(i.spi_i2s_data_receive)
-    i.spi_i2s_data_transmit                  0x08003718   Section        0  at32f403a_407_spi.o(i.spi_i2s_data_transmit)
-    i.spi_i2s_flag_get                       0x0800371c   Section        0  at32f403a_407_spi.o(i.spi_i2s_flag_get)
-    i.spi_init                               0x0800372c   Section        0  at32f403a_407_spi.o(i.spi_init)
-    i.strong_drag                            0x08003850   Section        0  foc.o(i.strong_drag)
-    strong_drag                              0x08003851   Thumb Code    46  foc.o(i.strong_drag)
-    i.strong_drag_Angle                      0x08003884   Section        0  foc.o(i.strong_drag_Angle)
-    strong_drag_Angle                        0x08003885   Thumb Code   142  foc.o(i.strong_drag_Angle)
-    i.system_core_clock_update               0x08003924   Section        0  system_at32f403a_407.o(i.system_core_clock_update)
-    i.systick_clock_source_config            0x08003a1c   Section        0  at32f403a_407_misc.o(i.systick_clock_source_config)
-    i.tmr_base_init                          0x08003a44   Section        0  at32f403a_407_tmr.o(i.tmr_base_init)
-    i.tmr_channel_value_set                  0x08003a54   Section        0  at32f403a_407_tmr.o(i.tmr_channel_value_set)
-    i.tmr_clock_source_div_set               0x08003a7c   Section        0  at32f403a_407_tmr.o(i.tmr_clock_source_div_set)
-    i.tmr_cnt_dir_set                        0x08003a86   Section        0  at32f403a_407_tmr.o(i.tmr_cnt_dir_set)
-    i.tmr_counter_enable                     0x08003a90   Section        0  at32f403a_407_tmr.o(i.tmr_counter_enable)
-    i.tmr_flag_clear                         0x08003a9a   Section        0  at32f403a_407_tmr.o(i.tmr_flag_clear)
-    i.tmr_interrupt_enable                   0x08003aa0   Section        0  at32f403a_407_tmr.o(i.tmr_interrupt_enable)
-    i.tmr_output_channel_buffer_enable       0x08003ab6   Section        0  at32f403a_407_tmr.o(i.tmr_output_channel_buffer_enable)
-    i.tmr_output_channel_config              0x08003af8   Section        0  at32f403a_407_tmr.o(i.tmr_output_channel_config)
-    i.tmr_output_channel_immediately_set     0x08003c98   Section        0  at32f403a_407_tmr.o(i.tmr_output_channel_immediately_set)
-    i.tmr_period_buffer_enable               0x08003cda   Section        0  at32f403a_407_tmr.o(i.tmr_period_buffer_enable)
-    i.tmr_primary_mode_select                0x08003ce4   Section        0  at32f403a_407_tmr.o(i.tmr_primary_mode_select)
-    i.tmr_sub_sync_mode_set                  0x08003cee   Section        0  at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set)
-    i.usart_data_transmit                    0x08003cf8   Section        0  at32f403a_407_usart.o(i.usart_data_transmit)
-    i.usart_enable                           0x08003d00   Section        0  at32f403a_407_usart.o(i.usart_enable)
-    i.usart_flag_get                         0x08003d0a   Section        0  at32f403a_407_usart.o(i.usart_flag_get)
-    i.usart_hardware_flow_control_set        0x08003d1a   Section        0  at32f403a_407_usart.o(i.usart_hardware_flow_control_set)
-    i.usart_init                             0x08003d80   Section        0  at32f403a_407_usart.o(i.usart_init)
-    i.usart_parity_selection_config          0x08003e00   Section        0  at32f403a_407_usart.o(i.usart_parity_selection_config)
-    i.usart_receiver_enable                  0x08003e4c   Section        0  at32f403a_407_usart.o(i.usart_receiver_enable)
-    i.usart_transmitter_enable               0x08003e56   Section        0  at32f403a_407_usart.o(i.usart_transmitter_enable)
-    i.wk_adc1_init                           0x08003e60   Section        0  wk_adc.o(i.wk_adc1_init)
-    i.wk_adc3_init                           0x08003f24   Section        0  wk_adc.o(i.wk_adc3_init)
-    i.wk_can1_init                           0x08003fe4   Section        0  wk_can.o(i.wk_can1_init)
-    i.wk_debug_config                        0x08004110   Section        0  wk_debug.o(i.wk_debug_config)
-    i.wk_dma1_channel1_init                  0x08004120   Section        0  wk_dma.o(i.wk_dma1_channel1_init)
-    i.wk_dma1_channel2_init                  0x08004170   Section        0  wk_dma.o(i.wk_dma1_channel2_init)
-    i.wk_dma_channel_config                  0x080041c0   Section        0  wk_dma.o(i.wk_dma_channel_config)
-    i.wk_gpio_config                         0x080041c8   Section        0  wk_gpio.o(i.wk_gpio_config)
-    i.wk_nvic_config                         0x0800423c   Section        0  at32f403a_407_wk_config.o(i.wk_nvic_config)
-    i.wk_periph_clock_config                 0x08004324   Section        0  at32f403a_407_wk_config.o(i.wk_periph_clock_config)
-    i.wk_spi1_init                           0x080043cc   Section        0  wk_spi.o(i.wk_spi1_init)
-    i.wk_spi2_init                           0x0800449c   Section        0  wk_spi.o(i.wk_spi2_init)
-    i.wk_system_clock_config                 0x0800456c   Section        0  at32f403a_407_wk_config.o(i.wk_system_clock_config)
-    i.wk_timebase_init                       0x08004604   Section        0  wk_system.o(i.wk_timebase_init)
-    i.wk_tmr2_init                           0x08004648   Section        0  wk_tmr.o(i.wk_tmr2_init)
-    i.wk_tmr3_init                           0x08004874   Section        0  wk_tmr.o(i.wk_tmr3_init)
-    i.wk_tmr4_init                           0x080048b8   Section        0  wk_tmr.o(i.wk_tmr4_init)
-    i.wk_tmr5_init                           0x08004ac4   Section        0  wk_tmr.o(i.wk_tmr5_init)
-    i.wk_usart1_init                         0x08004b08   Section        0  wk_usart.o(i.wk_usart1_init)
-    i.wk_usart3_init                         0x08004b9c   Section        0  wk_usart.o(i.wk_usart3_init)
-    .constdata                               0x08004c2c   Section       40  at32f403a_407_crm.o(.constdata)
-    sclk_ahb_div_table                       0x08004c2c   Data          16  at32f403a_407_crm.o(.constdata)
-    ahb_apb1_div_table                       0x08004c3c   Data           8  at32f403a_407_crm.o(.constdata)
-    ahb_apb2_div_table                       0x08004c44   Data           8  at32f403a_407_crm.o(.constdata)
-    adc_div_table                            0x08004c4c   Data           8  at32f403a_407_crm.o(.constdata)
-    .constdata                               0x08004c54   Section       16  system_at32f403a_407.o(.constdata)
-    sys_ahb_div_table                        0x08004c54   Data          16  system_at32f403a_407.o(.constdata)
-    .conststring                             0x08004c64   Section       67  foc.o(.conststring)
-    .conststring                             0x08004ca8   Section      731  log.o(.conststring)
+    .text                                    0x080001c0   Section        0  dmul.o(.text)
+    .text                                    0x080002a4   Section        0  dflti.o(.text)
+    .text                                    0x080002c6   Section        0  dfixui.o(.text)
+    .text                                    0x080002f8   Section        0  f2d.o(.text)
+    .text                                    0x08000320   Section       48  cdcmple.o(.text)
+    .text                                    0x08000350   Section        0  d2f.o(.text)
+    .text                                    0x08000388   Section        0  uidiv.o(.text)
+    .text                                    0x080003b4   Section        0  uldiv.o(.text)
+    .text                                    0x08000416   Section        0  llushr.o(.text)
+    .text                                    0x08000436   Section        0  fepilogue.o(.text)
+    .text                                    0x08000436   Section        0  iusefp.o(.text)
+    .text                                    0x080004a4   Section        0  depilogue.o(.text)
+    .text                                    0x0800055e   Section        0  dadd.o(.text)
+    .text                                    0x080006ac   Section        0  ddiv.o(.text)
+    .text                                    0x0800078a   Section        0  drem.o(.text)
+    .text                                    0x08000810   Section        0  dfixul.o(.text)
+    .text                                    0x08000840   Section       48  cdrcmple.o(.text)
+    .text                                    0x08000870   Section       36  init.o(.text)
+    .text                                    0x08000894   Section        0  llshl.o(.text)
+    .text                                    0x080008b2   Section        0  llsshr.o(.text)
+    .text                                    0x080008d6   Section        0  __dczerorl2.o(.text)
+    i.ADC1_2_IRQHandler                      0x0800092c   Section        0  at32f403a_407_int.o(i.ADC1_2_IRQHandler)
+    i.ADC3_IRQHandler                        0x08000944   Section        0  at32f403a_407_int.o(i.ADC3_IRQHandler)
+    i.Angle_limit                            0x0800095c   Section        0  foc.o(i.Angle_limit)
+    Angle_limit                              0x0800095d   Thumb Code    88  foc.o(i.Angle_limit)
+    i.BusFault_Handler                       0x080009c0   Section        0  at32f403a_407_int.o(i.BusFault_Handler)
+    i.CAN1_SE_IRQHandler                     0x080009c4   Section        0  at32f403a_407_int.o(i.CAN1_SE_IRQHandler)
+    i.DebugMon_Handler                       0x080009c6   Section        0  at32f403a_407_int.o(i.DebugMon_Handler)
+    i.FocContorl                             0x080009c8   Section        0  foc.o(i.FocContorl)
+    i.HardFault_Handler                      0x08000af0   Section        0  at32f403a_407_int.o(i.HardFault_Handler)
+    i.M1_adc_tigger                          0x08000af4   Section        0  foc.o(i.M1_adc_tigger)
+    i.M2_adc_tigger                          0x08000b38   Section        0  foc.o(i.M2_adc_tigger)
+    i.MT_1_ReadAngle                         0x08000b78   Section        0  mt6701.o(i.MT_1_ReadAngle)
+    i.MT_2_ReadAngle                         0x08000c04   Section        0  mt6701.o(i.MT_2_ReadAngle)
+    i.MemManage_Handler                      0x08000c94   Section        0  at32f403a_407_int.o(i.MemManage_Handler)
+    i.NMI_Handler                            0x08000c98   Section        0  at32f403a_407_int.o(i.NMI_Handler)
+    i.NVIC_EncodePriority                    0x08000c9a   Section        0  at32f403a_407_wk_config.o(i.NVIC_EncodePriority)
+    NVIC_EncodePriority                      0x08000c9b   Thumb Code    64  at32f403a_407_wk_config.o(i.NVIC_EncodePriority)
+    i.PI_Compute                             0x08000cda   Section        0  pid.o(i.PI_Compute)
+    i.PendSV_Handler                         0x08000d94   Section        0  at32f403a_407_int.o(i.PendSV_Handler)
+    i.Product_Overview                       0x08000d98   Section        0  log.o(i.Product_Overview)
+    i.SPIx_ReadWriteByte                     0x08000f50   Section        0  mt6701.o(i.SPIx_ReadWriteByte)
+    i.SVC_Handler                            0x08000fa4   Section        0  at32f403a_407_int.o(i.SVC_Handler)
+    i.SVpwm                                  0x08000fa8   Section        0  svpwm.o(i.SVpwm)
+    i.SysTick_Handler                        0x080014cc   Section        0  at32f403a_407_int.o(i.SysTick_Handler)
+    i.SystemInit                             0x080014d0   Section        0  system_at32f403a_407.o(i.SystemInit)
+    i.TMR5_GLOBAL_IRQHandler                 0x08001540   Section        0  at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler)
+    i.USBFS_L_CAN1_RX0_IRQHandler            0x08001574   Section        0  at32f403a_407_int.o(i.USBFS_L_CAN1_RX0_IRQHandler)
+    i.UsageFault_Handler                     0x080015c0   Section        0  at32f403a_407_int.o(i.UsageFault_Handler)
+    i.__0printf                              0x080015c4   Section        0  printfa.o(i.__0printf)
+    i.__NVIC_GetPriorityGrouping             0x080015e4   Section        0  at32f403a_407_wk_config.o(i.__NVIC_GetPriorityGrouping)
+    __NVIC_GetPriorityGrouping               0x080015e5   Thumb Code    10  at32f403a_407_wk_config.o(i.__NVIC_GetPriorityGrouping)
+    i.__NVIC_SetPriority                     0x080015f4   Section        0  at32f403a_407_wk_config.o(i.__NVIC_SetPriority)
+    __NVIC_SetPriority                       0x080015f5   Thumb Code    32  at32f403a_407_wk_config.o(i.__NVIC_SetPriority)
+    i.__hardfp_fabs                          0x0800161c   Section        0  fabs.o(i.__hardfp_fabs)
+    i.__hardfp_fmod                          0x08001630   Section        0  fmod.o(i.__hardfp_fmod)
+    i.__mathlib_dbl_invalid                  0x08001738   Section        0  dunder.o(i.__mathlib_dbl_invalid)
+    i.__scatterload_copy                     0x08001758   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x08001766   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x08001768   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i.__set_errno                            0x08001778   Section        0  errno.o(i.__set_errno)
+    i._electricalAngle                       0x08001784   Section        0  foc.o(i._electricalAngle)
+    _electricalAngle                         0x08001785   Thumb Code    38  foc.o(i._electricalAngle)
+    i._fp_digits                             0x080017ac   Section        0  printfa.o(i._fp_digits)
+    _fp_digits                               0x080017ad   Thumb Code   366  printfa.o(i._fp_digits)
+    i._printf_core                           0x08001930   Section        0  printfa.o(i._printf_core)
+    _printf_core                             0x08001931   Thumb Code  1704  printfa.o(i._printf_core)
+    i._printf_post_padding                   0x08001fe4   Section        0  printfa.o(i._printf_post_padding)
+    _printf_post_padding                     0x08001fe5   Thumb Code    36  printfa.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x08002008   Section        0  printfa.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x08002009   Thumb Code    46  printfa.o(i._printf_pre_padding)
+    i.adc_base_config                        0x08002036   Section        0  at32f403a_407_adc.o(i.adc_base_config)
+    i.adc_base_default_para_init             0x08002062   Section        0  at32f403a_407_adc.o(i.adc_base_default_para_init)
+    i.adc_calibration_init                   0x08002070   Section        0  at32f403a_407_adc.o(i.adc_calibration_init)
+    i.adc_calibration_init_status_get        0x0800207c   Section        0  at32f403a_407_adc.o(i.adc_calibration_init_status_get)
+    i.adc_calibration_start                  0x0800208e   Section        0  at32f403a_407_adc.o(i.adc_calibration_start)
+    i.adc_calibration_status_get             0x0800209a   Section        0  at32f403a_407_adc.o(i.adc_calibration_status_get)
+    i.adc_combine_mode_select                0x080020ac   Section        0  at32f403a_407_adc.o(i.adc_combine_mode_select)
+    i.adc_dma_mode_enable                    0x080020c0   Section        0  at32f403a_407_adc.o(i.adc_dma_mode_enable)
+    i.adc_enable                             0x080020ca   Section        0  at32f403a_407_adc.o(i.adc_enable)
+    i.adc_interrupt_enable                   0x080020d4   Section        0  at32f403a_407_adc.o(i.adc_interrupt_enable)
+    i.adc_ordinary_channel_set               0x080020ea   Section        0  at32f403a_407_adc.o(i.adc_ordinary_channel_set)
+    i.adc_ordinary_conversion_trigger_set    0x08002192   Section        0  at32f403a_407_adc.o(i.adc_ordinary_conversion_trigger_set)
+    i.adc_ordinary_part_mode_enable          0x080021c6   Section        0  at32f403a_407_adc.o(i.adc_ordinary_part_mode_enable)
+    i.angle_init                             0x080021d0   Section        0  foc.o(i.angle_init)
+    i.at32_led_toggle                        0x08002308   Section        0  led.o(i.at32_led_toggle)
+    i.can_base_init                          0x0800233c   Section        0  at32f403a_407_can.o(i.can_base_init)
+    i.can_baudrate_set                       0x080023f8   Section        0  at32f403a_407_can.o(i.can_baudrate_set)
+    i.can_default_para_init                  0x0800248a   Section        0  at32f403a_407_can.o(i.can_default_para_init)
+    i.can_filter_init                        0x0800249c   Section        0  at32f403a_407_can.o(i.can_filter_init)
+    i.can_flag_get                           0x08002600   Section        0  at32f403a_407_can.o(i.can_flag_get)
+    i.can_interrupt_enable                   0x080026f0   Section        0  at32f403a_407_can.o(i.can_interrupt_enable)
+    i.can_message_receive                    0x08002702   Section        0  at32f403a_407_can.o(i.can_message_receive)
+    i.can_receive_fifo_release               0x080027f2   Section        0  at32f403a_407_can.o(i.can_receive_fifo_release)
+    i.clarke_transform                       0x0800280c   Section        0  foc.o(i.clarke_transform)
+    clarke_transform                         0x0800280d   Thumb Code    62  foc.o(i.clarke_transform)
+    i.crm_adc_clock_div_set                  0x08002850   Section        0  at32f403a_407_crm.o(i.crm_adc_clock_div_set)
+    i.crm_ahb_div_set                        0x08002870   Section        0  at32f403a_407_crm.o(i.crm_ahb_div_set)
+    i.crm_apb1_div_set                       0x08002884   Section        0  at32f403a_407_crm.o(i.crm_apb1_div_set)
+    i.crm_apb2_div_set                       0x08002898   Section        0  at32f403a_407_crm.o(i.crm_apb2_div_set)
+    i.crm_auto_step_mode_enable              0x080028ac   Section        0  at32f403a_407_crm.o(i.crm_auto_step_mode_enable)
+    i.crm_clock_source_enable                0x080028d4   Section        0  at32f403a_407_crm.o(i.crm_clock_source_enable)
+    i.crm_clocks_freq_get                    0x08002934   Section        0  at32f403a_407_crm.o(i.crm_clocks_freq_get)
+    i.crm_flag_get                           0x08002a60   Section        0  at32f403a_407_crm.o(i.crm_flag_get)
+    i.crm_hext_stable_wait                   0x08002a90   Section        0  at32f403a_407_crm.o(i.crm_hext_stable_wait)
+    i.crm_periph_clock_enable                0x08002ac0   Section        0  at32f403a_407_crm.o(i.crm_periph_clock_enable)
+    i.crm_pll_config                         0x08002b04   Section        0  at32f403a_407_crm.o(i.crm_pll_config)
+    i.crm_reset                              0x08002b80   Section        0  at32f403a_407_crm.o(i.crm_reset)
+    i.crm_sysclk_switch                      0x08002bd8   Section        0  at32f403a_407_crm.o(i.crm_sysclk_switch)
+    i.crm_sysclk_switch_status_get           0x08002c14   Section        0  at32f403a_407_crm.o(i.crm_sysclk_switch_status_get)
+    i.delay_init                             0x08002c24   Section        0  delay.o(i.delay_init)
+    i.delay_ms                               0x08002c5c   Section        0  delay.o(i.delay_ms)
+    i.dma_channel_enable                     0x08002cd0   Section        0  at32f403a_407_dma.o(i.dma_channel_enable)
+    i.dma_default_para_init                  0x08002cda   Section        0  at32f403a_407_dma.o(i.dma_default_para_init)
+    i.dma_flexible_config                    0x08002cf2   Section        0  at32f403a_407_dma.o(i.dma_flexible_config)
+    i.dma_init                               0x08002d8a   Section        0  at32f403a_407_dma.o(i.dma_init)
+    i.dma_reset                              0x08002de8   Section        0  at32f403a_407_dma.o(i.dma_reset)
+    i.fast_cos                               0x08002e58   Section        0  foc.o(i.fast_cos)
+    fast_cos                                 0x08002e59   Thumb Code   164  foc.o(i.fast_cos)
+    i.fast_sin                               0x08002f1c   Section        0  foc.o(i.fast_sin)
+    fast_sin                                 0x08002f1d   Thumb Code   168  foc.o(i.fast_sin)
+    i.first_get                              0x08002fe4   Section        0  foc.o(i.first_get)
+    i.fputc                                  0x08003054   Section        0  usart_1.o(i.fputc)
+    i.getCorrectedElectricalAngle            0x08003088   Section        0  foc.o(i.getCorrectedElectricalAngle)
+    getCorrectedElectricalAngle              0x08003089   Thumb Code   116  foc.o(i.getCorrectedElectricalAngle)
+    i.gpio_bits_reset                        0x0800310c   Section        0  at32f403a_407_gpio.o(i.gpio_bits_reset)
+    i.gpio_bits_set                          0x08003110   Section        0  at32f403a_407_gpio.o(i.gpio_bits_set)
+    i.gpio_default_para_init                 0x08003114   Section        0  at32f403a_407_gpio.o(i.gpio_default_para_init)
+    i.gpio_init                              0x0800312a   Section        0  at32f403a_407_gpio.o(i.gpio_init)
+    i.gpio_pin_remap_config                  0x080031d4   Section        0  at32f403a_407_gpio.o(i.gpio_pin_remap_config)
+    i.inv_clarke_transform                   0x08003220   Section        0  foc.o(i.inv_clarke_transform)
+    inv_clarke_transform                     0x08003221   Thumb Code    90  foc.o(i.inv_clarke_transform)
+    i.inv_park_transform                     0x08003284   Section        0  foc.o(i.inv_park_transform)
+    inv_park_transform                       0x08003285   Thumb Code   106  foc.o(i.inv_park_transform)
+    i.limit                                  0x080032ee   Section        0  foc.o(i.limit)
+    limit                                    0x080032ef   Thumb Code    42  foc.o(i.limit)
+    i.main                                   0x08003318   Section        0  main.o(i.main)
+    i.nvic_irq_enable                        0x08003488   Section        0  at32f403a_407_misc.o(i.nvic_irq_enable)
+    i.nvic_priority_group_config             0x08003550   Section        0  at32f403a_407_misc.o(i.nvic_priority_group_config)
+    i.park_transform                         0x08003578   Section        0  foc.o(i.park_transform)
+    park_transform                           0x08003579   Thumb Code   106  foc.o(i.park_transform)
+    i.setSVpwm                               0x080035e2   Section        0  foc.o(i.setSVpwm)
+    setSVpwm                                 0x080035e3   Thumb Code    36  foc.o(i.setSVpwm)
+    i.setpwm                                 0x08003608   Section        0  foc.o(i.setpwm)
+    setpwm                                   0x08003609   Thumb Code   210  foc.o(i.setpwm)
+    i.setpwm1_channel                        0x080036e0   Section        0  foc.o(i.setpwm1_channel)
+    setpwm1_channel                          0x080036e1   Thumb Code   186  foc.o(i.setpwm1_channel)
+    i.setpwm2_channel                        0x080037ac   Section        0  foc.o(i.setpwm2_channel)
+    setpwm2_channel                          0x080037ad   Thumb Code   190  foc.o(i.setpwm2_channel)
+    i.spi_crc_enable                         0x08003878   Section        0  at32f403a_407_spi.o(i.spi_crc_enable)
+    i.spi_crc_polynomial_set                 0x08003882   Section        0  at32f403a_407_spi.o(i.spi_crc_polynomial_set)
+    i.spi_default_para_init                  0x0800388c   Section        0  at32f403a_407_spi.o(i.spi_default_para_init)
+    i.spi_enable                             0x080038a2   Section        0  at32f403a_407_spi.o(i.spi_enable)
+    i.spi_i2s_data_receive                   0x080038ac   Section        0  at32f403a_407_spi.o(i.spi_i2s_data_receive)
+    i.spi_i2s_data_transmit                  0x080038b4   Section        0  at32f403a_407_spi.o(i.spi_i2s_data_transmit)
+    i.spi_i2s_flag_get                       0x080038b8   Section        0  at32f403a_407_spi.o(i.spi_i2s_flag_get)
+    i.spi_init                               0x080038c8   Section        0  at32f403a_407_spi.o(i.spi_init)
+    i.strong_drag                            0x080039ec   Section        0  foc.o(i.strong_drag)
+    strong_drag                              0x080039ed   Thumb Code    46  foc.o(i.strong_drag)
+    i.strong_drag_Angle                      0x08003a20   Section        0  foc.o(i.strong_drag_Angle)
+    strong_drag_Angle                        0x08003a21   Thumb Code   142  foc.o(i.strong_drag_Angle)
+    i.system_core_clock_update               0x08003ac0   Section        0  system_at32f403a_407.o(i.system_core_clock_update)
+    i.systick_clock_source_config            0x08003bb8   Section        0  at32f403a_407_misc.o(i.systick_clock_source_config)
+    i.tmr_base_init                          0x08003be0   Section        0  at32f403a_407_tmr.o(i.tmr_base_init)
+    i.tmr_channel_value_set                  0x08003bf0   Section        0  at32f403a_407_tmr.o(i.tmr_channel_value_set)
+    i.tmr_clock_source_div_set               0x08003c18   Section        0  at32f403a_407_tmr.o(i.tmr_clock_source_div_set)
+    i.tmr_cnt_dir_set                        0x08003c22   Section        0  at32f403a_407_tmr.o(i.tmr_cnt_dir_set)
+    i.tmr_counter_enable                     0x08003c2c   Section        0  at32f403a_407_tmr.o(i.tmr_counter_enable)
+    i.tmr_flag_clear                         0x08003c36   Section        0  at32f403a_407_tmr.o(i.tmr_flag_clear)
+    i.tmr_interrupt_enable                   0x08003c3c   Section        0  at32f403a_407_tmr.o(i.tmr_interrupt_enable)
+    i.tmr_output_channel_buffer_enable       0x08003c52   Section        0  at32f403a_407_tmr.o(i.tmr_output_channel_buffer_enable)
+    i.tmr_output_channel_config              0x08003c94   Section        0  at32f403a_407_tmr.o(i.tmr_output_channel_config)
+    i.tmr_output_channel_immediately_set     0x08003e34   Section        0  at32f403a_407_tmr.o(i.tmr_output_channel_immediately_set)
+    i.tmr_period_buffer_enable               0x08003e76   Section        0  at32f403a_407_tmr.o(i.tmr_period_buffer_enable)
+    i.tmr_primary_mode_select                0x08003e80   Section        0  at32f403a_407_tmr.o(i.tmr_primary_mode_select)
+    i.tmr_sub_sync_mode_set                  0x08003e8a   Section        0  at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set)
+    i.usart_data_transmit                    0x08003e94   Section        0  at32f403a_407_usart.o(i.usart_data_transmit)
+    i.usart_enable                           0x08003e9c   Section        0  at32f403a_407_usart.o(i.usart_enable)
+    i.usart_flag_get                         0x08003ea6   Section        0  at32f403a_407_usart.o(i.usart_flag_get)
+    i.usart_hardware_flow_control_set        0x08003eb6   Section        0  at32f403a_407_usart.o(i.usart_hardware_flow_control_set)
+    i.usart_init                             0x08003f1c   Section        0  at32f403a_407_usart.o(i.usart_init)
+    i.usart_parity_selection_config          0x08003f9c   Section        0  at32f403a_407_usart.o(i.usart_parity_selection_config)
+    i.usart_receiver_enable                  0x08003fe8   Section        0  at32f403a_407_usart.o(i.usart_receiver_enable)
+    i.usart_transmitter_enable               0x08003ff2   Section        0  at32f403a_407_usart.o(i.usart_transmitter_enable)
+    i.wk_adc1_init                           0x08003ffc   Section        0  wk_adc.o(i.wk_adc1_init)
+    i.wk_adc3_init                           0x080040c0   Section        0  wk_adc.o(i.wk_adc3_init)
+    i.wk_can1_init                           0x08004180   Section        0  wk_can.o(i.wk_can1_init)
+    i.wk_debug_config                        0x080042ac   Section        0  wk_debug.o(i.wk_debug_config)
+    i.wk_dma1_channel1_init                  0x080042bc   Section        0  wk_dma.o(i.wk_dma1_channel1_init)
+    i.wk_dma1_channel2_init                  0x0800430c   Section        0  wk_dma.o(i.wk_dma1_channel2_init)
+    i.wk_dma_channel_config                  0x0800435c   Section        0  wk_dma.o(i.wk_dma_channel_config)
+    i.wk_gpio_config                         0x08004364   Section        0  wk_gpio.o(i.wk_gpio_config)
+    i.wk_nvic_config                         0x080043d8   Section        0  at32f403a_407_wk_config.o(i.wk_nvic_config)
+    i.wk_periph_clock_config                 0x080044cc   Section        0  at32f403a_407_wk_config.o(i.wk_periph_clock_config)
+    i.wk_spi1_init                           0x08004574   Section        0  wk_spi.o(i.wk_spi1_init)
+    i.wk_spi2_init                           0x08004644   Section        0  wk_spi.o(i.wk_spi2_init)
+    i.wk_system_clock_config                 0x08004714   Section        0  at32f403a_407_wk_config.o(i.wk_system_clock_config)
+    i.wk_timebase_init                       0x080047ac   Section        0  wk_system.o(i.wk_timebase_init)
+    i.wk_tmr2_init                           0x080047f0   Section        0  wk_tmr.o(i.wk_tmr2_init)
+    i.wk_tmr3_init                           0x08004a1c   Section        0  wk_tmr.o(i.wk_tmr3_init)
+    i.wk_tmr4_init                           0x08004a60   Section        0  wk_tmr.o(i.wk_tmr4_init)
+    i.wk_tmr5_init                           0x08004c6c   Section        0  wk_tmr.o(i.wk_tmr5_init)
+    i.wk_usart1_init                         0x08004cb0   Section        0  wk_usart.o(i.wk_usart1_init)
+    i.wk_usart3_init                         0x08004d44   Section        0  wk_usart.o(i.wk_usart3_init)
+    .constdata                               0x08004dd4   Section       40  at32f403a_407_crm.o(.constdata)
+    sclk_ahb_div_table                       0x08004dd4   Data          16  at32f403a_407_crm.o(.constdata)
+    ahb_apb1_div_table                       0x08004de4   Data           8  at32f403a_407_crm.o(.constdata)
+    ahb_apb2_div_table                       0x08004dec   Data           8  at32f403a_407_crm.o(.constdata)
+    adc_div_table                            0x08004df4   Data           8  at32f403a_407_crm.o(.constdata)
+    .constdata                               0x08004dfc   Section       16  system_at32f403a_407.o(.constdata)
+    sys_ahb_div_table                        0x08004dfc   Data          16  system_at32f403a_407.o(.constdata)
+    .conststring                             0x08004e0c   Section       67  foc.o(.conststring)
+    .conststring                             0x08004e50   Section      731  log.o(.conststring)
     .data                                    0x20000000   Section        8  at32f403a_407_int.o(.data)
     times                                    0x20000000   Data           4  at32f403a_407_int.o(.data)
     t                                        0x20000004   Data           4  at32f403a_407_int.o(.data)
@@ -1426,8 +1453,6 @@ Image Symbol Table
     __rt_final_exit                          0x08000199   Thumb Code     0  entry11a.o(.ARM.Collect$$$$00000011)
     Reset_Handler                            0x0800019d   Thumb Code     8  startup_at32f403a_407.o(.text)
     ACC_IRQHandler                           0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
-    ADC1_2_IRQHandler                        0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
-    ADC3_IRQHandler                          0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     CAN1_RX1_IRQHandler                      0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     CAN2_RX0_IRQHandler                      0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     CAN2_RX1_IRQHandler                      0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
@@ -1477,6 +1502,7 @@ Image Symbol Table
     TMR1_OVF_TMR10_IRQHandler                0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     TMR1_TRG_HALL_TMR11_IRQHandler           0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     TMR2_GLOBAL_IRQHandler                   0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
+    TMR3_GLOBAL_IRQHandler                   0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     TMR4_GLOBAL_IRQHandler                   0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     TMR6_GLOBAL_IRQHandler                   0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     TMR7_GLOBAL_IRQHandler                   0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
@@ -1498,177 +1524,181 @@ Image Symbol Table
     USBFS_MAPL_IRQHandler                    0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     WWDT_IRQHandler                          0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
     XMC_IRQHandler                           0x080001b7   Thumb Code     0  startup_at32f403a_407.o(.text)
-    __aeabi_f2d                              0x080001c1   Thumb Code    38  f2d.o(.text)
-    __aeabi_cdcmpeq                          0x080001e9   Thumb Code     0  cdcmple.o(.text)
-    __aeabi_cdcmple                          0x080001e9   Thumb Code    48  cdcmple.o(.text)
-    __aeabi_d2f                              0x08000219   Thumb Code    56  d2f.o(.text)
-    __aeabi_uidiv                            0x08000251   Thumb Code     0  uidiv.o(.text)
-    __aeabi_uidivmod                         0x08000251   Thumb Code    44  uidiv.o(.text)
-    __aeabi_uldivmod                         0x0800027d   Thumb Code    98  uldiv.o(.text)
-    __I$use$fp                               0x080002df   Thumb Code     0  iusefp.o(.text)
-    _float_round                             0x080002df   Thumb Code    18  fepilogue.o(.text)
-    _float_epilogue                          0x080002f1   Thumb Code    92  fepilogue.o(.text)
-    __aeabi_dadd                             0x0800034d   Thumb Code   322  dadd.o(.text)
-    __aeabi_dsub                             0x0800048f   Thumb Code     6  dadd.o(.text)
-    __aeabi_drsub                            0x08000495   Thumb Code     6  dadd.o(.text)
-    __aeabi_dmul                             0x0800049b   Thumb Code   228  dmul.o(.text)
-    __aeabi_ddiv                             0x0800057f   Thumb Code   222  ddiv.o(.text)
-    _drem                                    0x0800065d   Thumb Code   134  drem.o(.text)
-    __aeabi_d2ulz                            0x080006e3   Thumb Code    48  dfixul.o(.text)
-    __aeabi_cdrcmple                         0x08000715   Thumb Code    48  cdrcmple.o(.text)
-    __scatterload                            0x08000745   Thumb Code    28  init.o(.text)
-    __scatterload_rt2                        0x08000745   Thumb Code     0  init.o(.text)
-    __aeabi_llsl                             0x08000769   Thumb Code    30  llshl.o(.text)
-    _ll_shift_l                              0x08000769   Thumb Code     0  llshl.o(.text)
-    __aeabi_llsr                             0x08000787   Thumb Code    32  llushr.o(.text)
-    _ll_ushift_r                             0x08000787   Thumb Code     0  llushr.o(.text)
-    __aeabi_lasr                             0x080007a7   Thumb Code    36  llsshr.o(.text)
-    _ll_sshift_r                             0x080007a7   Thumb Code     0  llsshr.o(.text)
-    _double_round                            0x080007cb   Thumb Code    30  depilogue.o(.text)
-    _double_epilogue                         0x080007e9   Thumb Code   156  depilogue.o(.text)
-    __decompress                             0x08000885   Thumb Code     0  __dczerorl2.o(.text)
-    __decompress1                            0x08000885   Thumb Code    86  __dczerorl2.o(.text)
-    BusFault_Handler                         0x08000941   Thumb Code     4  at32f403a_407_int.o(i.BusFault_Handler)
-    CAN1_SE_IRQHandler                       0x08000945   Thumb Code     2  at32f403a_407_int.o(i.CAN1_SE_IRQHandler)
-    DebugMon_Handler                         0x08000947   Thumb Code     2  at32f403a_407_int.o(i.DebugMon_Handler)
-    FocContorl                               0x08000949   Thumb Code   268  foc.o(i.FocContorl)
-    HardFault_Handler                        0x08000a71   Thumb Code     4  at32f403a_407_int.o(i.HardFault_Handler)
-    M1_adc_tigger                            0x08000a75   Thumb Code    18  foc.o(i.M1_adc_tigger)
-    M2_adc_tigger                            0x08000a8d   Thumb Code    18  foc.o(i.M2_adc_tigger)
-    MT_1_ReadAngle                           0x08000aa1   Thumb Code   120  mt6701.o(i.MT_1_ReadAngle)
-    MT_2_ReadAngle                           0x08000b2d   Thumb Code   124  mt6701.o(i.MT_2_ReadAngle)
-    MemManage_Handler                        0x08000bbd   Thumb Code     4  at32f403a_407_int.o(i.MemManage_Handler)
-    NMI_Handler                              0x08000bc1   Thumb Code     2  at32f403a_407_int.o(i.NMI_Handler)
-    PI_Compute                               0x08000c03   Thumb Code   186  pid.o(i.PI_Compute)
-    PendSV_Handler                           0x08000cbd   Thumb Code     2  at32f403a_407_int.o(i.PendSV_Handler)
-    Product_Overview                         0x08000cc1   Thumb Code   136  log.o(i.Product_Overview)
-    SPIx_ReadWriteByte                       0x08000e79   Thumb Code    84  mt6701.o(i.SPIx_ReadWriteByte)
-    SVC_Handler                              0x08000ecd   Thumb Code     2  at32f403a_407_int.o(i.SVC_Handler)
-    SVpwm                                    0x08000ed1   Thumb Code  1316  svpwm.o(i.SVpwm)
-    SysTick_Handler                          0x080013f5   Thumb Code     2  at32f403a_407_int.o(i.SysTick_Handler)
-    SystemInit                               0x080013f9   Thumb Code   100  system_at32f403a_407.o(i.SystemInit)
-    TMR3_GLOBAL_IRQHandler                   0x08001469   Thumb Code    36  at32f403a_407_int.o(i.TMR3_GLOBAL_IRQHandler)
-    TMR5_GLOBAL_IRQHandler                   0x080014a1   Thumb Code    44  at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler)
-    USBFS_L_CAN1_RX0_IRQHandler              0x080014d5   Thumb Code    48  at32f403a_407_int.o(i.USBFS_L_CAN1_RX0_IRQHandler)
-    UsageFault_Handler                       0x08001521   Thumb Code     4  at32f403a_407_int.o(i.UsageFault_Handler)
-    __0printf                                0x08001525   Thumb Code    22  printfa.o(i.__0printf)
-    __1printf                                0x08001525   Thumb Code     0  printfa.o(i.__0printf)
-    __2printf                                0x08001525   Thumb Code     0  printfa.o(i.__0printf)
-    __c89printf                              0x08001525   Thumb Code     0  printfa.o(i.__0printf)
-    printf                                   0x08001525   Thumb Code     0  printfa.o(i.__0printf)
-    __hardfp_fabs                            0x0800157d   Thumb Code    20  fabs.o(i.__hardfp_fabs)
-    __hardfp_fmod                            0x08001591   Thumb Code   254  fmod.o(i.__hardfp_fmod)
-    __mathlib_dbl_invalid                    0x08001699   Thumb Code    24  dunder.o(i.__mathlib_dbl_invalid)
-    __scatterload_copy                       0x080016b9   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x080016c7   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x080016c9   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    __set_errno                              0x080016d9   Thumb Code     6  errno.o(i.__set_errno)
-    adc_base_config                          0x08001f97   Thumb Code    44  at32f403a_407_adc.o(i.adc_base_config)
-    adc_base_default_para_init               0x08001fc3   Thumb Code    14  at32f403a_407_adc.o(i.adc_base_default_para_init)
-    adc_calibration_init                     0x08001fd1   Thumb Code    12  at32f403a_407_adc.o(i.adc_calibration_init)
-    adc_calibration_init_status_get          0x08001fdd   Thumb Code    18  at32f403a_407_adc.o(i.adc_calibration_init_status_get)
-    adc_calibration_start                    0x08001fef   Thumb Code    12  at32f403a_407_adc.o(i.adc_calibration_start)
-    adc_calibration_status_get               0x08001ffb   Thumb Code    18  at32f403a_407_adc.o(i.adc_calibration_status_get)
-    adc_combine_mode_select                  0x0800200d   Thumb Code    14  at32f403a_407_adc.o(i.adc_combine_mode_select)
-    adc_dma_mode_enable                      0x08002021   Thumb Code    10  at32f403a_407_adc.o(i.adc_dma_mode_enable)
-    adc_enable                               0x0800202b   Thumb Code    10  at32f403a_407_adc.o(i.adc_enable)
-    adc_ordinary_channel_set                 0x08002035   Thumb Code   168  at32f403a_407_adc.o(i.adc_ordinary_channel_set)
-    adc_ordinary_conversion_trigger_set      0x080020dd   Thumb Code    52  at32f403a_407_adc.o(i.adc_ordinary_conversion_trigger_set)
-    adc_ordinary_part_mode_enable            0x08002111   Thumb Code    10  at32f403a_407_adc.o(i.adc_ordinary_part_mode_enable)
-    angle_init                               0x0800211d   Thumb Code   204  foc.o(i.angle_init)
-    at32_led_toggle                          0x08002255   Thumb Code    42  led.o(i.at32_led_toggle)
-    can_base_init                            0x08002289   Thumb Code   188  at32f403a_407_can.o(i.can_base_init)
-    can_baudrate_set                         0x08002345   Thumb Code   146  at32f403a_407_can.o(i.can_baudrate_set)
-    can_default_para_init                    0x080023d7   Thumb Code    18  at32f403a_407_can.o(i.can_default_para_init)
-    can_filter_init                          0x080023e9   Thumb Code   356  at32f403a_407_can.o(i.can_filter_init)
-    can_flag_get                             0x0800254d   Thumb Code   240  at32f403a_407_can.o(i.can_flag_get)
-    can_interrupt_enable                     0x0800263d   Thumb Code    18  at32f403a_407_can.o(i.can_interrupt_enable)
-    can_message_receive                      0x0800264f   Thumb Code   240  at32f403a_407_can.o(i.can_message_receive)
-    can_receive_fifo_release                 0x0800273f   Thumb Code    26  at32f403a_407_can.o(i.can_receive_fifo_release)
-    crm_adc_clock_div_set                    0x0800279d   Thumb Code    28  at32f403a_407_crm.o(i.crm_adc_clock_div_set)
-    crm_ahb_div_set                          0x080027bd   Thumb Code    14  at32f403a_407_crm.o(i.crm_ahb_div_set)
-    crm_apb1_div_set                         0x080027d1   Thumb Code    14  at32f403a_407_crm.o(i.crm_apb1_div_set)
-    crm_apb2_div_set                         0x080027e5   Thumb Code    14  at32f403a_407_crm.o(i.crm_apb2_div_set)
-    crm_auto_step_mode_enable                0x080027f9   Thumb Code    34  at32f403a_407_crm.o(i.crm_auto_step_mode_enable)
-    crm_clock_source_enable                  0x08002821   Thumb Code    90  at32f403a_407_crm.o(i.crm_clock_source_enable)
-    crm_clocks_freq_get                      0x08002881   Thumb Code   268  at32f403a_407_crm.o(i.crm_clocks_freq_get)
-    crm_flag_get                             0x080029ad   Thumb Code    42  at32f403a_407_crm.o(i.crm_flag_get)
-    crm_hext_stable_wait                     0x080029dd   Thumb Code    46  at32f403a_407_crm.o(i.crm_hext_stable_wait)
-    crm_periph_clock_enable                  0x08002a0d   Thumb Code    62  at32f403a_407_crm.o(i.crm_periph_clock_enable)
-    crm_pll_config                           0x08002a51   Thumb Code   118  at32f403a_407_crm.o(i.crm_pll_config)
-    crm_reset                                0x08002acd   Thumb Code    80  at32f403a_407_crm.o(i.crm_reset)
-    crm_sysclk_switch                        0x08002b25   Thumb Code    54  at32f403a_407_crm.o(i.crm_sysclk_switch)
-    crm_sysclk_switch_status_get             0x08002b61   Thumb Code    10  at32f403a_407_crm.o(i.crm_sysclk_switch_status_get)
-    delay_init                               0x08002b71   Thumb Code    38  delay.o(i.delay_init)
-    delay_ms                                 0x08002ba9   Thumb Code   110  delay.o(i.delay_ms)
-    dma_channel_enable                       0x08002c1d   Thumb Code    10  at32f403a_407_dma.o(i.dma_channel_enable)
-    dma_default_para_init                    0x08002c27   Thumb Code    24  at32f403a_407_dma.o(i.dma_default_para_init)
-    dma_flexible_config                      0x08002c3f   Thumb Code   152  at32f403a_407_dma.o(i.dma_flexible_config)
-    dma_init                                 0x08002cd7   Thumb Code    92  at32f403a_407_dma.o(i.dma_init)
-    dma_reset                                0x08002d35   Thumb Code   102  at32f403a_407_dma.o(i.dma_reset)
-    first_get                                0x08002f31   Thumb Code   100  foc.o(i.first_get)
-    fputc                                    0x08002fa1   Thumb Code    46  usart_1.o(i.fputc)
-    gpio_bits_reset                          0x08003059   Thumb Code     4  at32f403a_407_gpio.o(i.gpio_bits_reset)
-    gpio_bits_set                            0x0800305d   Thumb Code     4  at32f403a_407_gpio.o(i.gpio_bits_set)
-    gpio_default_para_init                   0x08003061   Thumb Code    22  at32f403a_407_gpio.o(i.gpio_default_para_init)
-    gpio_init                                0x08003077   Thumb Code   168  at32f403a_407_gpio.o(i.gpio_init)
-    gpio_pin_remap_config                    0x08003121   Thumb Code    70  at32f403a_407_gpio.o(i.gpio_pin_remap_config)
-    main                                     0x08003265   Thumb Code   270  main.o(i.main)
-    nvic_irq_enable                          0x080033b5   Thumb Code   190  at32f403a_407_misc.o(i.nvic_irq_enable)
-    nvic_priority_group_config               0x0800347d   Thumb Code    32  at32f403a_407_misc.o(i.nvic_priority_group_config)
-    spi_crc_enable                           0x080036dd   Thumb Code    10  at32f403a_407_spi.o(i.spi_crc_enable)
-    spi_crc_polynomial_set                   0x080036e7   Thumb Code    10  at32f403a_407_spi.o(i.spi_crc_polynomial_set)
-    spi_default_para_init                    0x080036f1   Thumb Code    22  at32f403a_407_spi.o(i.spi_default_para_init)
-    spi_enable                               0x08003707   Thumb Code    10  at32f403a_407_spi.o(i.spi_enable)
-    spi_i2s_data_receive                     0x08003711   Thumb Code     8  at32f403a_407_spi.o(i.spi_i2s_data_receive)
-    spi_i2s_data_transmit                    0x08003719   Thumb Code     4  at32f403a_407_spi.o(i.spi_i2s_data_transmit)
-    spi_i2s_flag_get                         0x0800371d   Thumb Code    16  at32f403a_407_spi.o(i.spi_i2s_flag_get)
-    spi_init                                 0x0800372d   Thumb Code   292  at32f403a_407_spi.o(i.spi_init)
-    system_core_clock_update                 0x08003925   Thumb Code   222  system_at32f403a_407.o(i.system_core_clock_update)
-    systick_clock_source_config              0x08003a1d   Thumb Code    40  at32f403a_407_misc.o(i.systick_clock_source_config)
-    tmr_base_init                            0x08003a45   Thumb Code    16  at32f403a_407_tmr.o(i.tmr_base_init)
-    tmr_channel_value_set                    0x08003a55   Thumb Code    40  at32f403a_407_tmr.o(i.tmr_channel_value_set)
-    tmr_clock_source_div_set                 0x08003a7d   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_clock_source_div_set)
-    tmr_cnt_dir_set                          0x08003a87   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_cnt_dir_set)
-    tmr_counter_enable                       0x08003a91   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_counter_enable)
-    tmr_flag_clear                           0x08003a9b   Thumb Code     6  at32f403a_407_tmr.o(i.tmr_flag_clear)
-    tmr_interrupt_enable                     0x08003aa1   Thumb Code    22  at32f403a_407_tmr.o(i.tmr_interrupt_enable)
-    tmr_output_channel_buffer_enable         0x08003ab7   Thumb Code    66  at32f403a_407_tmr.o(i.tmr_output_channel_buffer_enable)
-    tmr_output_channel_config                0x08003af9   Thumb Code   416  at32f403a_407_tmr.o(i.tmr_output_channel_config)
-    tmr_output_channel_immediately_set       0x08003c99   Thumb Code    66  at32f403a_407_tmr.o(i.tmr_output_channel_immediately_set)
-    tmr_period_buffer_enable                 0x08003cdb   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_period_buffer_enable)
-    tmr_primary_mode_select                  0x08003ce5   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_primary_mode_select)
-    tmr_sub_sync_mode_set                    0x08003cef   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set)
-    usart_data_transmit                      0x08003cf9   Thumb Code     8  at32f403a_407_usart.o(i.usart_data_transmit)
-    usart_enable                             0x08003d01   Thumb Code    10  at32f403a_407_usart.o(i.usart_enable)
-    usart_flag_get                           0x08003d0b   Thumb Code    16  at32f403a_407_usart.o(i.usart_flag_get)
-    usart_hardware_flow_control_set          0x08003d1b   Thumb Code   102  at32f403a_407_usart.o(i.usart_hardware_flow_control_set)
-    usart_init                               0x08003d81   Thumb Code   114  at32f403a_407_usart.o(i.usart_init)
-    usart_parity_selection_config            0x08003e01   Thumb Code    76  at32f403a_407_usart.o(i.usart_parity_selection_config)
-    usart_receiver_enable                    0x08003e4d   Thumb Code    10  at32f403a_407_usart.o(i.usart_receiver_enable)
-    usart_transmitter_enable                 0x08003e57   Thumb Code    10  at32f403a_407_usart.o(i.usart_transmitter_enable)
-    wk_adc1_init                             0x08003e61   Thumb Code   188  wk_adc.o(i.wk_adc1_init)
-    wk_adc3_init                             0x08003f25   Thumb Code   182  wk_adc.o(i.wk_adc3_init)
-    wk_can1_init                             0x08003fe5   Thumb Code   292  wk_can.o(i.wk_can1_init)
-    wk_debug_config                          0x08004111   Thumb Code    12  wk_debug.o(i.wk_debug_config)
-    wk_dma1_channel1_init                    0x08004121   Thumb Code    76  wk_dma.o(i.wk_dma1_channel1_init)
-    wk_dma1_channel2_init                    0x08004171   Thumb Code    76  wk_dma.o(i.wk_dma1_channel2_init)
-    wk_dma_channel_config                    0x080041c1   Thumb Code     8  wk_dma.o(i.wk_dma_channel_config)
-    wk_gpio_config                           0x080041c9   Thumb Code   106  wk_gpio.o(i.wk_gpio_config)
-    wk_nvic_config                           0x0800423d   Thumb Code   232  at32f403a_407_wk_config.o(i.wk_nvic_config)
-    wk_periph_clock_config                   0x08004325   Thumb Code   160  at32f403a_407_wk_config.o(i.wk_periph_clock_config)
-    wk_spi1_init                             0x080043cd   Thumb Code   198  wk_spi.o(i.wk_spi1_init)
-    wk_spi2_init                             0x0800449d   Thumb Code   200  wk_spi.o(i.wk_spi2_init)
-    wk_system_clock_config                   0x0800456d   Thumb Code   146  at32f403a_407_wk_config.o(i.wk_system_clock_config)
-    wk_timebase_init                         0x08004605   Thumb Code    58  wk_system.o(i.wk_timebase_init)
-    wk_tmr2_init                             0x08004649   Thumb Code   542  wk_tmr.o(i.wk_tmr2_init)
-    wk_tmr3_init                             0x08004875   Thumb Code    64  wk_tmr.o(i.wk_tmr3_init)
-    wk_tmr4_init                             0x080048b9   Thumb Code   514  wk_tmr.o(i.wk_tmr4_init)
-    wk_tmr5_init                             0x08004ac5   Thumb Code    64  wk_tmr.o(i.wk_tmr5_init)
-    wk_usart1_init                           0x08004b09   Thumb Code   134  wk_usart.o(i.wk_usart1_init)
-    wk_usart3_init                           0x08004b9d   Thumb Code   136  wk_usart.o(i.wk_usart3_init)
-    Region$$Table$$Base                      0x08004f84   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08004fa4   Number         0  anon$$obj.o(Region$$Table)
+    __aeabi_dmul                             0x080001c1   Thumb Code   228  dmul.o(.text)
+    __aeabi_i2d                              0x080002a5   Thumb Code    34  dflti.o(.text)
+    __aeabi_d2uiz                            0x080002c7   Thumb Code    50  dfixui.o(.text)
+    __aeabi_f2d                              0x080002f9   Thumb Code    38  f2d.o(.text)
+    __aeabi_cdcmpeq                          0x08000321   Thumb Code     0  cdcmple.o(.text)
+    __aeabi_cdcmple                          0x08000321   Thumb Code    48  cdcmple.o(.text)
+    __aeabi_d2f                              0x08000351   Thumb Code    56  d2f.o(.text)
+    __aeabi_uidiv                            0x08000389   Thumb Code     0  uidiv.o(.text)
+    __aeabi_uidivmod                         0x08000389   Thumb Code    44  uidiv.o(.text)
+    __aeabi_uldivmod                         0x080003b5   Thumb Code    98  uldiv.o(.text)
+    __aeabi_llsr                             0x08000417   Thumb Code    32  llushr.o(.text)
+    _ll_ushift_r                             0x08000417   Thumb Code     0  llushr.o(.text)
+    __I$use$fp                               0x08000437   Thumb Code     0  iusefp.o(.text)
+    _float_round                             0x08000437   Thumb Code    18  fepilogue.o(.text)
+    _float_epilogue                          0x08000449   Thumb Code    92  fepilogue.o(.text)
+    _double_round                            0x080004a5   Thumb Code    30  depilogue.o(.text)
+    _double_epilogue                         0x080004c3   Thumb Code   156  depilogue.o(.text)
+    __aeabi_dadd                             0x0800055f   Thumb Code   322  dadd.o(.text)
+    __aeabi_dsub                             0x080006a1   Thumb Code     6  dadd.o(.text)
+    __aeabi_drsub                            0x080006a7   Thumb Code     6  dadd.o(.text)
+    __aeabi_ddiv                             0x080006ad   Thumb Code   222  ddiv.o(.text)
+    _drem                                    0x0800078b   Thumb Code   134  drem.o(.text)
+    __aeabi_d2ulz                            0x08000811   Thumb Code    48  dfixul.o(.text)
+    __aeabi_cdrcmple                         0x08000841   Thumb Code    48  cdrcmple.o(.text)
+    __scatterload                            0x08000871   Thumb Code    28  init.o(.text)
+    __scatterload_rt2                        0x08000871   Thumb Code     0  init.o(.text)
+    __aeabi_llsl                             0x08000895   Thumb Code    30  llshl.o(.text)
+    _ll_shift_l                              0x08000895   Thumb Code     0  llshl.o(.text)
+    __aeabi_lasr                             0x080008b3   Thumb Code    36  llsshr.o(.text)
+    _ll_sshift_r                             0x080008b3   Thumb Code     0  llsshr.o(.text)
+    __decompress                             0x080008d7   Thumb Code     0  __dczerorl2.o(.text)
+    __decompress1                            0x080008d7   Thumb Code    86  __dczerorl2.o(.text)
+    ADC1_2_IRQHandler                        0x0800092d   Thumb Code    16  at32f403a_407_int.o(i.ADC1_2_IRQHandler)
+    ADC3_IRQHandler                          0x08000945   Thumb Code    16  at32f403a_407_int.o(i.ADC3_IRQHandler)
+    BusFault_Handler                         0x080009c1   Thumb Code     4  at32f403a_407_int.o(i.BusFault_Handler)
+    CAN1_SE_IRQHandler                       0x080009c5   Thumb Code     2  at32f403a_407_int.o(i.CAN1_SE_IRQHandler)
+    DebugMon_Handler                         0x080009c7   Thumb Code     2  at32f403a_407_int.o(i.DebugMon_Handler)
+    FocContorl                               0x080009c9   Thumb Code   268  foc.o(i.FocContorl)
+    HardFault_Handler                        0x08000af1   Thumb Code     4  at32f403a_407_int.o(i.HardFault_Handler)
+    M1_adc_tigger                            0x08000af5   Thumb Code    56  foc.o(i.M1_adc_tigger)
+    M2_adc_tigger                            0x08000b39   Thumb Code    56  foc.o(i.M2_adc_tigger)
+    MT_1_ReadAngle                           0x08000b79   Thumb Code   120  mt6701.o(i.MT_1_ReadAngle)
+    MT_2_ReadAngle                           0x08000c05   Thumb Code   124  mt6701.o(i.MT_2_ReadAngle)
+    MemManage_Handler                        0x08000c95   Thumb Code     4  at32f403a_407_int.o(i.MemManage_Handler)
+    NMI_Handler                              0x08000c99   Thumb Code     2  at32f403a_407_int.o(i.NMI_Handler)
+    PI_Compute                               0x08000cdb   Thumb Code   186  pid.o(i.PI_Compute)
+    PendSV_Handler                           0x08000d95   Thumb Code     2  at32f403a_407_int.o(i.PendSV_Handler)
+    Product_Overview                         0x08000d99   Thumb Code   136  log.o(i.Product_Overview)
+    SPIx_ReadWriteByte                       0x08000f51   Thumb Code    84  mt6701.o(i.SPIx_ReadWriteByte)
+    SVC_Handler                              0x08000fa5   Thumb Code     2  at32f403a_407_int.o(i.SVC_Handler)
+    SVpwm                                    0x08000fa9   Thumb Code  1316  svpwm.o(i.SVpwm)
+    SysTick_Handler                          0x080014cd   Thumb Code     2  at32f403a_407_int.o(i.SysTick_Handler)
+    SystemInit                               0x080014d1   Thumb Code   100  system_at32f403a_407.o(i.SystemInit)
+    TMR5_GLOBAL_IRQHandler                   0x08001541   Thumb Code    44  at32f403a_407_int.o(i.TMR5_GLOBAL_IRQHandler)
+    USBFS_L_CAN1_RX0_IRQHandler              0x08001575   Thumb Code    48  at32f403a_407_int.o(i.USBFS_L_CAN1_RX0_IRQHandler)
+    UsageFault_Handler                       0x080015c1   Thumb Code     4  at32f403a_407_int.o(i.UsageFault_Handler)
+    __0printf                                0x080015c5   Thumb Code    22  printfa.o(i.__0printf)
+    __1printf                                0x080015c5   Thumb Code     0  printfa.o(i.__0printf)
+    __2printf                                0x080015c5   Thumb Code     0  printfa.o(i.__0printf)
+    __c89printf                              0x080015c5   Thumb Code     0  printfa.o(i.__0printf)
+    printf                                   0x080015c5   Thumb Code     0  printfa.o(i.__0printf)
+    __hardfp_fabs                            0x0800161d   Thumb Code    20  fabs.o(i.__hardfp_fabs)
+    __hardfp_fmod                            0x08001631   Thumb Code   254  fmod.o(i.__hardfp_fmod)
+    __mathlib_dbl_invalid                    0x08001739   Thumb Code    24  dunder.o(i.__mathlib_dbl_invalid)
+    __scatterload_copy                       0x08001759   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x08001767   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x08001769   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    __set_errno                              0x08001779   Thumb Code     6  errno.o(i.__set_errno)
+    adc_base_config                          0x08002037   Thumb Code    44  at32f403a_407_adc.o(i.adc_base_config)
+    adc_base_default_para_init               0x08002063   Thumb Code    14  at32f403a_407_adc.o(i.adc_base_default_para_init)
+    adc_calibration_init                     0x08002071   Thumb Code    12  at32f403a_407_adc.o(i.adc_calibration_init)
+    adc_calibration_init_status_get          0x0800207d   Thumb Code    18  at32f403a_407_adc.o(i.adc_calibration_init_status_get)
+    adc_calibration_start                    0x0800208f   Thumb Code    12  at32f403a_407_adc.o(i.adc_calibration_start)
+    adc_calibration_status_get               0x0800209b   Thumb Code    18  at32f403a_407_adc.o(i.adc_calibration_status_get)
+    adc_combine_mode_select                  0x080020ad   Thumb Code    14  at32f403a_407_adc.o(i.adc_combine_mode_select)
+    adc_dma_mode_enable                      0x080020c1   Thumb Code    10  at32f403a_407_adc.o(i.adc_dma_mode_enable)
+    adc_enable                               0x080020cb   Thumb Code    10  at32f403a_407_adc.o(i.adc_enable)
+    adc_interrupt_enable                     0x080020d5   Thumb Code    22  at32f403a_407_adc.o(i.adc_interrupt_enable)
+    adc_ordinary_channel_set                 0x080020eb   Thumb Code   168  at32f403a_407_adc.o(i.adc_ordinary_channel_set)
+    adc_ordinary_conversion_trigger_set      0x08002193   Thumb Code    52  at32f403a_407_adc.o(i.adc_ordinary_conversion_trigger_set)
+    adc_ordinary_part_mode_enable            0x080021c7   Thumb Code    10  at32f403a_407_adc.o(i.adc_ordinary_part_mode_enable)
+    angle_init                               0x080021d1   Thumb Code   204  foc.o(i.angle_init)
+    at32_led_toggle                          0x08002309   Thumb Code    42  led.o(i.at32_led_toggle)
+    can_base_init                            0x0800233d   Thumb Code   188  at32f403a_407_can.o(i.can_base_init)
+    can_baudrate_set                         0x080023f9   Thumb Code   146  at32f403a_407_can.o(i.can_baudrate_set)
+    can_default_para_init                    0x0800248b   Thumb Code    18  at32f403a_407_can.o(i.can_default_para_init)
+    can_filter_init                          0x0800249d   Thumb Code   356  at32f403a_407_can.o(i.can_filter_init)
+    can_flag_get                             0x08002601   Thumb Code   240  at32f403a_407_can.o(i.can_flag_get)
+    can_interrupt_enable                     0x080026f1   Thumb Code    18  at32f403a_407_can.o(i.can_interrupt_enable)
+    can_message_receive                      0x08002703   Thumb Code   240  at32f403a_407_can.o(i.can_message_receive)
+    can_receive_fifo_release                 0x080027f3   Thumb Code    26  at32f403a_407_can.o(i.can_receive_fifo_release)
+    crm_adc_clock_div_set                    0x08002851   Thumb Code    28  at32f403a_407_crm.o(i.crm_adc_clock_div_set)
+    crm_ahb_div_set                          0x08002871   Thumb Code    14  at32f403a_407_crm.o(i.crm_ahb_div_set)
+    crm_apb1_div_set                         0x08002885   Thumb Code    14  at32f403a_407_crm.o(i.crm_apb1_div_set)
+    crm_apb2_div_set                         0x08002899   Thumb Code    14  at32f403a_407_crm.o(i.crm_apb2_div_set)
+    crm_auto_step_mode_enable                0x080028ad   Thumb Code    34  at32f403a_407_crm.o(i.crm_auto_step_mode_enable)
+    crm_clock_source_enable                  0x080028d5   Thumb Code    90  at32f403a_407_crm.o(i.crm_clock_source_enable)
+    crm_clocks_freq_get                      0x08002935   Thumb Code   268  at32f403a_407_crm.o(i.crm_clocks_freq_get)
+    crm_flag_get                             0x08002a61   Thumb Code    42  at32f403a_407_crm.o(i.crm_flag_get)
+    crm_hext_stable_wait                     0x08002a91   Thumb Code    46  at32f403a_407_crm.o(i.crm_hext_stable_wait)
+    crm_periph_clock_enable                  0x08002ac1   Thumb Code    62  at32f403a_407_crm.o(i.crm_periph_clock_enable)
+    crm_pll_config                           0x08002b05   Thumb Code   118  at32f403a_407_crm.o(i.crm_pll_config)
+    crm_reset                                0x08002b81   Thumb Code    80  at32f403a_407_crm.o(i.crm_reset)
+    crm_sysclk_switch                        0x08002bd9   Thumb Code    54  at32f403a_407_crm.o(i.crm_sysclk_switch)
+    crm_sysclk_switch_status_get             0x08002c15   Thumb Code    10  at32f403a_407_crm.o(i.crm_sysclk_switch_status_get)
+    delay_init                               0x08002c25   Thumb Code    38  delay.o(i.delay_init)
+    delay_ms                                 0x08002c5d   Thumb Code   110  delay.o(i.delay_ms)
+    dma_channel_enable                       0x08002cd1   Thumb Code    10  at32f403a_407_dma.o(i.dma_channel_enable)
+    dma_default_para_init                    0x08002cdb   Thumb Code    24  at32f403a_407_dma.o(i.dma_default_para_init)
+    dma_flexible_config                      0x08002cf3   Thumb Code   152  at32f403a_407_dma.o(i.dma_flexible_config)
+    dma_init                                 0x08002d8b   Thumb Code    92  at32f403a_407_dma.o(i.dma_init)
+    dma_reset                                0x08002de9   Thumb Code   102  at32f403a_407_dma.o(i.dma_reset)
+    first_get                                0x08002fe5   Thumb Code   100  foc.o(i.first_get)
+    fputc                                    0x08003055   Thumb Code    46  usart_1.o(i.fputc)
+    gpio_bits_reset                          0x0800310d   Thumb Code     4  at32f403a_407_gpio.o(i.gpio_bits_reset)
+    gpio_bits_set                            0x08003111   Thumb Code     4  at32f403a_407_gpio.o(i.gpio_bits_set)
+    gpio_default_para_init                   0x08003115   Thumb Code    22  at32f403a_407_gpio.o(i.gpio_default_para_init)
+    gpio_init                                0x0800312b   Thumb Code   168  at32f403a_407_gpio.o(i.gpio_init)
+    gpio_pin_remap_config                    0x080031d5   Thumb Code    70  at32f403a_407_gpio.o(i.gpio_pin_remap_config)
+    main                                     0x08003319   Thumb Code   304  main.o(i.main)
+    nvic_irq_enable                          0x08003489   Thumb Code   190  at32f403a_407_misc.o(i.nvic_irq_enable)
+    nvic_priority_group_config               0x08003551   Thumb Code    32  at32f403a_407_misc.o(i.nvic_priority_group_config)
+    spi_crc_enable                           0x08003879   Thumb Code    10  at32f403a_407_spi.o(i.spi_crc_enable)
+    spi_crc_polynomial_set                   0x08003883   Thumb Code    10  at32f403a_407_spi.o(i.spi_crc_polynomial_set)
+    spi_default_para_init                    0x0800388d   Thumb Code    22  at32f403a_407_spi.o(i.spi_default_para_init)
+    spi_enable                               0x080038a3   Thumb Code    10  at32f403a_407_spi.o(i.spi_enable)
+    spi_i2s_data_receive                     0x080038ad   Thumb Code     8  at32f403a_407_spi.o(i.spi_i2s_data_receive)
+    spi_i2s_data_transmit                    0x080038b5   Thumb Code     4  at32f403a_407_spi.o(i.spi_i2s_data_transmit)
+    spi_i2s_flag_get                         0x080038b9   Thumb Code    16  at32f403a_407_spi.o(i.spi_i2s_flag_get)
+    spi_init                                 0x080038c9   Thumb Code   292  at32f403a_407_spi.o(i.spi_init)
+    system_core_clock_update                 0x08003ac1   Thumb Code   222  system_at32f403a_407.o(i.system_core_clock_update)
+    systick_clock_source_config              0x08003bb9   Thumb Code    40  at32f403a_407_misc.o(i.systick_clock_source_config)
+    tmr_base_init                            0x08003be1   Thumb Code    16  at32f403a_407_tmr.o(i.tmr_base_init)
+    tmr_channel_value_set                    0x08003bf1   Thumb Code    40  at32f403a_407_tmr.o(i.tmr_channel_value_set)
+    tmr_clock_source_div_set                 0x08003c19   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_clock_source_div_set)
+    tmr_cnt_dir_set                          0x08003c23   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_cnt_dir_set)
+    tmr_counter_enable                       0x08003c2d   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_counter_enable)
+    tmr_flag_clear                           0x08003c37   Thumb Code     6  at32f403a_407_tmr.o(i.tmr_flag_clear)
+    tmr_interrupt_enable                     0x08003c3d   Thumb Code    22  at32f403a_407_tmr.o(i.tmr_interrupt_enable)
+    tmr_output_channel_buffer_enable         0x08003c53   Thumb Code    66  at32f403a_407_tmr.o(i.tmr_output_channel_buffer_enable)
+    tmr_output_channel_config                0x08003c95   Thumb Code   416  at32f403a_407_tmr.o(i.tmr_output_channel_config)
+    tmr_output_channel_immediately_set       0x08003e35   Thumb Code    66  at32f403a_407_tmr.o(i.tmr_output_channel_immediately_set)
+    tmr_period_buffer_enable                 0x08003e77   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_period_buffer_enable)
+    tmr_primary_mode_select                  0x08003e81   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_primary_mode_select)
+    tmr_sub_sync_mode_set                    0x08003e8b   Thumb Code    10  at32f403a_407_tmr.o(i.tmr_sub_sync_mode_set)
+    usart_data_transmit                      0x08003e95   Thumb Code     8  at32f403a_407_usart.o(i.usart_data_transmit)
+    usart_enable                             0x08003e9d   Thumb Code    10  at32f403a_407_usart.o(i.usart_enable)
+    usart_flag_get                           0x08003ea7   Thumb Code    16  at32f403a_407_usart.o(i.usart_flag_get)
+    usart_hardware_flow_control_set          0x08003eb7   Thumb Code   102  at32f403a_407_usart.o(i.usart_hardware_flow_control_set)
+    usart_init                               0x08003f1d   Thumb Code   114  at32f403a_407_usart.o(i.usart_init)
+    usart_parity_selection_config            0x08003f9d   Thumb Code    76  at32f403a_407_usart.o(i.usart_parity_selection_config)
+    usart_receiver_enable                    0x08003fe9   Thumb Code    10  at32f403a_407_usart.o(i.usart_receiver_enable)
+    usart_transmitter_enable                 0x08003ff3   Thumb Code    10  at32f403a_407_usart.o(i.usart_transmitter_enable)
+    wk_adc1_init                             0x08003ffd   Thumb Code   188  wk_adc.o(i.wk_adc1_init)
+    wk_adc3_init                             0x080040c1   Thumb Code   182  wk_adc.o(i.wk_adc3_init)
+    wk_can1_init                             0x08004181   Thumb Code   292  wk_can.o(i.wk_can1_init)
+    wk_debug_config                          0x080042ad   Thumb Code    12  wk_debug.o(i.wk_debug_config)
+    wk_dma1_channel1_init                    0x080042bd   Thumb Code    76  wk_dma.o(i.wk_dma1_channel1_init)
+    wk_dma1_channel2_init                    0x0800430d   Thumb Code    76  wk_dma.o(i.wk_dma1_channel2_init)
+    wk_dma_channel_config                    0x0800435d   Thumb Code     8  wk_dma.o(i.wk_dma_channel_config)
+    wk_gpio_config                           0x08004365   Thumb Code   106  wk_gpio.o(i.wk_gpio_config)
+    wk_nvic_config                           0x080043d9   Thumb Code   242  at32f403a_407_wk_config.o(i.wk_nvic_config)
+    wk_periph_clock_config                   0x080044cd   Thumb Code   160  at32f403a_407_wk_config.o(i.wk_periph_clock_config)
+    wk_spi1_init                             0x08004575   Thumb Code   198  wk_spi.o(i.wk_spi1_init)
+    wk_spi2_init                             0x08004645   Thumb Code   200  wk_spi.o(i.wk_spi2_init)
+    wk_system_clock_config                   0x08004715   Thumb Code   146  at32f403a_407_wk_config.o(i.wk_system_clock_config)
+    wk_timebase_init                         0x080047ad   Thumb Code    58  wk_system.o(i.wk_timebase_init)
+    wk_tmr2_init                             0x080047f1   Thumb Code   542  wk_tmr.o(i.wk_tmr2_init)
+    wk_tmr3_init                             0x08004a1d   Thumb Code    64  wk_tmr.o(i.wk_tmr3_init)
+    wk_tmr4_init                             0x08004a61   Thumb Code   514  wk_tmr.o(i.wk_tmr4_init)
+    wk_tmr5_init                             0x08004c6d   Thumb Code    64  wk_tmr.o(i.wk_tmr5_init)
+    wk_usart1_init                           0x08004cb1   Thumb Code   134  wk_usart.o(i.wk_usart1_init)
+    wk_usart3_init                           0x08004d45   Thumb Code   136  wk_usart.o(i.wk_usart3_init)
+    Region$$Table$$Base                      0x0800512c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800514c   Number         0  anon$$obj.o(Region$$Table)
     ticks_count_us                           0x20000008   Data           4  wk_system.o(.data)
     system_core_clock                        0x2000000c   Data           4  system_at32f403a_407.o(.data)
     Motor1_AD_Value                          0x20000018   Data           4  foc.o(.data)
@@ -1696,240 +1726,241 @@ Memory Map of the image
 
   Image Entry point : 0x08000185
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000516c, Max: 0x00100000, ABSOLUTE, COMPRESSED[0x00004ff4])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005314, Max: 0x00100000, ABSOLUTE, COMPRESSED[0x0000519c])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00004fa4, Max: 0x00100000, ABSOLUTE)
-
-    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
-
-    0x08000000   0x08000000   0x00000184   Data   RO         2639    RESET               startup_at32f403a_407.o
-    0x08000184   0x08000184   0x00000000   Code   RO         3113  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000184   0x08000184   0x00000004   Code   RO         3397    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x08000188   0x08000188   0x00000004   Code   RO         3400    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x0800018c   0x0800018c   0x00000000   Code   RO         3402    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x0800018c   0x0800018c   0x00000000   Code   RO         3404    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x0800018c   0x0800018c   0x00000008   Code   RO         3405    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000194   0x08000194   0x00000004   Code   RO         3412    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x08000198   0x08000198   0x00000000   Code   RO         3407    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x08000198   0x08000198   0x00000000   Code   RO         3409    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x08000198   0x08000198   0x00000004   Code   RO         3398    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x0800019c   0x0800019c   0x00000024   Code   RO         2640    .text               startup_at32f403a_407.o
-    0x080001c0   0x080001c0   0x00000026   Code   RO         3377    .text               mf_w.l(f2d.o)
-    0x080001e6   0x080001e6   0x00000002   PAD
-    0x080001e8   0x080001e8   0x00000030   Code   RO         3379    .text               mf_w.l(cdcmple.o)
-    0x08000218   0x08000218   0x00000038   Code   RO         3381    .text               mf_w.l(d2f.o)
-    0x08000250   0x08000250   0x0000002c   Code   RO         3414    .text               mc_w.l(uidiv.o)
-    0x0800027c   0x0800027c   0x00000062   Code   RO         3416    .text               mc_w.l(uldiv.o)
-    0x080002de   0x080002de   0x00000000   Code   RO         3425    .text               mc_w.l(iusefp.o)
-    0x080002de   0x080002de   0x0000006e   Code   RO         3426    .text               mf_w.l(fepilogue.o)
-    0x0800034c   0x0800034c   0x0000014e   Code   RO         3428    .text               mf_w.l(dadd.o)
-    0x0800049a   0x0800049a   0x000000e4   Code   RO         3430    .text               mf_w.l(dmul.o)
-    0x0800057e   0x0800057e   0x000000de   Code   RO         3432    .text               mf_w.l(ddiv.o)
-    0x0800065c   0x0800065c   0x00000086   Code   RO         3434    .text               mf_w.l(drem.o)
-    0x080006e2   0x080006e2   0x00000030   Code   RO         3436    .text               mf_w.l(dfixul.o)
-    0x08000712   0x08000712   0x00000002   PAD
-    0x08000714   0x08000714   0x00000030   Code   RO         3438    .text               mf_w.l(cdrcmple.o)
-    0x08000744   0x08000744   0x00000024   Code   RO         3440    .text               mc_w.l(init.o)
-    0x08000768   0x08000768   0x0000001e   Code   RO         3442    .text               mc_w.l(llshl.o)
-    0x08000786   0x08000786   0x00000020   Code   RO         3444    .text               mc_w.l(llushr.o)
-    0x080007a6   0x080007a6   0x00000024   Code   RO         3446    .text               mc_w.l(llsshr.o)
-    0x080007ca   0x080007ca   0x000000ba   Code   RO         3448    .text               mf_w.l(depilogue.o)
-    0x08000884   0x08000884   0x00000056   Code   RO         3458    .text               mc_w.l(__dczerorl2.o)
-    0x080008da   0x080008da   0x00000002   PAD
-    0x080008dc   0x080008dc   0x00000064   Code   RO         2791    i.Angle_limit       foc.o
-    0x08000940   0x08000940   0x00000004   Code   RO          211    i.BusFault_Handler  at32f403a_407_int.o
-    0x08000944   0x08000944   0x00000002   Code   RO          212    i.CAN1_SE_IRQHandler  at32f403a_407_int.o
-    0x08000946   0x08000946   0x00000002   Code   RO          213    i.DebugMon_Handler  at32f403a_407_int.o
-    0x08000948   0x08000948   0x00000128   Code   RO         2792    i.FocContorl        foc.o
-    0x08000a70   0x08000a70   0x00000004   Code   RO          214    i.HardFault_Handler  at32f403a_407_int.o
-    0x08000a74   0x08000a74   0x00000018   Code   RO         2793    i.M1_adc_tigger     foc.o
-    0x08000a8c   0x08000a8c   0x00000012   Code   RO         2794    i.M2_adc_tigger     foc.o
-    0x08000a9e   0x08000a9e   0x00000002   PAD
-    0x08000aa0   0x08000aa0   0x0000008c   Code   RO         2755    i.MT_1_ReadAngle    mt6701.o
-    0x08000b2c   0x08000b2c   0x00000090   Code   RO         2756    i.MT_2_ReadAngle    mt6701.o
-    0x08000bbc   0x08000bbc   0x00000004   Code   RO          215    i.MemManage_Handler  at32f403a_407_int.o
-    0x08000bc0   0x08000bc0   0x00000002   Code   RO          216    i.NMI_Handler       at32f403a_407_int.o
-    0x08000bc2   0x08000bc2   0x00000040   Code   RO          156    i.NVIC_EncodePriority  at32f403a_407_wk_config.o
-    0x08000c02   0x08000c02   0x000000ba   Code   RO         2986    i.PI_Compute        pid.o
-    0x08000cbc   0x08000cbc   0x00000002   Code   RO          217    i.PendSV_Handler    at32f403a_407_int.o
-    0x08000cbe   0x08000cbe   0x00000002   PAD
-    0x08000cc0   0x08000cc0   0x000001b8   Code   RO         3013    i.Product_Overview  log.o
-    0x08000e78   0x08000e78   0x00000054   Code   RO         2757    i.SPIx_ReadWriteByte  mt6701.o
-    0x08000ecc   0x08000ecc   0x00000002   Code   RO          218    i.SVC_Handler       at32f403a_407_int.o
-    0x08000ece   0x08000ece   0x00000002   PAD
-    0x08000ed0   0x08000ed0   0x00000524   Code   RO         3068    i.SVpwm             svpwm.o
-    0x080013f4   0x080013f4   0x00000002   Code   RO          219    i.SysTick_Handler   at32f403a_407_int.o
-    0x080013f6   0x080013f6   0x00000002   PAD
-    0x080013f8   0x080013f8   0x00000070   Code   RO         2647    i.SystemInit        system_at32f403a_407.o
-    0x08001468   0x08001468   0x00000038   Code   RO          220    i.TMR3_GLOBAL_IRQHandler  at32f403a_407_int.o
-    0x080014a0   0x080014a0   0x00000034   Code   RO          221    i.TMR5_GLOBAL_IRQHandler  at32f403a_407_int.o
-    0x080014d4   0x080014d4   0x0000004c   Code   RO          222    i.USBFS_L_CAN1_RX0_IRQHandler  at32f403a_407_int.o
-    0x08001520   0x08001520   0x00000004   Code   RO          223    i.UsageFault_Handler  at32f403a_407_int.o
-    0x08001524   0x08001524   0x00000020   Code   RO         3349    i.__0printf         mc_w.l(printfa.o)
-    0x08001544   0x08001544   0x00000010   Code   RO          157    i.__NVIC_GetPriorityGrouping  at32f403a_407_wk_config.o
-    0x08001554   0x08001554   0x00000028   Code   RO          158    i.__NVIC_SetPriority  at32f403a_407_wk_config.o
-    0x0800157c   0x0800157c   0x00000014   Code   RO         3095    i.__hardfp_fabs     m_wm.l(fabs.o)
-    0x08001590   0x08001590   0x00000104   Code   RO         3101    i.__hardfp_fmod     m_wm.l(fmod.o)
-    0x08001694   0x08001694   0x00000004   PAD
-    0x08001698   0x08001698   0x00000020   Code   RO         3386    i.__mathlib_dbl_invalid  m_wm.l(dunder.o)
-    0x080016b8   0x080016b8   0x0000000e   Code   RO         3452    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x080016c6   0x080016c6   0x00000002   Code   RO         3453    i.__scatterload_null  mc_w.l(handlers.o)
-    0x080016c8   0x080016c8   0x0000000e   Code   RO         3454    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080016d6   0x080016d6   0x00000002   PAD
-    0x080016d8   0x080016d8   0x0000000c   Code   RO         3420    i.__set_errno       mc_w.l(errno.o)
-    0x080016e4   0x080016e4   0x00000026   Code   RO         2795    i._electricalAngle  foc.o
-    0x0800170a   0x0800170a   0x00000002   PAD
-    0x0800170c   0x0800170c   0x00000184   Code   RO         3356    i._fp_digits        mc_w.l(printfa.o)
-    0x08001890   0x08001890   0x000006b4   Code   RO         3357    i._printf_core      mc_w.l(printfa.o)
-    0x08001f44   0x08001f44   0x00000024   Code   RO         3358    i._printf_post_padding  mc_w.l(printfa.o)
-    0x08001f68   0x08001f68   0x0000002e   Code   RO         3359    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x08001f96   0x08001f96   0x0000002c   Code   RO         1603    i.adc_base_config   at32f403a_407_adc.o
-    0x08001fc2   0x08001fc2   0x0000000e   Code   RO         1604    i.adc_base_default_para_init  at32f403a_407_adc.o
-    0x08001fd0   0x08001fd0   0x0000000c   Code   RO         1605    i.adc_calibration_init  at32f403a_407_adc.o
-    0x08001fdc   0x08001fdc   0x00000012   Code   RO         1606    i.adc_calibration_init_status_get  at32f403a_407_adc.o
-    0x08001fee   0x08001fee   0x0000000c   Code   RO         1607    i.adc_calibration_start  at32f403a_407_adc.o
-    0x08001ffa   0x08001ffa   0x00000012   Code   RO         1608    i.adc_calibration_status_get  at32f403a_407_adc.o
-    0x0800200c   0x0800200c   0x00000014   Code   RO         1609    i.adc_combine_mode_select  at32f403a_407_adc.o
-    0x08002020   0x08002020   0x0000000a   Code   RO         1611    i.adc_dma_mode_enable  at32f403a_407_adc.o
-    0x0800202a   0x0800202a   0x0000000a   Code   RO         1612    i.adc_enable        at32f403a_407_adc.o
-    0x08002034   0x08002034   0x000000a8   Code   RO         1617    i.adc_ordinary_channel_set  at32f403a_407_adc.o
-    0x080020dc   0x080020dc   0x00000034   Code   RO         1619    i.adc_ordinary_conversion_trigger_set  at32f403a_407_adc.o
-    0x08002110   0x08002110   0x0000000a   Code   RO         1621    i.adc_ordinary_part_mode_enable  at32f403a_407_adc.o
-    0x0800211a   0x0800211a   0x00000002   PAD
-    0x0800211c   0x0800211c   0x00000138   Code   RO         2796    i.angle_init        foc.o
-    0x08002254   0x08002254   0x00000034   Code   RO         2932    i.at32_led_toggle   led.o
-    0x08002288   0x08002288   0x000000bc   Code   RO         2442    i.can_base_init     at32f403a_407_can.o
-    0x08002344   0x08002344   0x00000092   Code   RO         2444    i.can_baudrate_set  at32f403a_407_can.o
-    0x080023d6   0x080023d6   0x00000012   Code   RO         2446    i.can_default_para_init  at32f403a_407_can.o
-    0x080023e8   0x080023e8   0x00000164   Code   RO         2451    i.can_filter_init   at32f403a_407_can.o
-    0x0800254c   0x0800254c   0x000000f0   Code   RO         2453    i.can_flag_get      at32f403a_407_can.o
-    0x0800263c   0x0800263c   0x00000012   Code   RO         2454    i.can_interrupt_enable  at32f403a_407_can.o
-    0x0800264e   0x0800264e   0x000000f0   Code   RO         2456    i.can_message_receive  at32f403a_407_can.o
-    0x0800273e   0x0800273e   0x0000001a   Code   RO         2460    i.can_receive_fifo_release  at32f403a_407_can.o
-    0x08002758   0x08002758   0x00000044   Code   RO         2797    i.clarke_transform  foc.o
-    0x0800279c   0x0800279c   0x00000020   Code   RO          606    i.crm_adc_clock_div_set  at32f403a_407_crm.o
-    0x080027bc   0x080027bc   0x00000014   Code   RO          607    i.crm_ahb_div_set   at32f403a_407_crm.o
-    0x080027d0   0x080027d0   0x00000014   Code   RO          608    i.crm_apb1_div_set  at32f403a_407_crm.o
-    0x080027e4   0x080027e4   0x00000014   Code   RO          609    i.crm_apb2_div_set  at32f403a_407_crm.o
-    0x080027f8   0x080027f8   0x00000028   Code   RO          610    i.crm_auto_step_mode_enable  at32f403a_407_crm.o
-    0x08002820   0x08002820   0x00000060   Code   RO          616    i.crm_clock_source_enable  at32f403a_407_crm.o
-    0x08002880   0x08002880   0x0000012c   Code   RO          617    i.crm_clocks_freq_get  at32f403a_407_crm.o
-    0x080029ac   0x080029ac   0x00000030   Code   RO          619    i.crm_flag_get      at32f403a_407_crm.o
-    0x080029dc   0x080029dc   0x0000002e   Code   RO          622    i.crm_hext_stable_wait  at32f403a_407_crm.o
-    0x08002a0a   0x08002a0a   0x00000002   PAD
-    0x08002a0c   0x08002a0c   0x00000044   Code   RO          630    i.crm_periph_clock_enable  at32f403a_407_crm.o
-    0x08002a50   0x08002a50   0x0000007c   Code   RO          633    i.crm_pll_config    at32f403a_407_crm.o
-    0x08002acc   0x08002acc   0x00000058   Code   RO          634    i.crm_reset         at32f403a_407_crm.o
-    0x08002b24   0x08002b24   0x0000003c   Code   RO          637    i.crm_sysclk_switch  at32f403a_407_crm.o
-    0x08002b60   0x08002b60   0x00000010   Code   RO          638    i.crm_sysclk_switch_status_get  at32f403a_407_crm.o
-    0x08002b70   0x08002b70   0x00000038   Code   RO         2684    i.delay_init        delay.o
-    0x08002ba8   0x08002ba8   0x00000074   Code   RO         2685    i.delay_ms          delay.o
-    0x08002c1c   0x08002c1c   0x0000000a   Code   RO         1993    i.dma_channel_enable  at32f403a_407_dma.o
-    0x08002c26   0x08002c26   0x00000018   Code   RO         1996    i.dma_default_para_init  at32f403a_407_dma.o
-    0x08002c3e   0x08002c3e   0x00000098   Code   RO         1999    i.dma_flexible_config  at32f403a_407_dma.o
-    0x08002cd6   0x08002cd6   0x0000005c   Code   RO         2000    i.dma_init          at32f403a_407_dma.o
-    0x08002d32   0x08002d32   0x00000002   PAD
-    0x08002d34   0x08002d34   0x00000070   Code   RO         2003    i.dma_reset         at32f403a_407_dma.o
-    0x08002da4   0x08002da4   0x000000c4   Code   RO         2798    i.fast_cos          foc.o
-    0x08002e68   0x08002e68   0x000000c8   Code   RO         2799    i.fast_sin          foc.o
-    0x08002f30   0x08002f30   0x00000070   Code   RO         2800    i.first_get         foc.o
-    0x08002fa0   0x08002fa0   0x00000034   Code   RO         2728    i.fputc             usart_1.o
-    0x08002fd4   0x08002fd4   0x00000084   Code   RO         2801    i.getCorrectedElectricalAngle  foc.o
-    0x08003058   0x08003058   0x00000004   Code   RO         1195    i.gpio_bits_reset   at32f403a_407_gpio.o
-    0x0800305c   0x0800305c   0x00000004   Code   RO         1196    i.gpio_bits_set     at32f403a_407_gpio.o
-    0x08003060   0x08003060   0x00000016   Code   RO         1198    i.gpio_default_para_init  at32f403a_407_gpio.o
-    0x08003076   0x08003076   0x000000a8   Code   RO         1202    i.gpio_init         at32f403a_407_gpio.o
-    0x0800311e   0x0800311e   0x00000002   PAD
-    0x08003120   0x08003120   0x0000004c   Code   RO         1208    i.gpio_pin_remap_config  at32f403a_407_gpio.o
-    0x0800316c   0x0800316c   0x00000064   Code   RO         2802    i.inv_clarke_transform  foc.o
-    0x080031d0   0x080031d0   0x0000006a   Code   RO         2803    i.inv_park_transform  foc.o
-    0x0800323a   0x0800323a   0x0000002a   Code   RO         2804    i.limit             foc.o
-    0x08003264   0x08003264   0x00000150   Code   RO            4    i.main              main.o
-    0x080033b4   0x080033b4   0x000000c8   Code   RO         2379    i.nvic_irq_enable   at32f403a_407_misc.o
-    0x0800347c   0x0800347c   0x00000028   Code   RO         2381    i.nvic_priority_group_config  at32f403a_407_misc.o
-    0x080034a4   0x080034a4   0x0000006a   Code   RO         2805    i.park_transform    foc.o
-    0x0800350e   0x0800350e   0x00000024   Code   RO         2806    i.setSVpwm          foc.o
-    0x08003532   0x08003532   0x00000002   PAD
-    0x08003534   0x08003534   0x000000d8   Code   RO         2807    i.setpwm            foc.o
-    0x0800360c   0x0800360c   0x00000068   Code   RO         2808    i.setpwm1_channel   foc.o
-    0x08003674   0x08003674   0x00000068   Code   RO         2809    i.setpwm2_channel   foc.o
-    0x080036dc   0x080036dc   0x0000000a   Code   RO         1834    i.spi_crc_enable    at32f403a_407_spi.o
-    0x080036e6   0x080036e6   0x0000000a   Code   RO         1837    i.spi_crc_polynomial_set  at32f403a_407_spi.o
-    0x080036f0   0x080036f0   0x00000016   Code   RO         1839    i.spi_default_para_init  at32f403a_407_spi.o
-    0x08003706   0x08003706   0x0000000a   Code   RO         1840    i.spi_enable        at32f403a_407_spi.o
-    0x08003710   0x08003710   0x00000008   Code   RO         1844    i.spi_i2s_data_receive  at32f403a_407_spi.o
-    0x08003718   0x08003718   0x00000004   Code   RO         1845    i.spi_i2s_data_transmit  at32f403a_407_spi.o
-    0x0800371c   0x0800371c   0x00000010   Code   RO         1849    i.spi_i2s_flag_get  at32f403a_407_spi.o
-    0x0800372c   0x0800372c   0x00000124   Code   RO         1853    i.spi_init          at32f403a_407_spi.o
-    0x08003850   0x08003850   0x00000034   Code   RO         2810    i.strong_drag       foc.o
-    0x08003884   0x08003884   0x000000a0   Code   RO         2811    i.strong_drag_Angle  foc.o
-    0x08003924   0x08003924   0x000000f8   Code   RO         2648    i.system_core_clock_update  system_at32f403a_407.o
-    0x08003a1c   0x08003a1c   0x00000028   Code   RO         2384    i.systick_clock_source_config  at32f403a_407_misc.o
-    0x08003a44   0x08003a44   0x00000010   Code   RO          842    i.tmr_base_init     at32f403a_407_tmr.o
-    0x08003a54   0x08003a54   0x00000028   Code   RO          850    i.tmr_channel_value_set  at32f403a_407_tmr.o
-    0x08003a7c   0x08003a7c   0x0000000a   Code   RO          851    i.tmr_clock_source_div_set  at32f403a_407_tmr.o
-    0x08003a86   0x08003a86   0x0000000a   Code   RO          852    i.tmr_cnt_dir_set   at32f403a_407_tmr.o
-    0x08003a90   0x08003a90   0x0000000a   Code   RO          853    i.tmr_counter_enable  at32f403a_407_tmr.o
-    0x08003a9a   0x08003a9a   0x00000006   Code   RO          865    i.tmr_flag_clear    at32f403a_407_tmr.o
-    0x08003aa0   0x08003aa0   0x00000016   Code   RO          874    i.tmr_interrupt_enable  at32f403a_407_tmr.o
-    0x08003ab6   0x08003ab6   0x00000042   Code   RO          877    i.tmr_output_channel_buffer_enable  at32f403a_407_tmr.o
-    0x08003af8   0x08003af8   0x000001a0   Code   RO          878    i.tmr_output_channel_config  at32f403a_407_tmr.o
-    0x08003c98   0x08003c98   0x00000042   Code   RO          879    i.tmr_output_channel_immediately_set  at32f403a_407_tmr.o
-    0x08003cda   0x08003cda   0x0000000a   Code   RO          887    i.tmr_period_buffer_enable  at32f403a_407_tmr.o
-    0x08003ce4   0x08003ce4   0x0000000a   Code   RO          890    i.tmr_primary_mode_select  at32f403a_407_tmr.o
-    0x08003cee   0x08003cee   0x0000000a   Code   RO          895    i.tmr_sub_sync_mode_set  at32f403a_407_tmr.o
-    0x08003cf8   0x08003cf8   0x00000008   Code   RO         1326    i.usart_data_transmit  at32f403a_407_usart.o
-    0x08003d00   0x08003d00   0x0000000a   Code   RO         1329    i.usart_enable      at32f403a_407_usart.o
-    0x08003d0a   0x08003d0a   0x00000010   Code   RO         1331    i.usart_flag_get    at32f403a_407_usart.o
-    0x08003d1a   0x08003d1a   0x00000066   Code   RO         1332    i.usart_hardware_flow_control_set  at32f403a_407_usart.o
-    0x08003d80   0x08003d80   0x00000080   Code   RO         1333    i.usart_init        at32f403a_407_usart.o
-    0x08003e00   0x08003e00   0x0000004c   Code   RO         1340    i.usart_parity_selection_config  at32f403a_407_usart.o
-    0x08003e4c   0x08003e4c   0x0000000a   Code   RO         1341    i.usart_receiver_enable  at32f403a_407_usart.o
-    0x08003e56   0x08003e56   0x0000000a   Code   RO         1348    i.usart_transmitter_enable  at32f403a_407_usart.o
-    0x08003e60   0x08003e60   0x000000c4   Code   RO          414    i.wk_adc1_init      wk_adc.o
-    0x08003f24   0x08003f24   0x000000c0   Code   RO          415    i.wk_adc3_init      wk_adc.o
-    0x08003fe4   0x08003fe4   0x0000012c   Code   RO          486    i.wk_can1_init      wk_can.o
-    0x08004110   0x08004110   0x00000010   Code   RO          366    i.wk_debug_config   wk_debug.o
-    0x08004120   0x08004120   0x00000050   Code   RO          570    i.wk_dma1_channel1_init  wk_dma.o
-    0x08004170   0x08004170   0x00000050   Code   RO          571    i.wk_dma1_channel2_init  wk_dma.o
-    0x080041c0   0x080041c0   0x00000008   Code   RO          572    i.wk_dma_channel_config  wk_dma.o
-    0x080041c8   0x080041c8   0x00000074   Code   RO          390    i.wk_gpio_config    wk_gpio.o
-    0x0800423c   0x0800423c   0x000000e8   Code   RO          159    i.wk_nvic_config    at32f403a_407_wk_config.o
-    0x08004324   0x08004324   0x000000a8   Code   RO          160    i.wk_periph_clock_config  at32f403a_407_wk_config.o
-    0x080043cc   0x080043cc   0x000000d0   Code   RO          510    i.wk_spi1_init      wk_spi.o
-    0x0800449c   0x0800449c   0x000000d0   Code   RO          511    i.wk_spi2_init      wk_spi.o
-    0x0800456c   0x0800456c   0x00000098   Code   RO          161    i.wk_system_clock_config  at32f403a_407_wk_config.o
-    0x08004604   0x08004604   0x00000044   Code   RO          330    i.wk_timebase_init  wk_system.o
-    0x08004648   0x08004648   0x0000022c   Code   RO          444    i.wk_tmr2_init      wk_tmr.o
-    0x08004874   0x08004874   0x00000044   Code   RO          445    i.wk_tmr3_init      wk_tmr.o
-    0x080048b8   0x080048b8   0x0000020c   Code   RO          446    i.wk_tmr4_init      wk_tmr.o
-    0x08004ac4   0x08004ac4   0x00000044   Code   RO          447    i.wk_tmr5_init      wk_tmr.o
-    0x08004b08   0x08004b08   0x00000094   Code   RO          540    i.wk_usart1_init    wk_usart.o
-    0x08004b9c   0x08004b9c   0x00000090   Code   RO          541    i.wk_usart3_init    wk_usart.o
-    0x08004c2c   0x08004c2c   0x00000028   Data   RO          642    .constdata          at32f403a_407_crm.o
-    0x08004c54   0x08004c54   0x00000010   Data   RO         2649    .constdata          system_at32f403a_407.o
-    0x08004c64   0x08004c64   0x00000043   Data   RO         2812    .conststring        foc.o
-    0x08004ca7   0x08004ca7   0x00000001   PAD
-    0x08004ca8   0x08004ca8   0x000002db   Data   RO         3014    .conststring        log.o
-    0x08004f83   0x08004f83   0x00000001   PAD
-    0x08004f84   0x08004f84   0x00000020   Data   RO         3450    Region$$Table       anon$$obj.o
-
-
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08004fa4, Size: 0x000005c8, Max: 0x00018000, ABSOLUTE, COMPRESSED[0x00000050])
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000514c, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   COMPRESSED   0x00000008   Data   RW          224    .data               at32f403a_407_int.o
-    0x20000008   COMPRESSED   0x00000004   Data   RW          331    .data               wk_system.o
-    0x2000000c   COMPRESSED   0x00000004   Data   RW         2650    .data               system_at32f403a_407.o
-    0x20000010   COMPRESSED   0x00000008   Data   RW         2688    .data               delay.o
-    0x20000018   COMPRESSED   0x00000100   Data   RW         2813    .data               foc.o
-    0x20000118   COMPRESSED   0x00000006   Data   RW         2933    .data               led.o
+    0x08000000   0x08000000   0x00000184   Data   RO         2645    RESET               startup_at32f403a_407.o
+    0x08000184   0x08000184   0x00000000   Code   RO         3119  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000184   0x08000184   0x00000004   Code   RO         3409    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000188   0x08000188   0x00000004   Code   RO         3412    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x0800018c   0x0800018c   0x00000000   Code   RO         3414    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x0800018c   0x0800018c   0x00000000   Code   RO         3416    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x0800018c   0x0800018c   0x00000008   Code   RO         3417    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000194   0x08000194   0x00000004   Code   RO         3424    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x08000198   0x08000198   0x00000000   Code   RO         3419    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x08000198   0x08000198   0x00000000   Code   RO         3421    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x08000198   0x08000198   0x00000004   Code   RO         3410    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x0800019c   0x0800019c   0x00000024   Code   RO         2646    .text               startup_at32f403a_407.o
+    0x080001c0   0x080001c0   0x000000e4   Code   RO         3383    .text               mf_w.l(dmul.o)
+    0x080002a4   0x080002a4   0x00000022   Code   RO         3385    .text               mf_w.l(dflti.o)
+    0x080002c6   0x080002c6   0x00000032   Code   RO         3387    .text               mf_w.l(dfixui.o)
+    0x080002f8   0x080002f8   0x00000026   Code   RO         3389    .text               mf_w.l(f2d.o)
+    0x0800031e   0x0800031e   0x00000002   PAD
+    0x08000320   0x08000320   0x00000030   Code   RO         3391    .text               mf_w.l(cdcmple.o)
+    0x08000350   0x08000350   0x00000038   Code   RO         3393    .text               mf_w.l(d2f.o)
+    0x08000388   0x08000388   0x0000002c   Code   RO         3426    .text               mc_w.l(uidiv.o)
+    0x080003b4   0x080003b4   0x00000062   Code   RO         3428    .text               mc_w.l(uldiv.o)
+    0x08000416   0x08000416   0x00000020   Code   RO         3430    .text               mc_w.l(llushr.o)
+    0x08000436   0x08000436   0x00000000   Code   RO         3439    .text               mc_w.l(iusefp.o)
+    0x08000436   0x08000436   0x0000006e   Code   RO         3440    .text               mf_w.l(fepilogue.o)
+    0x080004a4   0x080004a4   0x000000ba   Code   RO         3442    .text               mf_w.l(depilogue.o)
+    0x0800055e   0x0800055e   0x0000014e   Code   RO         3444    .text               mf_w.l(dadd.o)
+    0x080006ac   0x080006ac   0x000000de   Code   RO         3446    .text               mf_w.l(ddiv.o)
+    0x0800078a   0x0800078a   0x00000086   Code   RO         3448    .text               mf_w.l(drem.o)
+    0x08000810   0x08000810   0x00000030   Code   RO         3450    .text               mf_w.l(dfixul.o)
+    0x08000840   0x08000840   0x00000030   Code   RO         3452    .text               mf_w.l(cdrcmple.o)
+    0x08000870   0x08000870   0x00000024   Code   RO         3454    .text               mc_w.l(init.o)
+    0x08000894   0x08000894   0x0000001e   Code   RO         3456    .text               mc_w.l(llshl.o)
+    0x080008b2   0x080008b2   0x00000024   Code   RO         3458    .text               mc_w.l(llsshr.o)
+    0x080008d6   0x080008d6   0x00000056   Code   RO         3468    .text               mc_w.l(__dczerorl2.o)
+    0x0800092c   0x0800092c   0x00000018   Code   RO          211    i.ADC1_2_IRQHandler  at32f403a_407_int.o
+    0x08000944   0x08000944   0x00000018   Code   RO          212    i.ADC3_IRQHandler   at32f403a_407_int.o
+    0x0800095c   0x0800095c   0x00000064   Code   RO         2797    i.Angle_limit       foc.o
+    0x080009c0   0x080009c0   0x00000004   Code   RO          213    i.BusFault_Handler  at32f403a_407_int.o
+    0x080009c4   0x080009c4   0x00000002   Code   RO          214    i.CAN1_SE_IRQHandler  at32f403a_407_int.o
+    0x080009c6   0x080009c6   0x00000002   Code   RO          215    i.DebugMon_Handler  at32f403a_407_int.o
+    0x080009c8   0x080009c8   0x00000128   Code   RO         2798    i.FocContorl        foc.o
+    0x08000af0   0x08000af0   0x00000004   Code   RO          216    i.HardFault_Handler  at32f403a_407_int.o
+    0x08000af4   0x08000af4   0x00000044   Code   RO         2799    i.M1_adc_tigger     foc.o
+    0x08000b38   0x08000b38   0x00000040   Code   RO         2800    i.M2_adc_tigger     foc.o
+    0x08000b78   0x08000b78   0x0000008c   Code   RO         2761    i.MT_1_ReadAngle    mt6701.o
+    0x08000c04   0x08000c04   0x00000090   Code   RO         2762    i.MT_2_ReadAngle    mt6701.o
+    0x08000c94   0x08000c94   0x00000004   Code   RO          217    i.MemManage_Handler  at32f403a_407_int.o
+    0x08000c98   0x08000c98   0x00000002   Code   RO          218    i.NMI_Handler       at32f403a_407_int.o
+    0x08000c9a   0x08000c9a   0x00000040   Code   RO          156    i.NVIC_EncodePriority  at32f403a_407_wk_config.o
+    0x08000cda   0x08000cda   0x000000ba   Code   RO         2992    i.PI_Compute        pid.o
+    0x08000d94   0x08000d94   0x00000002   Code   RO          219    i.PendSV_Handler    at32f403a_407_int.o
+    0x08000d96   0x08000d96   0x00000002   PAD
+    0x08000d98   0x08000d98   0x000001b8   Code   RO         3019    i.Product_Overview  log.o
+    0x08000f50   0x08000f50   0x00000054   Code   RO         2763    i.SPIx_ReadWriteByte  mt6701.o
+    0x08000fa4   0x08000fa4   0x00000002   Code   RO          220    i.SVC_Handler       at32f403a_407_int.o
+    0x08000fa6   0x08000fa6   0x00000002   PAD
+    0x08000fa8   0x08000fa8   0x00000524   Code   RO         3074    i.SVpwm             svpwm.o
+    0x080014cc   0x080014cc   0x00000002   Code   RO          221    i.SysTick_Handler   at32f403a_407_int.o
+    0x080014ce   0x080014ce   0x00000002   PAD
+    0x080014d0   0x080014d0   0x00000070   Code   RO         2653    i.SystemInit        system_at32f403a_407.o
+    0x08001540   0x08001540   0x00000034   Code   RO          222    i.TMR5_GLOBAL_IRQHandler  at32f403a_407_int.o
+    0x08001574   0x08001574   0x0000004c   Code   RO          223    i.USBFS_L_CAN1_RX0_IRQHandler  at32f403a_407_int.o
+    0x080015c0   0x080015c0   0x00000004   Code   RO          224    i.UsageFault_Handler  at32f403a_407_int.o
+    0x080015c4   0x080015c4   0x00000020   Code   RO         3355    i.__0printf         mc_w.l(printfa.o)
+    0x080015e4   0x080015e4   0x00000010   Code   RO          157    i.__NVIC_GetPriorityGrouping  at32f403a_407_wk_config.o
+    0x080015f4   0x080015f4   0x00000028   Code   RO          158    i.__NVIC_SetPriority  at32f403a_407_wk_config.o
+    0x0800161c   0x0800161c   0x00000014   Code   RO         3101    i.__hardfp_fabs     m_wm.l(fabs.o)
+    0x08001630   0x08001630   0x00000104   Code   RO         3107    i.__hardfp_fmod     m_wm.l(fmod.o)
+    0x08001734   0x08001734   0x00000004   PAD
+    0x08001738   0x08001738   0x00000020   Code   RO         3398    i.__mathlib_dbl_invalid  m_wm.l(dunder.o)
+    0x08001758   0x08001758   0x0000000e   Code   RO         3462    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08001766   0x08001766   0x00000002   Code   RO         3463    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08001768   0x08001768   0x0000000e   Code   RO         3464    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08001776   0x08001776   0x00000002   PAD
+    0x08001778   0x08001778   0x0000000c   Code   RO         3434    i.__set_errno       mc_w.l(errno.o)
+    0x08001784   0x08001784   0x00000026   Code   RO         2801    i._electricalAngle  foc.o
+    0x080017aa   0x080017aa   0x00000002   PAD
+    0x080017ac   0x080017ac   0x00000184   Code   RO         3362    i._fp_digits        mc_w.l(printfa.o)
+    0x08001930   0x08001930   0x000006b4   Code   RO         3363    i._printf_core      mc_w.l(printfa.o)
+    0x08001fe4   0x08001fe4   0x00000024   Code   RO         3364    i._printf_post_padding  mc_w.l(printfa.o)
+    0x08002008   0x08002008   0x0000002e   Code   RO         3365    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x08002036   0x08002036   0x0000002c   Code   RO         1609    i.adc_base_config   at32f403a_407_adc.o
+    0x08002062   0x08002062   0x0000000e   Code   RO         1610    i.adc_base_default_para_init  at32f403a_407_adc.o
+    0x08002070   0x08002070   0x0000000c   Code   RO         1611    i.adc_calibration_init  at32f403a_407_adc.o
+    0x0800207c   0x0800207c   0x00000012   Code   RO         1612    i.adc_calibration_init_status_get  at32f403a_407_adc.o
+    0x0800208e   0x0800208e   0x0000000c   Code   RO         1613    i.adc_calibration_start  at32f403a_407_adc.o
+    0x0800209a   0x0800209a   0x00000012   Code   RO         1614    i.adc_calibration_status_get  at32f403a_407_adc.o
+    0x080020ac   0x080020ac   0x00000014   Code   RO         1615    i.adc_combine_mode_select  at32f403a_407_adc.o
+    0x080020c0   0x080020c0   0x0000000a   Code   RO         1617    i.adc_dma_mode_enable  at32f403a_407_adc.o
+    0x080020ca   0x080020ca   0x0000000a   Code   RO         1618    i.adc_enable        at32f403a_407_adc.o
+    0x080020d4   0x080020d4   0x00000016   Code   RO         1621    i.adc_interrupt_enable  at32f403a_407_adc.o
+    0x080020ea   0x080020ea   0x000000a8   Code   RO         1623    i.adc_ordinary_channel_set  at32f403a_407_adc.o
+    0x08002192   0x08002192   0x00000034   Code   RO         1625    i.adc_ordinary_conversion_trigger_set  at32f403a_407_adc.o
+    0x080021c6   0x080021c6   0x0000000a   Code   RO         1627    i.adc_ordinary_part_mode_enable  at32f403a_407_adc.o
+    0x080021d0   0x080021d0   0x00000138   Code   RO         2802    i.angle_init        foc.o
+    0x08002308   0x08002308   0x00000034   Code   RO         2938    i.at32_led_toggle   led.o
+    0x0800233c   0x0800233c   0x000000bc   Code   RO         2448    i.can_base_init     at32f403a_407_can.o
+    0x080023f8   0x080023f8   0x00000092   Code   RO         2450    i.can_baudrate_set  at32f403a_407_can.o
+    0x0800248a   0x0800248a   0x00000012   Code   RO         2452    i.can_default_para_init  at32f403a_407_can.o
+    0x0800249c   0x0800249c   0x00000164   Code   RO         2457    i.can_filter_init   at32f403a_407_can.o
+    0x08002600   0x08002600   0x000000f0   Code   RO         2459    i.can_flag_get      at32f403a_407_can.o
+    0x080026f0   0x080026f0   0x00000012   Code   RO         2460    i.can_interrupt_enable  at32f403a_407_can.o
+    0x08002702   0x08002702   0x000000f0   Code   RO         2462    i.can_message_receive  at32f403a_407_can.o
+    0x080027f2   0x080027f2   0x0000001a   Code   RO         2466    i.can_receive_fifo_release  at32f403a_407_can.o
+    0x0800280c   0x0800280c   0x00000044   Code   RO         2803    i.clarke_transform  foc.o
+    0x08002850   0x08002850   0x00000020   Code   RO          612    i.crm_adc_clock_div_set  at32f403a_407_crm.o
+    0x08002870   0x08002870   0x00000014   Code   RO          613    i.crm_ahb_div_set   at32f403a_407_crm.o
+    0x08002884   0x08002884   0x00000014   Code   RO          614    i.crm_apb1_div_set  at32f403a_407_crm.o
+    0x08002898   0x08002898   0x00000014   Code   RO          615    i.crm_apb2_div_set  at32f403a_407_crm.o
+    0x080028ac   0x080028ac   0x00000028   Code   RO          616    i.crm_auto_step_mode_enable  at32f403a_407_crm.o
+    0x080028d4   0x080028d4   0x00000060   Code   RO          622    i.crm_clock_source_enable  at32f403a_407_crm.o
+    0x08002934   0x08002934   0x0000012c   Code   RO          623    i.crm_clocks_freq_get  at32f403a_407_crm.o
+    0x08002a60   0x08002a60   0x00000030   Code   RO          625    i.crm_flag_get      at32f403a_407_crm.o
+    0x08002a90   0x08002a90   0x0000002e   Code   RO          628    i.crm_hext_stable_wait  at32f403a_407_crm.o
+    0x08002abe   0x08002abe   0x00000002   PAD
+    0x08002ac0   0x08002ac0   0x00000044   Code   RO          636    i.crm_periph_clock_enable  at32f403a_407_crm.o
+    0x08002b04   0x08002b04   0x0000007c   Code   RO          639    i.crm_pll_config    at32f403a_407_crm.o
+    0x08002b80   0x08002b80   0x00000058   Code   RO          640    i.crm_reset         at32f403a_407_crm.o
+    0x08002bd8   0x08002bd8   0x0000003c   Code   RO          643    i.crm_sysclk_switch  at32f403a_407_crm.o
+    0x08002c14   0x08002c14   0x00000010   Code   RO          644    i.crm_sysclk_switch_status_get  at32f403a_407_crm.o
+    0x08002c24   0x08002c24   0x00000038   Code   RO         2690    i.delay_init        delay.o
+    0x08002c5c   0x08002c5c   0x00000074   Code   RO         2691    i.delay_ms          delay.o
+    0x08002cd0   0x08002cd0   0x0000000a   Code   RO         1999    i.dma_channel_enable  at32f403a_407_dma.o
+    0x08002cda   0x08002cda   0x00000018   Code   RO         2002    i.dma_default_para_init  at32f403a_407_dma.o
+    0x08002cf2   0x08002cf2   0x00000098   Code   RO         2005    i.dma_flexible_config  at32f403a_407_dma.o
+    0x08002d8a   0x08002d8a   0x0000005c   Code   RO         2006    i.dma_init          at32f403a_407_dma.o
+    0x08002de6   0x08002de6   0x00000002   PAD
+    0x08002de8   0x08002de8   0x00000070   Code   RO         2009    i.dma_reset         at32f403a_407_dma.o
+    0x08002e58   0x08002e58   0x000000c4   Code   RO         2804    i.fast_cos          foc.o
+    0x08002f1c   0x08002f1c   0x000000c8   Code   RO         2805    i.fast_sin          foc.o
+    0x08002fe4   0x08002fe4   0x00000070   Code   RO         2806    i.first_get         foc.o
+    0x08003054   0x08003054   0x00000034   Code   RO         2734    i.fputc             usart_1.o
+    0x08003088   0x08003088   0x00000084   Code   RO         2807    i.getCorrectedElectricalAngle  foc.o
+    0x0800310c   0x0800310c   0x00000004   Code   RO         1201    i.gpio_bits_reset   at32f403a_407_gpio.o
+    0x08003110   0x08003110   0x00000004   Code   RO         1202    i.gpio_bits_set     at32f403a_407_gpio.o
+    0x08003114   0x08003114   0x00000016   Code   RO         1204    i.gpio_default_para_init  at32f403a_407_gpio.o
+    0x0800312a   0x0800312a   0x000000a8   Code   RO         1208    i.gpio_init         at32f403a_407_gpio.o
+    0x080031d2   0x080031d2   0x00000002   PAD
+    0x080031d4   0x080031d4   0x0000004c   Code   RO         1214    i.gpio_pin_remap_config  at32f403a_407_gpio.o
+    0x08003220   0x08003220   0x00000064   Code   RO         2808    i.inv_clarke_transform  foc.o
+    0x08003284   0x08003284   0x0000006a   Code   RO         2809    i.inv_park_transform  foc.o
+    0x080032ee   0x080032ee   0x0000002a   Code   RO         2810    i.limit             foc.o
+    0x08003318   0x08003318   0x00000170   Code   RO            4    i.main              main.o
+    0x08003488   0x08003488   0x000000c8   Code   RO         2385    i.nvic_irq_enable   at32f403a_407_misc.o
+    0x08003550   0x08003550   0x00000028   Code   RO         2387    i.nvic_priority_group_config  at32f403a_407_misc.o
+    0x08003578   0x08003578   0x0000006a   Code   RO         2811    i.park_transform    foc.o
+    0x080035e2   0x080035e2   0x00000024   Code   RO         2812    i.setSVpwm          foc.o
+    0x08003606   0x08003606   0x00000002   PAD
+    0x08003608   0x08003608   0x000000d8   Code   RO         2813    i.setpwm            foc.o
+    0x080036e0   0x080036e0   0x000000cc   Code   RO         2814    i.setpwm1_channel   foc.o
+    0x080037ac   0x080037ac   0x000000cc   Code   RO         2815    i.setpwm2_channel   foc.o
+    0x08003878   0x08003878   0x0000000a   Code   RO         1840    i.spi_crc_enable    at32f403a_407_spi.o
+    0x08003882   0x08003882   0x0000000a   Code   RO         1843    i.spi_crc_polynomial_set  at32f403a_407_spi.o
+    0x0800388c   0x0800388c   0x00000016   Code   RO         1845    i.spi_default_para_init  at32f403a_407_spi.o
+    0x080038a2   0x080038a2   0x0000000a   Code   RO         1846    i.spi_enable        at32f403a_407_spi.o
+    0x080038ac   0x080038ac   0x00000008   Code   RO         1850    i.spi_i2s_data_receive  at32f403a_407_spi.o
+    0x080038b4   0x080038b4   0x00000004   Code   RO         1851    i.spi_i2s_data_transmit  at32f403a_407_spi.o
+    0x080038b8   0x080038b8   0x00000010   Code   RO         1855    i.spi_i2s_flag_get  at32f403a_407_spi.o
+    0x080038c8   0x080038c8   0x00000124   Code   RO         1859    i.spi_init          at32f403a_407_spi.o
+    0x080039ec   0x080039ec   0x00000034   Code   RO         2816    i.strong_drag       foc.o
+    0x08003a20   0x08003a20   0x000000a0   Code   RO         2817    i.strong_drag_Angle  foc.o
+    0x08003ac0   0x08003ac0   0x000000f8   Code   RO         2654    i.system_core_clock_update  system_at32f403a_407.o
+    0x08003bb8   0x08003bb8   0x00000028   Code   RO         2390    i.systick_clock_source_config  at32f403a_407_misc.o
+    0x08003be0   0x08003be0   0x00000010   Code   RO          848    i.tmr_base_init     at32f403a_407_tmr.o
+    0x08003bf0   0x08003bf0   0x00000028   Code   RO          856    i.tmr_channel_value_set  at32f403a_407_tmr.o
+    0x08003c18   0x08003c18   0x0000000a   Code   RO          857    i.tmr_clock_source_div_set  at32f403a_407_tmr.o
+    0x08003c22   0x08003c22   0x0000000a   Code   RO          858    i.tmr_cnt_dir_set   at32f403a_407_tmr.o
+    0x08003c2c   0x08003c2c   0x0000000a   Code   RO          859    i.tmr_counter_enable  at32f403a_407_tmr.o
+    0x08003c36   0x08003c36   0x00000006   Code   RO          871    i.tmr_flag_clear    at32f403a_407_tmr.o
+    0x08003c3c   0x08003c3c   0x00000016   Code   RO          880    i.tmr_interrupt_enable  at32f403a_407_tmr.o
+    0x08003c52   0x08003c52   0x00000042   Code   RO          883    i.tmr_output_channel_buffer_enable  at32f403a_407_tmr.o
+    0x08003c94   0x08003c94   0x000001a0   Code   RO          884    i.tmr_output_channel_config  at32f403a_407_tmr.o
+    0x08003e34   0x08003e34   0x00000042   Code   RO          885    i.tmr_output_channel_immediately_set  at32f403a_407_tmr.o
+    0x08003e76   0x08003e76   0x0000000a   Code   RO          893    i.tmr_period_buffer_enable  at32f403a_407_tmr.o
+    0x08003e80   0x08003e80   0x0000000a   Code   RO          896    i.tmr_primary_mode_select  at32f403a_407_tmr.o
+    0x08003e8a   0x08003e8a   0x0000000a   Code   RO          901    i.tmr_sub_sync_mode_set  at32f403a_407_tmr.o
+    0x08003e94   0x08003e94   0x00000008   Code   RO         1332    i.usart_data_transmit  at32f403a_407_usart.o
+    0x08003e9c   0x08003e9c   0x0000000a   Code   RO         1335    i.usart_enable      at32f403a_407_usart.o
+    0x08003ea6   0x08003ea6   0x00000010   Code   RO         1337    i.usart_flag_get    at32f403a_407_usart.o
+    0x08003eb6   0x08003eb6   0x00000066   Code   RO         1338    i.usart_hardware_flow_control_set  at32f403a_407_usart.o
+    0x08003f1c   0x08003f1c   0x00000080   Code   RO         1339    i.usart_init        at32f403a_407_usart.o
+    0x08003f9c   0x08003f9c   0x0000004c   Code   RO         1346    i.usart_parity_selection_config  at32f403a_407_usart.o
+    0x08003fe8   0x08003fe8   0x0000000a   Code   RO         1347    i.usart_receiver_enable  at32f403a_407_usart.o
+    0x08003ff2   0x08003ff2   0x0000000a   Code   RO         1354    i.usart_transmitter_enable  at32f403a_407_usart.o
+    0x08003ffc   0x08003ffc   0x000000c4   Code   RO          420    i.wk_adc1_init      wk_adc.o
+    0x080040c0   0x080040c0   0x000000c0   Code   RO          421    i.wk_adc3_init      wk_adc.o
+    0x08004180   0x08004180   0x0000012c   Code   RO          492    i.wk_can1_init      wk_can.o
+    0x080042ac   0x080042ac   0x00000010   Code   RO          372    i.wk_debug_config   wk_debug.o
+    0x080042bc   0x080042bc   0x00000050   Code   RO          576    i.wk_dma1_channel1_init  wk_dma.o
+    0x0800430c   0x0800430c   0x00000050   Code   RO          577    i.wk_dma1_channel2_init  wk_dma.o
+    0x0800435c   0x0800435c   0x00000008   Code   RO          578    i.wk_dma_channel_config  wk_dma.o
+    0x08004364   0x08004364   0x00000074   Code   RO          396    i.wk_gpio_config    wk_gpio.o
+    0x080043d8   0x080043d8   0x000000f2   Code   RO          159    i.wk_nvic_config    at32f403a_407_wk_config.o
+    0x080044ca   0x080044ca   0x00000002   PAD
+    0x080044cc   0x080044cc   0x000000a8   Code   RO          160    i.wk_periph_clock_config  at32f403a_407_wk_config.o
+    0x08004574   0x08004574   0x000000d0   Code   RO          516    i.wk_spi1_init      wk_spi.o
+    0x08004644   0x08004644   0x000000d0   Code   RO          517    i.wk_spi2_init      wk_spi.o
+    0x08004714   0x08004714   0x00000098   Code   RO          161    i.wk_system_clock_config  at32f403a_407_wk_config.o
+    0x080047ac   0x080047ac   0x00000044   Code   RO          336    i.wk_timebase_init  wk_system.o
+    0x080047f0   0x080047f0   0x0000022c   Code   RO          450    i.wk_tmr2_init      wk_tmr.o
+    0x08004a1c   0x08004a1c   0x00000044   Code   RO          451    i.wk_tmr3_init      wk_tmr.o
+    0x08004a60   0x08004a60   0x0000020c   Code   RO          452    i.wk_tmr4_init      wk_tmr.o
+    0x08004c6c   0x08004c6c   0x00000044   Code   RO          453    i.wk_tmr5_init      wk_tmr.o
+    0x08004cb0   0x08004cb0   0x00000094   Code   RO          546    i.wk_usart1_init    wk_usart.o
+    0x08004d44   0x08004d44   0x00000090   Code   RO          547    i.wk_usart3_init    wk_usart.o
+    0x08004dd4   0x08004dd4   0x00000028   Data   RO          648    .constdata          at32f403a_407_crm.o
+    0x08004dfc   0x08004dfc   0x00000010   Data   RO         2655    .constdata          system_at32f403a_407.o
+    0x08004e0c   0x08004e0c   0x00000043   Data   RO         2818    .conststring        foc.o
+    0x08004e4f   0x08004e4f   0x00000001   PAD
+    0x08004e50   0x08004e50   0x000002db   Data   RO         3020    .conststring        log.o
+    0x0800512b   0x0800512b   0x00000001   PAD
+    0x0800512c   0x0800512c   0x00000020   Data   RO         3460    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0800514c, Size: 0x000005c8, Max: 0x00018000, ABSOLUTE, COMPRESSED[0x00000050])
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000   COMPRESSED   0x00000008   Data   RW          225    .data               at32f403a_407_int.o
+    0x20000008   COMPRESSED   0x00000004   Data   RW          337    .data               wk_system.o
+    0x2000000c   COMPRESSED   0x00000004   Data   RW         2656    .data               system_at32f403a_407.o
+    0x20000010   COMPRESSED   0x00000008   Data   RW         2694    .data               delay.o
+    0x20000018   COMPRESSED   0x00000100   Data   RW         2819    .data               foc.o
+    0x20000118   COMPRESSED   0x00000006   Data   RW         2939    .data               led.o
     0x2000011e   COMPRESSED   0x00000002   PAD
-    0x20000120   COMPRESSED   0x000000a0   Data   RW         3069    .data               svpwm.o
-    0x200001c0   COMPRESSED   0x00000004   Data   RW         3413    .data               mc_w.l(stdout.o)
-    0x200001c4   COMPRESSED   0x00000004   Data   RW         3421    .data               mc_w.l(errno.o)
-    0x200001c8        -       0x00000400   Zero   RW         2637    STACK               startup_at32f403a_407.o
+    0x20000120   COMPRESSED   0x000000a0   Data   RW         3075    .data               svpwm.o
+    0x200001c0   COMPRESSED   0x00000004   Data   RW         3425    .data               mc_w.l(stdout.o)
+    0x200001c4   COMPRESSED   0x00000004   Data   RW         3435    .data               mc_w.l(errno.o)
+    0x200001c8        -       0x00000400   Zero   RW         2643    STACK               startup_at32f403a_407.o
 
 
 ==============================================================================
@@ -1939,29 +1970,29 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       388          6          0          0          0       7947   at32f403a_407_adc.o
+       410          6          0          0          0       8606   at32f403a_407_adc.o
       1232         18          0          0          0       6296   at32f403a_407_can.o
        978        110         40          0          0       9220   at32f403a_407_crm.o
        390         10          0          0          0       3550   at32f403a_407_dma.o
        274          6          0          0          0       3891   at32f403a_407_gpio.o
-       212         56          0          8          0       6447   at32f403a_407_int.o
+       204         52          0          8          0       6928   at32f403a_407_int.o
        280         18          0          0          0      32684   at32f403a_407_misc.o
        372          0          0          0          0       5332   at32f403a_407_spi.o
        692          0          0          0          0       9015   at32f403a_407_tmr.o
        360         14          0          0          0       5684   at32f403a_407_usart.o
-       672         28          0          0          0      33434   at32f403a_407_wk_config.o
+       682         28          0          0          0      33438   at32f403a_407_wk_config.o
        172         24          0          8          0       1500   delay.o
-      2522        304         67        256          0      14954   foc.o
+      2812        338         67        256          0      15082   foc.o
         52         10          0          6          0       1503   led.o
        440        304        731          0          0        555   log.o
-       336         66          0          0          0      82743   main.o
+       368         64          0          0          0      82747   main.o
        368         40          0          0          0       2575   mt6701.o
        186          0          0          0          0       1377   pid.o
         36          8        388          0       1024        812   startup_at32f403a_407.o
       1316         20          0        160          0       1776   svpwm.o
        360         38         16          4          0       2224   system_at32f403a_407.o
         52          6          0          0          0        596   usart_1.o
-       388         18          0          0          0       1258   wk_adc.o
+       388         18          0          0          0       1266   wk_adc.o
        300          8          0          0          0        815   wk_can.o
         16          4          0          0          0        482   wk_debug.o
        168          8          0          0          0       2072   wk_dma.o
@@ -1972,9 +2003,9 @@ Image component sizes
        292         22          0          0          0       1162   wk_usart.o
 
     ----------------------------------------------------------------------
-     14690       1216       1276        448       1024     245607   Object Totals
+     15034       1244       1276        448       1024     246891   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        20          0          2          2          0          0   (incl. Padding)
+        18          0          2          2          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2010,15 +2041,17 @@ Image component sizes
        334          0          0          0          0        148   dadd.o
        222          0          0          0          0        100   ddiv.o
        186          0          0          0          0        176   depilogue.o
+        50          0          0          0          0         76   dfixui.o
         48          0          0          0          0         68   dfixul.o
+        34          0          0          0          0         76   dflti.o
        228          0          0          0          0         96   dmul.o
        134          0          0          0          0         96   drem.o
         38          0          0          0          0         68   f2d.o
        110          0          0          0          0        168   fepilogue.o
 
     ----------------------------------------------------------------------
-      4422        130          0          8          0       2512   Library Totals
-        12          4          0          0          0          0   (incl. Padding)
+      4502        130          0          8          0       2664   Library Totals
+         8          4          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -2026,10 +2059,10 @@ Image component sizes
 
        312         14          0          0          0        392   m_wm.l
       2646        112          0          8          0        976   mc_w.l
-      1452          0          0          0          0       1144   mf_w.l
+      1536          0          0          0          0       1296   mf_w.l
 
     ----------------------------------------------------------------------
-      4422        130          0          8          0       2512   Library Totals
+      4502        130          0          8          0       2664   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -2038,15 +2071,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     19112       1346       1276        456       1024     233263   Grand Totals
-     19112       1346       1276         80       1024     233263   ELF Image Totals (compressed)
-     19112       1346       1276         80          0          0   ROM Totals
+     19536       1374       1276        456       1024     234395   Grand Totals
+     19536       1374       1276         80       1024     234395   ELF Image Totals (compressed)
+     19536       1374       1276         80          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                20388 (  19.91kB)
+    Total RO  Size (Code + RO Data)                20812 (  20.32kB)
     Total RW  Size (RW Data + ZI Data)              1480 (   1.45kB)
-    Total ROM Size (Code + RO Data + RW Data)      20468 (  19.99kB)
+    Total ROM Size (Code + RO Data + RW Data)      20892 (  20.40kB)
 
 ==============================================================================
 

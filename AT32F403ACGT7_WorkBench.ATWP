@@ -102,7 +102,7 @@
         </Mode>
         <Parameters>
             <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
-            <ParametersSub name="Period" value="5999"/>
+            <ParametersSub name="Period" value="3999"/>
             <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
@@ -128,7 +128,7 @@
         </Mode>
         <Parameters>
             <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
-            <ParametersSub name="Period" value="5999"/>
+            <ParametersSub name="Period" value="3999"/>
             <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
@@ -149,8 +149,8 @@
             <ModeSub name="Mode" value="Asynchronous"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="BaudRate" value="1152000"/>
-            <ParametersSub name="RealBaudRate" value="1153846"/>
+            <ParametersSub name="BaudRate" value="2000000"/>
+            <ParametersSub name="RealBaudRate" value="2000000"/>
         </Parameters>
     </USART1>
     <USART3>
@@ -175,19 +175,19 @@
         <CRM_IRQHandler>0;0;0;0;0</CRM_IRQHandler>
         <DMA1_Channel1_IRQHandler>0;0;0;0;0</DMA1_Channel1_IRQHandler>
         <DMA1_Channel2_IRQHandler>0;0;0;0;0</DMA1_Channel2_IRQHandler>
-        <ADC1_2_IRQHandler>0;1;0;0;0</ADC1_2_IRQHandler>
+        <ADC1_2_IRQHandler>1;1;0;0;0</ADC1_2_IRQHandler>
         <USBFS_H_CAN1_TX_IRQHandler>0;0;0;0;0</USBFS_H_CAN1_TX_IRQHandler>
-        <USBFS_L_CAN1_RX0_IRQHandler>1;1;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>
+        <USBFS_L_CAN1_RX0_IRQHandler>1;2;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>
         <CAN1_RX1_IRQHandler>0;0;0;0;0</CAN1_RX1_IRQHandler>
-        <CAN1_SE_IRQHandler>1;1;0;0;0</CAN1_SE_IRQHandler>
+        <CAN1_SE_IRQHandler>1;2;0;0;0</CAN1_SE_IRQHandler>
         <TMR2_GLOBAL_IRQHandler>0;0;0;0;0</TMR2_GLOBAL_IRQHandler>
-        <TMR3_GLOBAL_IRQHandler>1;1;0;0;0</TMR3_GLOBAL_IRQHandler>
+        <TMR3_GLOBAL_IRQHandler>0;3;0;0;0</TMR3_GLOBAL_IRQHandler>
         <TMR4_GLOBAL_IRQHandler>0;0;0;0;0</TMR4_GLOBAL_IRQHandler>
         <SPI1_IRQHandler>0;0;0;0;0</SPI1_IRQHandler>
         <SPI2_I2S2EXT_IRQHandler>0;0;0;0;0</SPI2_I2S2EXT_IRQHandler>
         <USART1_IRQHandler>0;1;0;0;0</USART1_IRQHandler>
         <USART3_IRQHandler>0;0;0;0;0</USART3_IRQHandler>
-        <ADC3_IRQHandler>0;0;0;0;0</ADC3_IRQHandler>
+        <ADC3_IRQHandler>1;1;0;0;0</ADC3_IRQHandler>
         <TMR5_GLOBAL_IRQHandler>1;4;0;0;0</TMR5_GLOBAL_IRQHandler>
     </NVIC>
     <ClockConfiguration>

@@ -56,7 +56,7 @@
 
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
-#define time_pwm	6000
+#define time_pwm	3999
 /* add user code end private define */
 
 /* private macro -------------------------------------------------------------*/
@@ -175,12 +175,14 @@ int main(void)
   first_get(PMotor_2);
   
   angle_init(PMotor_1);
-  
   angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
-  tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
+  //tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
+  
+  //adc_interrupt_enable(ADC1, ADC_CCE_INT, TRUE);
+  adc_interrupt_enable(ADC3, ADC_CCE_INT, TRUE);
   /* add user code end 2 */
 
   while(1)
@@ -190,7 +192,7 @@ int main(void)
 	  //delay_ms(300);
 	  #if Motor_debug == 1
 	  //SVPWM	sector,Ta,Tb,Tc
-	  //printf("motor 1 :	%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
+	  printf("motor 1 :	%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
 	  //AD原始数据
 	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
 	  //三相电流
@@ -200,7 +202,7 @@ int main(void)
 	  //clarke 变换后的 Ialpha	Ibeta
 	  //printf("motor 1 :	%lf,%lf\r\n", PMotor_1->Ialpha, PMotor_1->Ibeta);
 	  //Park 变换后的 Iq	Id
-	  printf("motor 1 Iq Id:	%lf,%lf\r\n", PMotor_1->Iq, PMotor_1->Id);
+	  //printf("motor 1 Iq Id:	%lf,%lf\r\n", PMotor_1->Iq, PMotor_1->Id);
 	  #elif Motor_debug == 2
 	  //SVPWM	sector,Ta,Tb,Tc
 	  //printf("motor 2 :	%d,%lf,%lf,%lf\r\n",PSVpwm_2->sector, PSVpwm_2->Ta, PSVpwm_2->Tb, PSVpwm_2->Tc);
