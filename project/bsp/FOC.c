@@ -81,6 +81,7 @@ FOC_State Motor_1 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
+	.Get_mechanical_angle = MT6701_GetAngle ,
 	.SetPWM = setpwm1_channel	,
 };
 
@@ -318,7 +319,7 @@ void FocContorl(PFOC_State pFOC)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 0.5f;
+	pFOC->Uq = 6.0f;
 	//逆变换
 	inv_park_transform(pFOC);
 	inv_clarke_transform(pFOC);

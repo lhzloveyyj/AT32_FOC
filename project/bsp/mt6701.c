@@ -25,6 +25,9 @@ void MT6701_StartRead(void)
 
 float MT6701_GetAngle(void)
 {
+	MT6701_StartRead();
+	
+	while(!mt6701_data_ready);
 	float angle = 0.0f;
     if(mt6701_data_ready)
     {

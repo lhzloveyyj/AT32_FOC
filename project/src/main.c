@@ -190,7 +190,8 @@ int main(void)
   first_get(PMotor_1);
   first_get(PMotor_2);
   
-//  angle_init(PMotor_1);
+  dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
+	angle_init(PMotor_1);
 //  
 //  angle_init(PMotor_2);
   
@@ -198,7 +199,6 @@ int main(void)
   
   //adc_interrupt_enable(ADC1, ADC_CCE_INT, TRUE);
   //adc_interrupt_enable(ADC3, ADC_CCE_INT, TRUE);
-  dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
   
   //tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
 //  tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, time_pwm * 0.9);
@@ -209,11 +209,7 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
-	  
-	   MT6701_StartRead();
-		while(!mt6701_data_ready);
-		float angle = MT6701_GetAngle();
-	  printf("%lf\r\n",angle);
+	  FocContorl(PMotor_1);
 	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
 	
 	  //机械角度
