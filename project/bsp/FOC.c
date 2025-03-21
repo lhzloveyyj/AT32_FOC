@@ -81,7 +81,6 @@ FOC_State Motor_1 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
-    .Get_mechanical_angle = MT_1_ReadAngle	,
 	.SetPWM = setpwm1_channel	,
 };
 
@@ -107,7 +106,6 @@ FOC_State Motor_2 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
-    .Get_mechanical_angle = MT_2_ReadAngle	,
 	.SetPWM = setpwm2_channel
 };
 
