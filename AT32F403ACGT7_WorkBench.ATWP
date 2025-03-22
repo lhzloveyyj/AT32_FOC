@@ -14,7 +14,9 @@
             <ParametersSub name="OrdinaryTriggerSource" value="ADC12_ORDINARY_TRIG_TMR4CH4"/>
             <ParametersSub name="NbrOfOrdinarySequence" value="2"/>
             <ParametersSub name="Channel_OrdinarySequence_1" value="ADC_CHANNEL_8"/>
+            <ParametersSub name="SamplingTime_OrdinarySequence_1" value="ADC_SAMPLETIME_7_5"/>
             <ParametersSub name="Channel_OrdinarySequence_2" value="ADC_CHANNEL_9"/>
+            <ParametersSub name="SamplingTime_OrdinarySequence_2" value="ADC_SAMPLETIME_7_5"/>
         </Parameters>
     </ADC1>
     <ADC3>
@@ -26,7 +28,9 @@
             <ParametersSub name="OrdinaryTriggerSource" value="ADC3_ORDINARY_TRIG_TMR2CH3"/>
             <ParametersSub name="NbrOfOrdinarySequence" value="2"/>
             <ParametersSub name="Channel_OrdinarySequence_1" value="ADC_CHANNEL_0"/>
+            <ParametersSub name="SamplingTime_OrdinarySequence_1" value="ADC_SAMPLETIME_7_5"/>
             <ParametersSub name="Channel_OrdinarySequence_2" value="ADC_CHANNEL_1"/>
+            <ParametersSub name="SamplingTime_OrdinarySequence_2" value="ADC_SAMPLETIME_7_5"/>
         </Parameters>
     </ADC3>
     <CAN1>
@@ -102,22 +106,13 @@
         </Mode>
         <Parameters>
             <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
-            <ParametersSub name="Period" value="3999"/>
+            <ParametersSub name="Period" value="4999"/>
             <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_4" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
         </Parameters>
     </TMR2>
-    <TMR3>
-        <Mode>
-            <ModeSub name="Activated" value="TRUE"/>
-        </Mode>
-        <Parameters>
-            <ParametersSub name="DividerValue" value="4"/>
-            <ParametersSub name="Period" value="2399"/>
-        </Parameters>
-    </TMR3>
     <TMR4>
         <Mode>
             <ModeSub name="Channel1 mode" value="Output_CH1"/>
@@ -128,7 +123,7 @@
         </Mode>
         <Parameters>
             <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
-            <ParametersSub name="Period" value="3999"/>
+            <ParametersSub name="Period" value="4999"/>
             <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
@@ -149,8 +144,8 @@
             <ModeSub name="Mode" value="Asynchronous"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="BaudRate" value="2000000"/>
-            <ParametersSub name="RealBaudRate" value="2000000"/>
+            <ParametersSub name="BaudRate" value="3000000"/>
+            <ParametersSub name="RealBaudRate" value="3000000"/>
         </Parameters>
     </USART1>
     <USART3>
@@ -164,31 +159,56 @@
     <DMA>
         <ADC1>
             <ParametersSub name="Instance" value="DMA1_Channel2"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_HIGH"/>
         </ADC1>
         <ADC3>
             <ParametersSub name="Instance" value="DMA1_Channel1"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_HIGH"/>
         </ADC3>
+        <SPI1_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel3"/>
+            <ParametersSub name="Mode" value="TRUE"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
+        </SPI1_RX>
+        <SPI1_TX>
+            <ParametersSub name="Instance" value="DMA1_Channel4"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
+        </SPI1_TX>
+        <SPI2_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel5"/>
+            <ParametersSub name="Mode" value="TRUE"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
+        </SPI2_RX>
+        <SPI2_TX>
+            <ParametersSub name="Instance" value="DMA1_Channel6"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
+        </SPI2_TX>
     </DMA>
     <NVIC>
-        <SysTick_Handler>1;15;0;0;0</SysTick_Handler>
+        <PriorityGroup>NVIC_PRIORITY_GROUP_2</PriorityGroup>
+        <ShowType>1</ShowType>
+        <SysTick_Handler>1;0;0;0;0</SysTick_Handler>
         <FLASH_IRQHandler>0;0;0;0;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;0;0;0;0</CRM_IRQHandler>
-        <DMA1_Channel1_IRQHandler>0;0;0;0;0</DMA1_Channel1_IRQHandler>
-        <DMA1_Channel2_IRQHandler>0;0;0;0;0</DMA1_Channel2_IRQHandler>
-        <ADC1_2_IRQHandler>1;1;0;0;0</ADC1_2_IRQHandler>
+        <DMA1_Channel1_IRQHandler>1;1;0;0;0</DMA1_Channel1_IRQHandler>
+        <DMA1_Channel2_IRQHandler>1;1;0;0;0</DMA1_Channel2_IRQHandler>
+        <DMA1_Channel3_IRQHandler>1;0;0;0;0</DMA1_Channel3_IRQHandler>
+        <DMA1_Channel4_IRQHandler>0;0;0;0;0</DMA1_Channel4_IRQHandler>
+        <DMA1_Channel5_IRQHandler>1;0;0;0;0</DMA1_Channel5_IRQHandler>
+        <DMA1_Channel6_IRQHandler>0;0;0;0;0</DMA1_Channel6_IRQHandler>
+        <ADC1_2_IRQHandler>0;1;0;0;0</ADC1_2_IRQHandler>
         <USBFS_H_CAN1_TX_IRQHandler>0;0;0;0;0</USBFS_H_CAN1_TX_IRQHandler>
         <USBFS_L_CAN1_RX0_IRQHandler>1;2;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>
         <CAN1_RX1_IRQHandler>0;0;0;0;0</CAN1_RX1_IRQHandler>
         <CAN1_SE_IRQHandler>1;2;0;0;0</CAN1_SE_IRQHandler>
         <TMR2_GLOBAL_IRQHandler>0;0;0;0;0</TMR2_GLOBAL_IRQHandler>
-        <TMR3_GLOBAL_IRQHandler>0;3;0;0;0</TMR3_GLOBAL_IRQHandler>
         <TMR4_GLOBAL_IRQHandler>0;0;0;0;0</TMR4_GLOBAL_IRQHandler>
         <SPI1_IRQHandler>0;0;0;0;0</SPI1_IRQHandler>
         <SPI2_I2S2EXT_IRQHandler>0;0;0;0;0</SPI2_I2S2EXT_IRQHandler>
         <USART1_IRQHandler>0;1;0;0;0</USART1_IRQHandler>
         <USART3_IRQHandler>0;0;0;0;0</USART3_IRQHandler>
-        <ADC3_IRQHandler>1;1;0;0;0</ADC3_IRQHandler>
-        <TMR5_GLOBAL_IRQHandler>1;4;0;0;0</TMR5_GLOBAL_IRQHandler>
+        <ADC3_IRQHandler>0;1;0;0;0</ADC3_IRQHandler>
+        <TMR5_GLOBAL_IRQHandler>1;0;0;0;0</TMR5_GLOBAL_IRQHandler>
     </NVIC>
     <ClockConfiguration>
         <rtcsel>0</rtcsel>

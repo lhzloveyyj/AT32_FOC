@@ -56,7 +56,7 @@
 
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
-#define time_pwm	3999
+#define time_pwm	5000
 /* add user code end private define */
 
 /* private macro -------------------------------------------------------------*/
@@ -125,6 +125,46 @@ int main(void)
                         DMA1_CHANNEL2_BUFFER_SIZE);
   dma_channel_enable(DMA1_CHANNEL2, TRUE);
 
+  /* init dma1 channel3 */
+  wk_dma1_channel3_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL3, 
+                        (uint32_t)&SPI1->dt, 
+                        DMA1_CHANNEL3_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL3_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL3, TRUE);
+
+  /* init dma1 channel4 */
+  wk_dma1_channel4_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL4, 
+                        (uint32_t)&SPI1->dt, 
+                        DMA1_CHANNEL4_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL4_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL4, TRUE);
+
+  /* init dma1 channel5 */
+  wk_dma1_channel5_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL5, 
+                        (uint32_t)&SPI2->dt, 
+                        DMA1_CHANNEL5_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL5_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL5, TRUE);
+
+  /* init dma1 channel6 */
+  wk_dma1_channel6_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL6, 
+                        (uint32_t)&SPI2->dt, 
+                        DMA1_CHANNEL6_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL6_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL6, TRUE);
+
   /* init usart1 function. */
   wk_usart1_init();
 
@@ -145,9 +185,6 @@ int main(void)
 
   /* init tmr2 function. */
   wk_tmr2_init();
-
-  /* init tmr3 function. */
-  wk_tmr3_init();
 
   /* init tmr4 function. */
   wk_tmr4_init();
@@ -174,15 +211,20 @@ int main(void)
   first_get(PMotor_1);
   first_get(PMotor_2);
   
+  //SPI1_DMA
+  dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
+  //SPI2_DMA
+  dma_interrupt_enable(DMA1_CHANNEL5, DMA_FDT_INT, TRUE );
+  
   angle_init(PMotor_1);
   angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
   
-  //tmr_interrupt_enable(TMR3,TMR_OVF_INT,TRUE);
-  
-  //adc_interrupt_enable(ADC1, ADC_CCE_INT, TRUE);
-  adc_interrupt_enable(ADC3, ADC_CCE_INT, TRUE);
+  //ADC1_DMA
+  dma_interrupt_enable(DMA1_CHANNEL2, DMA_FDT_INT, TRUE);
+  //ADC3_DMA
+  dma_interrupt_enable(DMA1_CHANNEL1, DMA_FDT_INT, TRUE);
   /* add user code end 2 */
 
   while(1)
@@ -192,17 +234,15 @@ int main(void)
 	  //delay_ms(300);
 	  #if Motor_debug == 1
 	  //SVPWM	sector,Ta,Tb,Tc
-	  printf("motor 1 :	%d,%lf,%lf,%lf\r\n",PSVpwm_1->sector, PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
+	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
 	  //AD原始数据
 	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
-	  //三相电流
-	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib);
 	  //三相电流
 	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib);
 	  //clarke 变换后的 Ialpha	Ibeta
 	  //printf("motor 1 :	%lf,%lf\r\n", PMotor_1->Ialpha, PMotor_1->Ibeta);
 	  //Park 变换后的 Iq	Id
-	  //printf("motor 1 Iq Id:	%lf,%lf\r\n", PMotor_1->Iq, PMotor_1->Id);
+	  printf("motor 1 Iq Id:	%lf,%lf\r\n", PMotor_1->Iq, PMotor_1->Id);
 	  #elif Motor_debug == 2
 	  //SVPWM	sector,Ta,Tb,Tc
 	  //printf("motor 2 :	%d,%lf,%lf,%lf\r\n",PSVpwm_2->sector, PSVpwm_2->Ta, PSVpwm_2->Tb, PSVpwm_2->Tc);

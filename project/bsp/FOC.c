@@ -69,7 +69,7 @@ FOC_State Motor_1 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
-    .Get_mechanical_angle = MT_1_ReadAngle	,
+    .Get_mechanical_angle = MT6701_GetAngle ,
 	.SetPWM = setpwm1_channel	,
 };
 
@@ -95,7 +95,7 @@ FOC_State Motor_2 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
-    .Get_mechanical_angle = MT_2_ReadAngle	,
+    .Get_mechanical_angle = MT6701_GetAngle ,
 	.SetPWM = setpwm2_channel
 };
 
@@ -116,7 +116,10 @@ static float Angle_limit(float angle) {
 
 // 计算电角度
 static void _electricalAngle(PFOC_State pFOC) {
-    pFOC->mechanical_angle = pFOC->Get_mechanical_angle();
+    if(1 == pFOC->current.Mflag)
+    pFOC->mechanical_angle = pFOC->Get_mechanical_angle(&mt6701_1);
+	else if(2 == pFOC->current.Mflag)
+    pFOC->mechanical_angle = pFOC->Get_mechanical_angle(&mt6701_2);
     pFOC->elec_angle = Angle_limit(pFOC->mechanical_angle * POLE_PAIRS);
 }
 
@@ -187,12 +190,12 @@ void angle_init(PFOC_State pFOC)
 //定时器触发ADC采样
 void M1_adc_tigger(int time_pwm)
 {
-	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm * 0.95);
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm * 0.95f);
 }
 
 void M2_adc_tigger(int time_pwm)
 {
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm * 0.95);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm * 0.95f);
 }
 
 //获取电压偏置
@@ -225,17 +228,17 @@ void first_get(PFOC_State pFOC)
 //电机1设置PWM占空比
 static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c)
 {
-	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, pwm_a * ALL_Duty * 0.9);
-    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, pwm_b * ALL_Duty * 0.9);
-    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, pwm_c * ALL_Duty * 0.9);
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_3, pwm_a * ALL_Duty * 0.9f);
+    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_2, pwm_b * ALL_Duty * 0.9f);
+    tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_1, pwm_c * ALL_Duty * 0.9f);
 }
 
 //电机2设置PWM占空比
 static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c)
 {
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * ALL_Duty * 0.9);
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * ALL_Duty * 0.9);
-    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * ALL_Duty * 0.9);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_4, pwm_a * ALL_Duty * 0.9f);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_2, pwm_b * ALL_Duty * 0.9f);
+    tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_1, pwm_c * ALL_Duty * 0.9f);
 }
 //设置PWM
 static void setpwm(PFOC_State pFOC)
@@ -316,7 +319,7 @@ void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 0.5f;
+	pFOC->Uq = 2.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
     

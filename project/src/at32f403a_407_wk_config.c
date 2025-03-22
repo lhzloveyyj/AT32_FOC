@@ -183,9 +183,6 @@ void wk_periph_clock_config(void)
   /* enable tmr2 periph clock */
   crm_periph_clock_enable(CRM_TMR2_PERIPH_CLOCK, TRUE);
 
-  /* enable tmr3 periph clock */
-  crm_periph_clock_enable(CRM_TMR3_PERIPH_CLOCK, TRUE);
-
   /* enable tmr4 periph clock */
   crm_periph_clock_enable(CRM_TMR4_PERIPH_CLOCK, TRUE);
 
@@ -209,7 +206,7 @@ void wk_periph_clock_config(void)
   */
 void wk_nvic_config(void)
 {
-  nvic_priority_group_config(NVIC_PRIORITY_GROUP_4);
+  nvic_priority_group_config(NVIC_PRIORITY_GROUP_2);
 
   NVIC_SetPriority(MemoryManagement_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
   NVIC_SetPriority(BusFault_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
@@ -217,12 +214,14 @@ void wk_nvic_config(void)
   NVIC_SetPriority(SVCall_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
   NVIC_SetPriority(DebugMonitor_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
   NVIC_SetPriority(PendSV_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
-  NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 15, 0));
-  nvic_irq_enable(ADC1_2_IRQn, 1, 0);
+  NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), 0, 0));
+  nvic_irq_enable(DMA1_Channel1_IRQn, 1, 0);
+  nvic_irq_enable(DMA1_Channel2_IRQn, 1, 0);
+  nvic_irq_enable(DMA1_Channel3_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel5_IRQn, 0, 0);
   nvic_irq_enable(USBFS_L_CAN1_RX0_IRQn, 2, 0);
   nvic_irq_enable(CAN1_SE_IRQn, 2, 0);
-  nvic_irq_enable(ADC3_IRQn, 1, 0);
-  nvic_irq_enable(TMR5_GLOBAL_IRQn, 4, 0);
+  nvic_irq_enable(TMR5_GLOBAL_IRQn, 0, 0);
 }
 
 /* add user code begin 1 */

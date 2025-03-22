@@ -90,6 +90,10 @@ void wk_spi1_init(void)
   spi_crc_polynomial_set(SPI1, 0x7);
   spi_crc_enable(SPI1, TRUE);
 
+  spi_i2s_dma_transmitter_enable(SPI1, TRUE);
+
+  spi_i2s_dma_receiver_enable(SPI1, TRUE);
+
   /* add user code begin spi1_init 2 */
 
   /* add user code end spi1_init 2 */
@@ -159,6 +163,10 @@ void wk_spi2_init(void)
 
   spi_crc_polynomial_set(SPI2, 0x7);
   spi_crc_enable(SPI2, TRUE);
+
+  spi_i2s_dma_transmitter_enable(SPI2, TRUE);
+
+  spi_i2s_dma_receiver_enable(SPI2, TRUE);
 
   /* add user code begin spi2_init 2 */
 

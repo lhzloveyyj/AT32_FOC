@@ -228,18 +228,91 @@ void SysTick_Handler(void)
 }
 
 /**
-  * @brief  this function handles ADC1 & ADC2 handler.
+  * @brief  this function handles DMA1 Channel 1 handler.
   * @param  none
   * @retval none
   */
-void ADC1_2_IRQHandler(void)
+void DMA1_Channel1_IRQHandler(void)
 {
-  /* add user code begin ADC1_2_IRQ 0 */
-	FocContorl(PMotor_1, PSVpwm_1);
-  /* add user code end ADC1_2_IRQ 0 */
-  /* add user code begin ADC1_2_IRQ 1 */
+  /* add user code begin DMA1_Channel1_IRQ 0 */
+	if(dma_flag_get(DMA1_FDT1_FLAG) != RESET)
+	 {
+		dma_flag_clear(DMA1_FDT1_FLAG);
+		 
+		 FocContorl(PMotor_2, PSVpwm_2);
+	 }
+  /* add user code end DMA1_Channel1_IRQ 0 */
+  /* add user code begin DMA1_Channel1_IRQ 1 */
 
-  /* add user code end ADC1_2_IRQ 1 */
+  /* add user code end DMA1_Channel1_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 2 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel2_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel2_IRQ 0 */
+	if(dma_flag_get(DMA1_FDT2_FLAG) != RESET)
+	 {
+		dma_flag_clear(DMA1_FDT2_FLAG);
+		 
+		 FocContorl(PMotor_1, PSVpwm_1);
+	 }
+  /* add user code end DMA1_Channel2_IRQ 0 */
+  /* add user code begin DMA1_Channel2_IRQ 1 */
+
+  /* add user code end DMA1_Channel2_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 3 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel3_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel3_IRQ 0 */
+	if(dma_flag_get(DMA1_FDT3_FLAG) != RESET)
+	 {
+		dma_flag_clear(DMA1_FDT3_FLAG);
+		 
+		dma_channel_enable(DMA1_CHANNEL4, FALSE);
+		dma_channel_enable(DMA1_CHANNEL3, FALSE);
+		 
+		 gpio_bits_set(mt6701_1.CS_GPIO, mt6701_1.CS_Pin);
+		 mt6701_1.data_ready = 1;
+	 }
+  /* add user code end DMA1_Channel3_IRQ 0 */
+  /* add user code begin DMA1_Channel3_IRQ 1 */
+
+  /* add user code end DMA1_Channel3_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 5 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel5_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel5_IRQ 0 */
+	if(dma_flag_get(DMA1_FDT5_FLAG) != RESET)
+	 {
+		dma_flag_clear(DMA1_FDT5_FLAG);
+		 
+		dma_channel_enable(DMA1_CHANNEL6, FALSE);
+		dma_channel_enable(DMA1_CHANNEL5, FALSE);
+		 
+		 gpio_bits_set(mt6701_2.CS_GPIO, mt6701_2.CS_Pin);
+		 mt6701_2.data_ready = 1;
+	 }
+  /* add user code end DMA1_Channel5_IRQ 0 */
+  /* add user code begin DMA1_Channel5_IRQ 1 */
+
+  /* add user code end DMA1_Channel5_IRQ 1 */
 }
 
 /**
@@ -288,21 +361,6 @@ void CAN1_SE_IRQHandler(void)
   /* add user code begin CAN1_SE_IRQ 1 */
 
   /* add user code end CAN1_SE_IRQ 1 */
-}
-
-/**
-  * @brief  this function handles ADC3 handler.
-  * @param  none
-  * @retval none
-  */
-void ADC3_IRQHandler(void)
-{
-  /* add user code begin ADC3_IRQ 0 */
-	FocContorl(PMotor_2, PSVpwm_2);
-  /* add user code end ADC3_IRQ 0 */
-  /* add user code begin ADC3_IRQ 1 */
-
-  /* add user code end ADC3_IRQ 1 */
 }
 
 /**
