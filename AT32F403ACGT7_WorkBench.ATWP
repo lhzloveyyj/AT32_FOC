@@ -140,8 +140,8 @@
             <ModeSub name="Mode" value="Asynchronous"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="BaudRate" value="2000000"/>
-            <ParametersSub name="RealBaudRate" value="2000000"/>
+            <ParametersSub name="BaudRate" value="3000000"/>
+            <ParametersSub name="RealBaudRate" value="3000000"/>
         </Parameters>
     </USART1>
     <USART3>
@@ -170,6 +170,15 @@
             <ParametersSub name="Instance" value="DMA1_Channel4"/>
             <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
         </SPI1_TX>
+        <SPI2_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel5"/>
+            <ParametersSub name="Mode" value="TRUE"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
+        </SPI2_RX>
+        <SPI2_TX>
+            <ParametersSub name="Instance" value="DMA1_Channel6"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
+        </SPI2_TX>
     </DMA>
     <NVIC>
         <PriorityGroup>NVIC_PRIORITY_GROUP_2</PriorityGroup>
@@ -177,10 +186,12 @@
         <SysTick_Handler>1;0;0;0;0</SysTick_Handler>
         <FLASH_IRQHandler>0;0;0;0;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;0;0;0;0</CRM_IRQHandler>
-        <DMA1_Channel1_IRQHandler>0;1;0;0;0</DMA1_Channel1_IRQHandler>
-        <DMA1_Channel2_IRQHandler>0;1;0;0;0</DMA1_Channel2_IRQHandler>
+        <DMA1_Channel1_IRQHandler>1;1;0;0;0</DMA1_Channel1_IRQHandler>
+        <DMA1_Channel2_IRQHandler>1;1;0;0;0</DMA1_Channel2_IRQHandler>
         <DMA1_Channel3_IRQHandler>1;0;0;0;0</DMA1_Channel3_IRQHandler>
         <DMA1_Channel4_IRQHandler>0;0;0;0;0</DMA1_Channel4_IRQHandler>
+        <DMA1_Channel5_IRQHandler>1;0;0;0;0</DMA1_Channel5_IRQHandler>
+        <DMA1_Channel6_IRQHandler>0;0;0;0;0</DMA1_Channel6_IRQHandler>
         <ADC1_2_IRQHandler>0;1;0;0;0</ADC1_2_IRQHandler>
         <USBFS_H_CAN1_TX_IRQHandler>0;0;0;0;0</USBFS_H_CAN1_TX_IRQHandler>
         <USBFS_L_CAN1_RX0_IRQHandler>0;0;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>

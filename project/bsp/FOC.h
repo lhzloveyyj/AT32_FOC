@@ -3,6 +3,7 @@
 
 #include "math.h"
 #include "at32f403a_407.h"              // Device header
+#include "mt6701.h"
 
 typedef struct {
 	uint16_t ad_A;
@@ -26,7 +27,7 @@ typedef struct {
     float corr_angle;       
     float zero; 			
 	
-	float (*Get_mechanical_angle)(void);
+	float (*Get_mechanical_angle)(MT6701_t *encoder);
 	void (*SetPWM)(float pwm_a, float pwm_b, float pwm_c); 
 } FOC_State;
 

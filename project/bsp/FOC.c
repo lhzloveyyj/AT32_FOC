@@ -29,7 +29,7 @@ pwm4 - time2_ch1 - Uc - Ic
 #define SQRT3_2			0.866f              //根号3/2
 #define _3PI_2			4.712388f           //PI/3
 #define EPSILON 		1e-6                // 精度阈值
-#define ALL_Duty 		6000                //time2 PWM慢占空比
+#define ALL_Duty 		5000                //time2 PWM慢占空比
 #define ADC_REF_VOLTAGE 3.3f                // ADC参考电压
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
@@ -107,6 +107,7 @@ FOC_State Motor_2 = {
     .corr_angle = 0.0f,       
     .zero = 0.0f, 			
 
+	.Get_mechanical_angle = MT6701_GetAngle ,
 	.SetPWM = setpwm2_channel
 };
 
@@ -127,7 +128,10 @@ static float Angle_limit(float angle) {
 
 // 计算电角度
 static void _electricalAngle(PFOC_State pFOC) {
-    pFOC->mechanical_angle = pFOC->Get_mechanical_angle();
+	if(1 == pFOC->current.Mflag)
+    pFOC->mechanical_angle = pFOC->Get_mechanical_angle(&mt6701_1);
+	else if(2 == pFOC->current.Mflag)
+    pFOC->mechanical_angle = pFOC->Get_mechanical_angle(&mt6701_2);
     pFOC->elec_angle = Angle_limit(pFOC->mechanical_angle * POLE_PAIRS);
 }
 
@@ -319,7 +323,7 @@ void FocContorl(PFOC_State pFOC)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 6.0f;
+	pFOC->Uq = 3.0f;
 	//逆变换
 	inv_park_transform(pFOC);
 	inv_clarke_transform(pFOC);

@@ -24,6 +24,7 @@
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_spi.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
+.\objects\main.o: ..\bsp\mt6701.h
 .\objects\main.o: ..\inc\wk_adc.h
 .\objects\main.o: ..\inc\wk_can.h
 .\objects\main.o: ..\inc\wk_debug.h
@@ -34,7 +35,6 @@
 .\objects\main.o: ..\inc\wk_gpio.h
 .\objects\main.o: ..\inc\wk_system.h
 .\objects\main.o: ..\bsp\delay.h
-.\objects\main.o: ..\bsp\mt6701.h
 .\objects\main.o: ..\bsp\FOC.h
 .\objects\main.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: ..\bsp\LOG.h

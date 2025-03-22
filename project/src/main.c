@@ -53,7 +53,7 @@
 
 /* private define ------------------------------------------------------------*/
 /* add user code begin private define */
-#define time_pwm	4999
+#define time_pwm	5000
 #define	Motor1_debug	1
 #define	Motor2_debug	0	
 /* add user code end private define */
@@ -144,6 +144,26 @@ int main(void)
                         DMA1_CHANNEL4_BUFFER_SIZE);
   dma_channel_enable(DMA1_CHANNEL4, TRUE);
 
+  /* init dma1 channel5 */
+  wk_dma1_channel5_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL5, 
+                        (uint32_t)&SPI2->dt, 
+                        DMA1_CHANNEL5_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL5_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL5, TRUE);
+
+  /* init dma1 channel6 */
+  wk_dma1_channel6_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA1_CHANNEL6, 
+                        (uint32_t)&SPI2->dt, 
+                        DMA1_CHANNEL6_MEMORY_BASE_ADDR, 
+                        DMA1_CHANNEL6_BUFFER_SIZE);
+  dma_channel_enable(DMA1_CHANNEL6, TRUE);
+
   /* init usart1 function. */
   wk_usart1_init();
 
@@ -189,13 +209,20 @@ int main(void)
   
   first_get(PMotor_1);
   first_get(PMotor_2);
-  
+  //SPI1_DMA
   dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
-	angle_init(PMotor_1);
-//  
-//  angle_init(PMotor_2);
+  //SPI2_DMA
+  dma_interrupt_enable(DMA1_CHANNEL5, DMA_FDT_INT, TRUE );
+  
+  angle_init(PMotor_1);
+  angle_init(PMotor_2);
   
   tmr_interrupt_enable(TMR5,TMR_OVF_INT,TRUE);
+  
+  //ADC1_DMA
+  dma_interrupt_enable(DMA1_CHANNEL2, DMA_FDT_INT, TRUE);
+  //ADC3_DMA
+  dma_interrupt_enable(DMA1_CHANNEL1, DMA_FDT_INT, TRUE);
   
   //adc_interrupt_enable(ADC1, ADC_CCE_INT, TRUE);
   //adc_interrupt_enable(ADC3, ADC_CCE_INT, TRUE);
@@ -209,11 +236,11 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
-	  FocContorl(PMotor_1);
+//	  FocContorl(PMotor_1);
 	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
-	
+	  printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
 	  //机械角度
-	  //printf("%lf\r\n",PMotor_1->mechanical_angle);
+	  //printf("%lf\r\n",PMotor_2->mechanical_angle);
 	  //电角度
 	  //printf("%lf,%lf\r\n",PMotor_2->elec_angle,PMotor_2->corr_angle);
 	  //校正后的电角度
