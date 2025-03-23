@@ -24,6 +24,7 @@
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_spi.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\main.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
+.\objects\main.o: ..\bsp\usart_1.h
 .\objects\main.o: ..\inc\wk_adc.h
 .\objects\main.o: ..\inc\wk_can.h
 .\objects\main.o: ..\inc\wk_debug.h
@@ -41,4 +42,3 @@
 .\objects\main.o: ..\bsp\CAN.h
 .\objects\main.o: ..\bsp\foc_config.h
 .\objects\main.o: ..\bsp\fast_sin.h
-.\objects\main.o: ..\bsp\usart_1.h

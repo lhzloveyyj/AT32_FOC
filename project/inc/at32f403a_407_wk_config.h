@@ -38,7 +38,7 @@ extern "C" {
 
 /* private includes -------------------------------------------------------------*/
 /* add user code begin private includes */
-
+#include "usart_1.h"
 /* add user code end private includes */
 
 /* exported types -------------------------------------------------------------*/
@@ -70,7 +70,7 @@ extern "C" {
 #define DMA1_CHANNEL3_MEMORY_BASE_ADDR   (uint32_t)mt6701_1.rx_buf
 //#define DMA1_CHANNEL3_PERIPHERAL_BASE_ADDR   0
 
-#define DMA1_CHANNEL4_BUFFER_SIZE   1
+#define DMA1_CHANNEL4_BUFFER_SIZE   3
 #define DMA1_CHANNEL4_MEMORY_BASE_ADDR   (uint32_t)mt6701_1.tx_buf
 //#define DMA1_CHANNEL4_PERIPHERAL_BASE_ADDR   0
 
@@ -78,12 +78,12 @@ extern "C" {
 #define DMA1_CHANNEL5_MEMORY_BASE_ADDR   (uint32_t)mt6701_2.rx_buf
 //#define DMA1_CHANNEL5_PERIPHERAL_BASE_ADDR   0
 
-#define DMA1_CHANNEL6_BUFFER_SIZE   1
+#define DMA1_CHANNEL6_BUFFER_SIZE   3
 #define DMA1_CHANNEL6_MEMORY_BASE_ADDR   (uint32_t)mt6701_2.tx_buf
 //#define DMA1_CHANNEL6_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA1_CHANNEL7_BUFFER_SIZE   0
-//#define DMA1_CHANNEL7_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL7_BUFFER_SIZE   USART1_TX_BUFFER_SIZE
+#define DMA1_CHANNEL7_MEMORY_BASE_ADDR   (uint32_t)uart1_tx_buffer
 //#define DMA1_CHANNEL7_PERIPHERAL_BASE_ADDR   0
 
 //#define DMA2_CHANNEL1_BUFFER_SIZE   0

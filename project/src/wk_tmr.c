@@ -87,7 +87,7 @@ void wk_tmr2_init(void)
   gpio_pin_remap_config(TMR2_GMUX_01, TRUE); 
 
   /* configure counter settings */
-  tmr_base_init(TMR2, 5999, 0);
+  tmr_base_init(TMR2, 4999, 0);
   tmr_cnt_dir_set(TMR2, TMR_COUNT_TWO_WAY_1);
   tmr_clock_source_div_set(TMR2, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR2, FALSE);
@@ -213,7 +213,7 @@ void wk_tmr4_init(void)
   gpio_init(GPIOB, &gpio_init_struct);
 
   /* configure counter settings */
-  tmr_base_init(TMR4, 5999, 0);
+  tmr_base_init(TMR4, 4999, 0);
   tmr_cnt_dir_set(TMR4, TMR_COUNT_TWO_WAY_1);
   tmr_clock_source_div_set(TMR4, TMR_CLOCK_DIV1);
   tmr_period_buffer_enable(TMR4, FALSE);

@@ -25,3 +25,4 @@
 .\objects\wk_gpio.o: ..\..\libraries\drivers\inc\at32f403a_407_spi.h
 .\objects\wk_gpio.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\wk_gpio.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
+.\objects\wk_gpio.o: ..\bsp\usart_1.h

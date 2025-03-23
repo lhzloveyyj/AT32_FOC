@@ -106,7 +106,7 @@
         </Mode>
         <Parameters>
             <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
-            <ParametersSub name="Period" value="5999"/>
+            <ParametersSub name="Period" value="4999"/>
             <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
@@ -123,7 +123,7 @@
         </Mode>
         <Parameters>
             <ParametersSub name="CounterDirection" value="TMR_COUNT_TWO_WAY_1"/>
-            <ParametersSub name="Period" value="5999"/>
+            <ParametersSub name="Period" value="4999"/>
             <ParametersSub name="OCMode_1" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_2" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
             <ParametersSub name="OCMode_3" value="TMR_OUTPUT_CONTROL_PWM_MODE_A"/>
@@ -183,10 +183,14 @@
             <ParametersSub name="Instance" value="DMA1_Channel6"/>
             <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
         </SPI2_TX>
+        <USART1_TX>
+            <ParametersSub name="Instance" value="DMA1_Channel7"/>
+            <ParametersSub name="Mode" value="TRUE"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_HIGH"/>
+        </USART1_TX>
     </DMA>
     <NVIC>
         <PriorityGroup>NVIC_PRIORITY_GROUP_2</PriorityGroup>
-        <ShowType>1</ShowType>
         <SysTick_Handler>1;0;0;0;0</SysTick_Handler>
         <FLASH_IRQHandler>0;0;0;0;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;0;0;0;0</CRM_IRQHandler>
@@ -196,6 +200,7 @@
         <DMA1_Channel4_IRQHandler>0;0;0;0;0</DMA1_Channel4_IRQHandler>
         <DMA1_Channel5_IRQHandler>1;0;0;0;0</DMA1_Channel5_IRQHandler>
         <DMA1_Channel6_IRQHandler>0;0;0;0;0</DMA1_Channel6_IRQHandler>
+        <DMA1_Channel7_IRQHandler>1;1;0;0;0</DMA1_Channel7_IRQHandler>
         <ADC1_2_IRQHandler>0;1;0;0;0</ADC1_2_IRQHandler>
         <USBFS_H_CAN1_TX_IRQHandler>0;0;0;0;0</USBFS_H_CAN1_TX_IRQHandler>
         <USBFS_L_CAN1_RX0_IRQHandler>1;2;0;0;0</USBFS_L_CAN1_RX0_IRQHandler>

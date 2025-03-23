@@ -24,3 +24,4 @@
 .\objects\at32f403a_407_wk_config.o: ..\..\libraries\drivers\inc\at32f403a_407_spi.h
 .\objects\at32f403a_407_wk_config.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\at32f403a_407_wk_config.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
+.\objects\at32f403a_407_wk_config.o: ..\bsp\usart_1.h

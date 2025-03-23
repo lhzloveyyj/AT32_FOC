@@ -34,6 +34,7 @@
 #include "MT6701.h"
 #include "foc.h"
 #include "filter.h"
+#include "usart_1.h"
 #include <stdio.h>
 
 /* add user code end private includes */
@@ -313,6 +314,26 @@ void DMA1_Channel5_IRQHandler(void)
   /* add user code begin DMA1_Channel5_IRQ 1 */
 
   /* add user code end DMA1_Channel5_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 7 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel7_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel7_IRQ 0 */
+	if(dma_interrupt_flag_get(DMA1_FDT7_FLAG))
+  {
+    usart1_tx_dma_status = 1;
+    dma_flag_clear(DMA1_FDT7_FLAG);
+    dma_channel_enable(DMA1_CHANNEL7, FALSE);
+  }
+  /* add user code end DMA1_Channel7_IRQ 0 */
+  /* add user code begin DMA1_Channel7_IRQ 1 */
+
+  /* add user code end DMA1_Channel7_IRQ 1 */
 }
 
 /**

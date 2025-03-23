@@ -319,7 +319,7 @@ void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 6.0f;
+	pFOC->Uq = 4.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
     
