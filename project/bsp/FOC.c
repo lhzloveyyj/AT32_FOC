@@ -28,7 +28,7 @@ uint16_t Motor2_AD_Value[2] = {0};
 
 
 // PI 控制器初始化
-PIController pi_Id = {0.01f, 0.1f, 0.0f, 0.0f, 10.0f, -10.0f};
+PIController pi_Id = {0.0f, 1.0f, 0.0f, 0.0f, 6.0f, -6.0f};
 PIController pi_Iq = {0.01f, 0.1f, 0.0f, 0.0f, 6.0f, -6.0f};
 
 static void setpwm(FOC_State *foc);
@@ -46,7 +46,7 @@ static void clarke_transform(PFOC_State pFOC) ;
 static void park_transform(PFOC_State pFOC);
 static void inv_park_transform(PFOC_State pFOC);
 static void inv_clarke_transform(PFOC_State pFOC);
-void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm);
+void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm, PLPF_Current LPF_M);
 static void setpwm1_channel(float pwm_a, float pwm_b, float pwm_c);
 static void setpwm2_channel(float pwm_a, float pwm_b, float pwm_c);
 
@@ -294,7 +294,7 @@ static void inv_clarke_transform(PFOC_State pFOC)
 }
 
 // FOC 控制主函数
-void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
+void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm, PLPF_Current LPF_M)
 {
 	//计算电角度
 	getCorrectedElectricalAngle(pFOC);
@@ -315,19 +315,20 @@ void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 	
 	clarke_transform(pFOC) ;
 	park_transform(pFOC);
-	//PID控制器
-	pFOC->Ud = PI_Compute(&pi_Id, 0.0f, pFOC->Id);
-	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
-	pFOC->Ud = 0.0f;
-	pFOC->Uq = 2.0f;
+	//ID,IQ滤波
+	LPF_Update(LPF_M, pFOC->Id, pFOC->Iq, &(pFOC->Id), &(pFOC->Iq));
+	
+	//PID控制器
+	//pFOC->Ud = PI_Compute(&pi_Id, 10.0f, pFOC->Id);
+	//pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
+	
+	//pFOC->Ud = 1.0f;
+	pFOC->Uq = 0.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
     
 	SVpwm(PSVpwm, pFOC->Ualpha, pFOC->Ubeta);
-	
-	//逆clarke变换
-	//inv_clarke_transform(pFOC);
 	
 	//设置SVPWM
 	setSVpwm(pFOC, PSVpwm);

@@ -144,8 +144,8 @@
             <ModeSub name="Mode" value="Asynchronous"/>
         </Mode>
         <Parameters>
-            <ParametersSub name="BaudRate" value="3000000"/>
-            <ParametersSub name="RealBaudRate" value="3000000"/>
+            <ParametersSub name="BaudRate" value="2000000"/>
+            <ParametersSub name="RealBaudRate" value="2000000"/>
         </Parameters>
     </USART1>
     <USART3>

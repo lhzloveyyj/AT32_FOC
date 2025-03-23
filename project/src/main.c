@@ -48,6 +48,7 @@
 #include "foc_config.h"
 #include "fast_sin.h"
 #include "usart_1.h"
+#include "filter.h"
 
 /* add user code end private includes */
 
@@ -226,6 +227,10 @@ int main(void)
   first_get(PMotor_1);
   first_get(PMotor_2);
   
+  //低通滤波器初始化
+  LPF_Init(PM1_LPF);
+  LPF_Init(PM2_LPF);
+  
   //SPI1_DMA
   dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
   //SPI2_DMA
@@ -251,7 +256,7 @@ int main(void)
 	  //float Tabc[3] = {PSVpwm_1->Ta,PSVpwm_1->Tb,PSVpwm_1->Tc};
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
-	  float Iqd[2] = {PMotor_1->Iq, PMotor_1->Id};
+	  float Iqd[2] = {PMotor_2->Iq, PMotor_2->Id};
 	  USART1_SendFloatArray(Iqd,2);
 	  
 	  //SVPWM	sector,Ta,Tb,Tc

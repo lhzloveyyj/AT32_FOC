@@ -240,7 +240,7 @@ void DMA1_Channel1_IRQHandler(void)
 	 {
 		dma_flag_clear(DMA1_FDT1_FLAG);
 		 
-		 FocContorl(PMotor_2, PSVpwm_2);
+		 FocContorl(PMotor_2, PSVpwm_2, PM2_LPF);
 	 }
   /* add user code end DMA1_Channel1_IRQ 0 */
   /* add user code begin DMA1_Channel1_IRQ 1 */
@@ -260,7 +260,7 @@ void DMA1_Channel2_IRQHandler(void)
 	 {
 		dma_flag_clear(DMA1_FDT2_FLAG);
 		 
-		 FocContorl(PMotor_1, PSVpwm_1);
+		 FocContorl(PMotor_1, PSVpwm_1, PM1_LPF);
 	 }
   /* add user code end DMA1_Channel2_IRQ 0 */
   /* add user code begin DMA1_Channel2_IRQ 1 */

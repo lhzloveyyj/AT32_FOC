@@ -38,6 +38,7 @@
 .\objects\main.o: ..\bsp\mt6701.h
 .\objects\main.o: ..\bsp\FOC.h
 .\objects\main.o: ..\bsp\SVPWM.h
+.\objects\main.o: ..\bsp\filter.h
 .\objects\main.o: ..\bsp\LOG.h
 .\objects\main.o: ..\bsp\CAN.h
 .\objects\main.o: ..\bsp\foc_config.h

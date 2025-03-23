@@ -23,4 +23,3 @@
 .\objects\filter.o: ..\..\libraries\drivers\inc\at32f403a_407_spi.h
 .\objects\filter.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\filter.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
-.\objects\filter.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h

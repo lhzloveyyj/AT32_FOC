@@ -2,6 +2,7 @@
 #define __FOC_H
 
 #include "SVPWM.h"
+#include "filter.h"
 #include "at32f403a_407.h"              // Device header
 #include "mt6701.h"
 
@@ -39,7 +40,7 @@ extern uint16_t Motor2_AD_Value[2];
 extern PFOC_State PMotor_1;
 extern PFOC_State PMotor_2;
 							 
-void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm);	
+void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm, PLPF_Current  LPF_M);
 void angle_init(PFOC_State pFOC);
 void M1_adc_tigger(int time_pwm);
 void M2_adc_tigger(int time_pwm);
