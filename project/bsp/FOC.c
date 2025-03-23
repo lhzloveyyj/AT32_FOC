@@ -190,12 +190,12 @@ void angle_init(PFOC_State pFOC)
 //定时器触发ADC采样
 void M1_adc_tigger(int time_pwm)
 {
-	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm * 0.95f);
+	tmr_channel_value_set(TMR4, TMR_SELECT_CHANNEL_4, time_pwm * 0.9f);
 }
 
 void M2_adc_tigger(int time_pwm)
 {
-	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm * 0.95f);
+	tmr_channel_value_set(TMR2, TMR_SELECT_CHANNEL_3, time_pwm * 0.9f);
 }
 
 //获取电压偏置
@@ -319,7 +319,7 @@ void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 2.0f;
+	pFOC->Uq = 6.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
     

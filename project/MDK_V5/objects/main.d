@@ -40,3 +40,5 @@
 .\objects\main.o: ..\bsp\LOG.h
 .\objects\main.o: ..\bsp\CAN.h
 .\objects\main.o: ..\bsp\foc_config.h
+.\objects\main.o: ..\bsp\fast_sin.h
+.\objects\main.o: ..\bsp\usart_1.h

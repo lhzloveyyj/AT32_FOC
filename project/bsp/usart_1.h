@@ -10,5 +10,7 @@
 #define PRINT_UART_TX_GPIO               GPIOA
 #define PRINT_UART_TX_GPIO_CRM_CLK       CRM_GPIOA_PERIPH_CLOCK
 
+void USART1_SendFloatArray(float *data, uint8_t size);
+void USART1_SendSinWaveData(float *data);
 
 #endif

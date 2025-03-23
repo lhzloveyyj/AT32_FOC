@@ -13,7 +13,7 @@
 #define SQRT3_2			0.866f              //根号3/2
 #define _3PI_2			4.712388f           //PI/3
 #define EPSILON 		1e-6                // 精度阈值
-#define ALL_Duty 		6000            	//time2 PWM慢占空比
+#define ALL_Duty 		5000            	//time2 PWM慢占空比
 #define ADC_REF_VOLTAGE 3.3f                // ADC参考电压
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
