@@ -7,7 +7,7 @@ typedef struct {
 	float Ts ;
 	uint8_t sector;
 	float Ta, Tb, Tc;
-	float ua, ub, uc;
+	float u1, u2, u3;
 	float t1, t2, t3, t4, t5, t6, t7;
 	float sum, k_svpwm;
 	

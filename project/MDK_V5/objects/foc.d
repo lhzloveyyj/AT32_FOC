@@ -31,3 +31,4 @@
 .\objects\foc.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\foc.o: ..\bsp\PID.h
 .\objects\foc.o: ..\bsp\foc_config.h
+.\objects\foc.o: ..\bsp\filter.h

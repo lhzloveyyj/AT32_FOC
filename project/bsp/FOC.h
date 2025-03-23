@@ -18,7 +18,7 @@ typedef struct {
 	
     float Ualpha, Ubeta; 	
     float Ialpha, Ibeta; 	
-    float Ia, Ib; 			
+    float Ia, Ib, Ic; 			
     float Ua, Ub, Uc; 		
     float Uq, Ud; 			
     float Iq, Id; 			

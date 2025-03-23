@@ -21,6 +21,7 @@ pwm4 - time2_ch1 - Uc - Ic
 #include "PID.h"
 #include "foc_config.h"
 #include "SVpwm.h"
+#include "filter.h"
                                             
 uint16_t Motor1_AD_Value[2] = {0};
 uint16_t Motor2_AD_Value[2] = {0};
@@ -60,7 +61,7 @@ FOC_State Motor_1 = {
     },
     .Ualpha = 0.0f, .Ubeta = 0.0f, 	
     .Ialpha = 0.0f, .Ibeta = 0.0f, 	
-    .Ia = 0.0f, .Ib = 0.0f, 			
+    .Ia = 0.0f, .Ib = 0.0f, .Ic = 0.0f,			
     .Ua = 0.0f, .Ub = 0.0f, .Uc = 0.0f, 		
     .Uq = 0.0f, .Ud = 0.0f, 			
     .Iq = 0.0f, .Id = 0.0f, 			
@@ -86,7 +87,7 @@ FOC_State Motor_2 = {
     },
     .Ualpha = 0.0f, .Ubeta = 0.0f, 	
     .Ialpha = 0.0f, .Ibeta = 0.0f, 	
-    .Ia = 0.0f, .Ib = 0.0f, 			
+    .Ia = 0.0f, .Ib = 0.0f, .Ic = 0.0f,			
     .Ua = 0.0f, .Ub = 0.0f, .Uc = 0.0f, 		
     .Uq = 0.0f, .Ud = 0.0f, 			
     .Iq = 0.0f, .Id = 0.0f, 			
@@ -268,7 +269,7 @@ static void clarke_transform(PFOC_State pFOC) {
 	pFOC->Ib = -pFOC->Ib;
 	
     pFOC->Ialpha = pFOC->Ia;
-    pFOC->Ibeta = (1 / SQRT3) * (pFOC->Ia + 2 * pFOC->Ib);
+    pFOC->Ibeta = (pFOC->Ia + 2 * pFOC->Ib) / SQRT3;
 }
 
 // Park 变换
@@ -310,7 +311,7 @@ void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 	
 	pFOC->Ia = (pFOC->current.ad_A - pFOC->current.voltage_a_offset)/4096.0f * ADC_REF_VOLTAGE * GAIN;
 	pFOC->Ib = (pFOC->current.ad_B - pFOC->current.voltage_a_offset)/4096.0f * ADC_REF_VOLTAGE * GAIN;
-	pFOC->Ia = 0 - pFOC->Ia - pFOC->Ib;
+	pFOC->Ic = 0 - pFOC->Ia - pFOC->Ib;
 	
 	clarke_transform(pFOC) ;
 	park_transform(pFOC);
@@ -319,7 +320,7 @@ void FocContorl(PFOC_State pFOC, PSVpwm_State PSVpwm)
 	pFOC->Uq = PI_Compute(&pi_Id, 0.0f, pFOC->Iq);
 	
 	pFOC->Ud = 0.0f;
-	pFOC->Uq = 4.0f;
+	pFOC->Uq = 2.0f;
 	//逆park变换
 	inv_park_transform(pFOC);
     
