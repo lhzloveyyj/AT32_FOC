@@ -14,6 +14,24 @@ typedef struct {
     uint8_t  Mflag;
 } Current_State;
 
+/*
+增量式PI调节
+*/
+struct PI_Struct
+{
+    /* data */
+    float kp;
+    float ki;
+    float kd;
+
+    float pre;
+    float tar;
+    float bias;
+    float lastBias;
+    float out;
+    float outMax;
+};
+
 typedef struct {
 	Current_State current;
 	
@@ -27,6 +45,11 @@ typedef struct {
     float elec_angle;       
     float corr_angle;       
     float zero; 			
+	
+	struct PI_Struct idPID;
+    struct PI_Struct iqPID;
+	float tariq;
+	float tarid;
 	
 	float (*Get_mechanical_angle)(MT6701_t *encoder);
 	void (*SetPWM)(float pwm_a, float pwm_b, float pwm_c); 
@@ -45,5 +68,8 @@ void angle_init(PFOC_State pFOC);
 void M1_adc_tigger(int time_pwm);
 void M2_adc_tigger(int time_pwm);
 void first_get(PFOC_State pFOC);
+
+void SetCurrentPIDTar(PFOC_State pFOC,float tarid,float tariq);
+void SetCurrentPIDParams(PFOC_State pFOC,float kp,float ki,float kd,float outMax);
 
 #endif

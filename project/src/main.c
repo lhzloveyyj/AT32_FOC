@@ -231,6 +231,12 @@ int main(void)
   LPF_Init(PM1_LPF);
   LPF_Init(PM2_LPF);
   
+  //
+  SetCurrentPIDTar(PMotor_1, 0.0f, 45.0f);
+  SetCurrentPIDParams(PMotor_1, 0.015f, 0.015f, 0.0f, 6.0f);
+  SetCurrentPIDTar(PMotor_2, 0.0f, 0.0f);
+  SetCurrentPIDParams(PMotor_2, 0.0f, 0.01f, 0.0f, 6.0f);
+  
   //SPI1_DMA
   dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
   //SPI2_DMA
@@ -256,7 +262,7 @@ int main(void)
 	  //float Tabc[3] = {PSVpwm_1->Ta,PSVpwm_1->Tb,PSVpwm_1->Tc};
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
-	  float Iqd[2] = {PMotor_2->Iq, PMotor_2->Id};
+	  float Iqd[2] = {PMotor_1->Id, PMotor_1->Iq};
 	  USART1_SendFloatArray(Iqd,2);
 	  
 	  //SVPWM	sector,Ta,Tb,Tc
