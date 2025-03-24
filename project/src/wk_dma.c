@@ -284,6 +284,37 @@ void wk_dma1_channel7_init(void)
 }
 
 /**
+  * @brief  init dma2 channel1 for "usart1_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma2_channel1_init(void)
+{
+  /* add user code begin dma2_channel1 0 */
+
+  /* add user code end dma2_channel1 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA2_CHANNEL1);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_MEDIUM;
+  dma_init_struct.loop_mode_enable = TRUE;
+  dma_init(DMA2_CHANNEL1, &dma_init_struct);
+
+  /* flexible function enable */
+  dma_flexible_config(DMA2, FLEX_CHANNEL1, DMA_FLEXIBLE_UART1_RX);
+  /* add user code begin dma2_channel1 1 */
+
+  /* add user code end dma2_channel1 1 */
+}
+
+/**
   * @brief  config dma channel transfer parameter
   * @param  dmax_channely: DMAx_CHANNELy
   * @param  peripheral_base_addr: peripheral address.

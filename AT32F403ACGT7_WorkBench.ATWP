@@ -183,6 +183,11 @@
             <ParametersSub name="Instance" value="DMA1_Channel6"/>
             <ParametersSub name="Priority" value="DMA_PRIORITY_VERY_HIGH"/>
         </SPI2_TX>
+        <USART1_RX>
+            <ParametersSub name="Instance" value="DMA2_Channel1"/>
+            <ParametersSub name="Mode" value="TRUE"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_MEDIUM"/>
+        </USART1_RX>
         <USART1_TX>
             <ParametersSub name="Instance" value="DMA1_Channel7"/>
             <ParametersSub name="Mode" value="TRUE"/>
@@ -191,6 +196,7 @@
     </DMA>
     <NVIC>
         <PriorityGroup>NVIC_PRIORITY_GROUP_2</PriorityGroup>
+        <ShowType>1</ShowType>
         <SysTick_Handler>1;0;0;0;0</SysTick_Handler>
         <FLASH_IRQHandler>0;0;0;0;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;0;0;0;0</CRM_IRQHandler>
@@ -210,10 +216,11 @@
         <TMR4_GLOBAL_IRQHandler>0;0;0;0;0</TMR4_GLOBAL_IRQHandler>
         <SPI1_IRQHandler>0;0;0;0;0</SPI1_IRQHandler>
         <SPI2_I2S2EXT_IRQHandler>0;0;0;0;0</SPI2_I2S2EXT_IRQHandler>
-        <USART1_IRQHandler>0;1;0;0;0</USART1_IRQHandler>
+        <USART1_IRQHandler>1;1;0;0;0</USART1_IRQHandler>
         <USART3_IRQHandler>0;0;0;0;0</USART3_IRQHandler>
         <ADC3_IRQHandler>0;1;0;0;0</ADC3_IRQHandler>
         <TMR5_GLOBAL_IRQHandler>1;0;0;0;0</TMR5_GLOBAL_IRQHandler>
+        <DMA2_Channel1_IRQHandler>0;1;0;0;0</DMA2_Channel1_IRQHandler>
     </NVIC>
     <ClockConfiguration>
         <rtcsel>0</rtcsel>

@@ -178,6 +178,16 @@ int main(void)
                         DMA1_CHANNEL7_BUFFER_SIZE);
   dma_channel_enable(DMA1_CHANNEL7, TRUE);
 
+  /* init dma2 channel1 */
+  wk_dma2_channel1_init();
+  /* config dma channel transfer parameter */
+  /* user need to modify define values DMAx_CHANNELy_XXX_BASE_ADDR and DMAx_CHANNELy_BUFFER_SIZE in at32xxx_wk_config.h */
+  wk_dma_channel_config(DMA2_CHANNEL1, 
+                        (uint32_t)&USART1->dt, 
+                        DMA2_CHANNEL1_MEMORY_BASE_ADDR, 
+                        DMA2_CHANNEL1_BUFFER_SIZE);
+  dma_channel_enable(DMA2_CHANNEL1, TRUE);
+
   /* init usart1 function. */
   wk_usart1_init();
 
@@ -214,8 +224,10 @@ int main(void)
   /* add user code begin 2 */
   delay_init();
   
-  //USART1_DMA
+  //USART1_TX_DMA
   dma_interrupt_enable(DMA1_CHANNEL7, DMA_FDT_INT, TRUE);
+  //USART_1_RX
+  usart_interrupt_enable(USART1, USART_IDLE_INT, TRUE);
   
   Product_Overview();
   
@@ -251,6 +263,7 @@ int main(void)
   dma_interrupt_enable(DMA1_CHANNEL2, DMA_FDT_INT, TRUE);
   //ADC3_DMA
   dma_interrupt_enable(DMA1_CHANNEL1, DMA_FDT_INT, TRUE);
+
   /* add user code end 2 */
 
   while(1)
@@ -263,7 +276,8 @@ int main(void)
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
 	  float Iqd[2] = {PMotor_1->Id, PMotor_1->Iq};
-	  USART1_SendFloatArray(Iqd,2);
+	  //USART1_SendFloatArray(Iqd,2);
+	  SetCurrentPIDTar(PMotor_1, pid_params.Id, pid_params.Iq);
 	  
 	  //SVPWM	sector,Ta,Tb,Tc
 	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);

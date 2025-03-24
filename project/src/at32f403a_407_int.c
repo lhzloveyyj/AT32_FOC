@@ -385,6 +385,25 @@ void CAN1_SE_IRQHandler(void)
 }
 
 /**
+  * @brief  this function handles USART1 handler.
+  * @param  none
+  * @retval none
+  */
+void USART1_IRQHandler(void)
+{
+  /* add user code begin USART1_IRQ 0 */
+	if(usart_interrupt_flag_get(USART1, USART_IDLEF_FLAG) != RESET)
+	{
+		usart_flag_clear(USART1, USART_IDLEF_FLAG);
+		usartdmarecv(uart1_rx_buffer, RX_BUFFER_SIZE);
+	}
+  /* add user code end USART1_IRQ 0 */
+  /* add user code begin USART1_IRQ 1 */
+
+  /* add user code end USART1_IRQ 1 */
+}
+
+/**
   * @brief  this function handles TMR5 handler.
   * @param  none
   * @retval none

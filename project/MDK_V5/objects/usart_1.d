@@ -24,3 +24,5 @@
 .\objects\usart_1.o: ..\..\libraries\drivers\inc\at32f403a_407_tmr.h
 .\objects\usart_1.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
 .\objects\usart_1.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\usart_1.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\usart_1.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdlib.h

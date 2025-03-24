@@ -74,6 +74,7 @@ void DMA1_Channel5_IRQHandler(void);
 void DMA1_Channel7_IRQHandler(void);
 void USBFS_L_CAN1_RX0_IRQHandler(void);
 void CAN1_SE_IRQHandler(void);
+void USART1_IRQHandler(void);
 void TMR5_GLOBAL_IRQHandler(void);
 /* add user code begin exported functions */
 

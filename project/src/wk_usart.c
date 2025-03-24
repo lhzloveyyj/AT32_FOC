@@ -73,7 +73,17 @@ void wk_usart1_init(void)
 
   usart_dma_transmitter_enable(USART1, TRUE);
 
+  usart_dma_receiver_enable(USART1, TRUE);
+
   usart_hardware_flow_control_set(USART1, USART_HARDWARE_FLOW_NONE);
+
+  /**
+   * Users need to configure USART1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding USART1 interrupt.
+   *     --usart_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f403a_407_int.c file.
+   *     --void USART1_IRQHandler(void)
+   */
 
   /* add user code begin usart1_init 2 */
 

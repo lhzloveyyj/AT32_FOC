@@ -156,6 +156,9 @@ void wk_periph_clock_config(void)
   /* enable dma1 periph clock */
   crm_periph_clock_enable(CRM_DMA1_PERIPH_CLOCK, TRUE);
 
+  /* enable dma2 periph clock */
+  crm_periph_clock_enable(CRM_DMA2_PERIPH_CLOCK, TRUE);
+
   /* enable iomux periph clock */
   crm_periph_clock_enable(CRM_IOMUX_PERIPH_CLOCK, TRUE);
 
@@ -222,6 +225,7 @@ void wk_nvic_config(void)
   nvic_irq_enable(DMA1_Channel7_IRQn, 1, 0);
   nvic_irq_enable(USBFS_L_CAN1_RX0_IRQn, 2, 0);
   nvic_irq_enable(CAN1_SE_IRQn, 2, 0);
+  nvic_irq_enable(USART1_IRQn, 1, 0);
   nvic_irq_enable(TMR5_GLOBAL_IRQn, 0, 0);
 }
 
