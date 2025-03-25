@@ -243,11 +243,11 @@ int main(void)
   LPF_Init(PM1_LPF);
   LPF_Init(PM2_LPF);
   
-  //
-  SetCurrentPIDTar(PMotor_1, 0.0f, 45.0f);
-  SetCurrentPIDParams(PMotor_1, 0.015f, 0.015f, 0.0f, 6.0f);
+  //初始化PID参数
+  SetCurrentPIDTar(PMotor_1, 0.0f, 0.0f);
+  SetCurrentPIDParams(PMotor_1, 0.01f, 0.01f, 0.0f, 6.0f);
   SetCurrentPIDTar(PMotor_2, 0.0f, 0.0f);
-  SetCurrentPIDParams(PMotor_2, 0.0f, 0.01f, 0.0f, 6.0f);
+  SetCurrentPIDParams(PMotor_2, 0.01f, 0.01f, 0.0f, 6.0f);
   
   //SPI1_DMA
   dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
@@ -269,6 +269,7 @@ int main(void)
   while(1)
   {
     /* add user code begin 3 */
+
 	  //can1_transmit_data_sid();
 	  //delay_ms(300);
 	  #if Motor_debug == 1
@@ -276,32 +277,22 @@ int main(void)
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
 	  float Iqd[2] = {PMotor_1->Id, PMotor_1->Iq};
-	  //USART1_SendFloatArray(Iqd,2);
-	  SetCurrentPIDTar(PMotor_1, pid_params.Id, pid_params.Iq);
+	  USART1_SendFloatArray(Iqd,2);
+	  if(pid_params_1.set_flag == 0){
+		SetCurrentPIDTar(PMotor_1, pid_params_1.Id, pid_params_1.Iq);
+		  pid_params_1.set_flag = 1;
+	  }
 	  
-	  //SVPWM	sector,Ta,Tb,Tc
-	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PSVpwm_1->Ta, PSVpwm_1->Tb, PSVpwm_1->Tc);
-	  //AD原始数据
-	  //printf("motor 1 :ADC:	%d,%d\r\n",Motor1_AD_Value[0],Motor1_AD_Value[1]);
-	  //三相电流
-	  //printf("motor 1 :	%lf,%lf,%lf\r\n", PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib);
-	  //clarke 变换后的 Ialpha	Ibeta
-	  //printf("motor 1 :	%lf,%lf\r\n", PMotor_1->Ialpha, PMotor_1->Ibeta);
-	  //Park 变换后的 Iq	Id
-	  //printf("motor 1 Iq Id:	%lf,%lf\r\n", PMotor_1->Iq, PMotor_1->Id);
-	  #elif Motor_debug == 2
-	  //SVPWM	sector,Ta,Tb,Tc
-	  //printf("motor 2 :	%d,%lf,%lf,%lf\r\n",PSVpwm_2->sector, PSVpwm_2->Ta, PSVpwm_2->Tb, PSVpwm_2->Tc);
-	  //AD原始数据
-	  //printf("motor 2 :ADC:	%d,%d\r\n",Motor2_AD_Value[0],Motor2_AD_Value[1]);
-	  //三相电流
-	  //printf("motor 2 :	%lf,%lf,%lf\r\n", PMotor_2->Ia, PMotor_2->Ib, 1 - PMotor_2->Ia - PMotor_2->Ib);
-	  //clarke 变换后的 Ialpha	Ibeta
-	  //printf("motor 2 :	%lf,%lf\r\n", PMotor_2->Ialpha, PMotor_2->Ibeta);
-	  //Park 变换后的 Ialpha	Ibeta
-	  //printf("motor 2 Iq Id:	%lf,%lf\r\n", PMotor_2->Iq, PMotor_2->Id);
+	  if(pid_params_2.set_flag == 0){
+		SetCurrentPIDTar(PMotor_2, pid_params_2.Id, pid_params_2.Iq);
+		  pid_params_2.set_flag = 1;
+	  }
 	  
-	  
+	  if(rx1_flag == 1){
+		parse_and_set_pid((const char *)uart1_rx_buffer, &pid_params_1, &pid_params_2);
+		  rx1_flag = 0;
+	  }
+		
 	  
 	  #endif
     /* add user code end 3 */

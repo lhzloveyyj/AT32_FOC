@@ -303,7 +303,7 @@ void wk_dma2_channel1_init(void)
   dma_init_struct.memory_inc_enable = TRUE;
   dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
   dma_init_struct.peripheral_inc_enable = FALSE;
-  dma_init_struct.priority = DMA_PRIORITY_MEDIUM;
+  dma_init_struct.priority = DMA_PRIORITY_HIGH;
   dma_init_struct.loop_mode_enable = TRUE;
   dma_init(DMA2_CHANNEL1, &dma_init_struct);
 

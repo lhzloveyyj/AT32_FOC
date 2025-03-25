@@ -22,19 +22,23 @@ typedef struct {
     float KD;
 	float Iq;  // 新增的 LQ 参数
     float Id;  // 新增的 Ld 参数
+	uint8_t set_flag;
 } PID_Params;
 
-extern PID_Params pid_params;
+extern PID_Params pid_params_1;
+extern PID_Params pid_params_2;
 
 void USART1_SendFloatArray(float *data, uint8_t size);
 void USART1_SendSinWaveData(float *data);
 void ProcessCommand(char *cmd);
 void usartdmarecv(u8 *data,u16 len);
+void parse_and_set_pid(const char *input, PID_Params *pid_params_1, PID_Params *pid_params_2);
 
 extern uint8_t uart1_tx_buffer[USART1_TX_BUFFER_SIZE] ;
 extern volatile uint8_t usart1_tx_dma_status;
 
 extern uint8_t uart1_rx_buffer[RX_BUFFER_SIZE] ;
 extern volatile uint8_t usart1_rx_dma_status;
+extern volatile uint8_t rx1_flag;
 
 #endif

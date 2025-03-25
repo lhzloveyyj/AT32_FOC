@@ -394,8 +394,9 @@ void USART1_IRQHandler(void)
   /* add user code begin USART1_IRQ 0 */
 	if(usart_interrupt_flag_get(USART1, USART_IDLEF_FLAG) != RESET)
 	{
-		usart_flag_clear(USART1, USART_IDLEF_FLAG);
 		usartdmarecv(uart1_rx_buffer, RX_BUFFER_SIZE);
+		rx1_flag = 1;
+		usart_flag_clear(USART1, USART_IDLEF_FLAG);
 	}
   /* add user code end USART1_IRQ 0 */
   /* add user code begin USART1_IRQ 1 */
@@ -413,7 +414,7 @@ void TMR5_GLOBAL_IRQHandler(void)
   /* add user code begin TMR5_GLOBAL_IRQ 0 */
 	static int t;
 	t++;
-	if(t==1000)
+	if(t==100)
 	{
 		at32_led_toggle(LED0);
 		t=0;

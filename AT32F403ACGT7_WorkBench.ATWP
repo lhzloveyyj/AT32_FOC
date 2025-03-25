@@ -186,7 +186,7 @@
         <USART1_RX>
             <ParametersSub name="Instance" value="DMA2_Channel1"/>
             <ParametersSub name="Mode" value="TRUE"/>
-            <ParametersSub name="Priority" value="DMA_PRIORITY_MEDIUM"/>
+            <ParametersSub name="Priority" value="DMA_PRIORITY_HIGH"/>
         </USART1_RX>
         <USART1_TX>
             <ParametersSub name="Instance" value="DMA1_Channel7"/>

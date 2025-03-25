@@ -9,9 +9,12 @@ volatile uint8_t usart1_tx_dma_status = 0;
 uint8_t uart1_rx_buffer[RX_BUFFER_SIZE] = {0};
 volatile uint8_t usart1_rx_dma_status = 0;
 
-PID_Params pid_params = {0.0f, 0.0f, 0.0f};
+volatile uint8_t rx1_flag = 0;
 
-void parse_and_set_pid(const char *input, PID_Params *pid_params);
+PID_Params pid_params_1 = {0.0f, 0.0f, 0.0f};
+PID_Params pid_params_2 = {0.0f, 0.0f, 0.0f};
+
+void parse_and_set_pid(const char *input, PID_Params *pid_params_1, PID_Params *pid_params_2);
 
 int fputc(int ch, FILE *f)
 {
@@ -53,18 +56,15 @@ void usartdmarecv(u8 *data,u16 len)
 {
  
     dma_flag_clear(DMA2_FDT1_FLAG);                 //清标志  
+	usart_dma_receiver_enable(USART1,FALSE);        //关闭通道5
     dma_channel_enable(DMA2_CHANNEL1, FALSE);       //关闭USART1 DMA 接收
-    usart_dma_receiver_enable(USART1,FALSE);        //关闭通道5
     DMA2_CHANNEL1->dtcnt=RX_BUFFER_SIZE;                       //接收的数据长度
     DMA2_CHANNEL1->maddr=(uint32_t)data; //存放数据buf地址
     usart_dma_receiver_enable(USART1,TRUE);         //开启USART1 DMA 接收
     dma_channel_enable(DMA2_CHANNEL1, TRUE);        //开启通道5（开始接收）	
-	//printf("%s",data);
-	parse_and_set_pid(data, &pid_params);
 }
 
-// 根据不同名称解析并设置相应的 PID 参数
-void parse_and_set_pid(const char *input, PID_Params *pid_params) {
+void parse_and_set_pid(const char *input, PID_Params *pid_params_1, PID_Params *pid_params_2) {
     // 查找名称部分（以 ':' 分隔）
     const char *colon_pos = strchr(input, ':');
     if (colon_pos == NULL) {
@@ -78,26 +78,43 @@ void parse_and_set_pid(const char *input, PID_Params *pid_params) {
     strncpy(name, input, name_len);
     name[name_len] = '\0';
 
-    // 提取浮点数值部分（即 ':' 后的内容）
-    float value = strtof(colon_pos + 1, NULL);
-
-    // 根据名称设置不同的 PID 参数
-    if (strcmp(name, "KP") == 0) {
-        pid_params->KP = value;
-        printf("set KP: %.2f\n", pid_params->KP);
-    } else if (strcmp(name, "KI") == 0) {
-        pid_params->KI = value;
-        printf("set KI: %.2f\n", pid_params->KI);
-    } else if (strcmp(name, "KD") == 0) {
-        pid_params->KD = value;
-        printf("set KD: %.2f\n", pid_params->KD);
-    } else if (strcmp(name, "Iq") == 0) {
-        pid_params->Iq = value;
-        printf("set LQ: %.2f\n", pid_params->Iq);
-    } else if (strcmp(name, "Id") == 0) {
-        pid_params->Id = value;
-        printf("set Ld: %.2f\n", pid_params->Id);
+    // 解析组号
+    PID_Params *target_pid = NULL;
+    if (strstr(name, "_1") != NULL) {
+        target_pid = pid_params_1;
+    } else if (strstr(name, "_2") != NULL) {
+        target_pid = pid_params_2;
     } else {
-        printf("UNK_name: %s\n", name);
+        printf("未知的 PID 组: %s\n", name);
+        return;
+    }
+
+    // 去掉 "_1" 或 "_2" 后的参数名
+    name[strlen(name) - 2] = '\0';
+
+    // 解析数值部分
+    if (strcmp(name, "SET") == 0) {
+        // 解析整数值
+        target_pid->set_flag = (uint8_t)strtol(colon_pos + 1, NULL, 10);
+        printf("set %s: %d\n", input, target_pid->set_flag);
+    } else {
+        // 解析浮点数
+        float value = strtof(colon_pos + 1, NULL);
+
+        if (strcmp(name, "KP") == 0) {
+            target_pid->KP = value;
+        } else if (strcmp(name, "KI") == 0) {
+            target_pid->KI = value;
+        } else if (strcmp(name, "KD") == 0) {
+            target_pid->KD = value;
+        } else if (strcmp(name, "Iq") == 0) {
+            target_pid->Iq = value;
+        } else if (strcmp(name, "Id") == 0) {
+            target_pid->Id = value;
+        } else {
+            printf("未知的参数: %s\n", name);
+            return;
+        }
+
     }
 }
