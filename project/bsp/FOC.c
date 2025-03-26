@@ -75,6 +75,9 @@ FOC_State Motor_1 = {
 	.idPID = {0},                           
     .iqPID = {0},
 	
+	.speed_last_angle = 0.0f,
+	.speed = 0.0f,
+	
     .Get_mechanical_angle = MT6701_GetAngle ,
 	.SetPWM = setpwm1_channel	,
 };
@@ -101,7 +104,13 @@ FOC_State Motor_2 = {
     .mechanical_angle = 0.0f, 
     .elec_angle = 0.0f,       
     .corr_angle = 0.0f,       
-    .zero = 0.0f, 			
+    .zero = 0.0f, 	
+
+	.idPID = {0},                           
+    .iqPID = {0},
+	
+	.speed_last_angle = 0.0f,
+	.speed = 0.0f,	
 
     .Get_mechanical_angle = MT6701_GetAngle ,
 	.SetPWM = setpwm2_channel

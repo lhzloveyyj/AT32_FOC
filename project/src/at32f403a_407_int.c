@@ -35,6 +35,7 @@
 #include "foc.h"
 #include "filter.h"
 #include "usart_1.h"
+#include "speed_control.h"
 #include <stdio.h>
 
 /* add user code end private includes */
@@ -279,6 +280,7 @@ void DMA1_Channel3_IRQHandler(void)
 	if(dma_flag_get(DMA1_FDT3_FLAG) != RESET)
 	 {
 		dma_flag_clear(DMA1_FDT3_FLAG);
+	
 		 
 		dma_channel_enable(DMA1_CHANNEL4, FALSE);
 		dma_channel_enable(DMA1_CHANNEL3, FALSE);
@@ -419,6 +421,7 @@ void TMR5_GLOBAL_IRQHandler(void)
 		at32_led_toggle(LED0);
 		t=0;
 	}
+	CalculateSpeed(PMotor_1, 0.001);
 	
 	
 	tmr_flag_clear(TMR5, TMR_OVF_FLAG);

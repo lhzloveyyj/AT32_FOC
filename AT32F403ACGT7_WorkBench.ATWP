@@ -219,7 +219,7 @@
         <USART1_IRQHandler>1;1;0;0;0</USART1_IRQHandler>
         <USART3_IRQHandler>0;0;0;0;0</USART3_IRQHandler>
         <ADC3_IRQHandler>0;1;0;0;0</ADC3_IRQHandler>
-        <TMR5_GLOBAL_IRQHandler>1;0;0;0;0</TMR5_GLOBAL_IRQHandler>
+        <TMR5_GLOBAL_IRQHandler>1;1;0;0;0</TMR5_GLOBAL_IRQHandler>
         <DMA2_Channel1_IRQHandler>0;1;0;0;0</DMA2_Channel1_IRQHandler>
     </NVIC>
     <ClockConfiguration>

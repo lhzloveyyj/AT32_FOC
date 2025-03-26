@@ -273,11 +273,14 @@ int main(void)
 	  //can1_transmit_data_sid();
 	  //delay_ms(300);
 	  #if Motor_debug == 1
+	  float speed_angle[3] = {PMotor_1->mechanical_angle , PMotor_1->speed_last_angle, PMotor_1->speed};
 	  //float Tabc[3] = {PSVpwm_1->Ta,PSVpwm_1->Tb,PSVpwm_1->Tc};
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
 	  float Iqd[2] = {PMotor_1->Id, PMotor_1->Iq};
-	  USART1_SendFloatArray(Iqd,2);
+	  float speed[1] = {PMotor_1->speed};
+	  
+	  USART1_SendFloatArray(speed_angle,3);
 	  if(pid_params_1.set_flag == 0){
 		SetCurrentPIDTar(PMotor_1, pid_params_1.Id, pid_params_1.Iq);
 		  pid_params_1.set_flag = 1;

@@ -339,7 +339,7 @@
               <MiscControls>--no-multibyte-chars</MiscControls>
               <Define>AT32F403ACGT7,USE_STDPERIPH_DRIVER,AT_START_F403A_V1</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\libraries\drivers\inc;..\..\libraries\cmsis\cm4\core_support;..\..\libraries\cmsis\cm4\device_support;..\inc;..\bsp</IncludePath>
+              <IncludePath>..\..\libraries\drivers\inc;..\..\libraries\cmsis\cm4\core_support;..\..\libraries\cmsis\cm4\device_support;..\inc;..\bsp;..\bsp\speed_control</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -577,6 +577,11 @@
               <FileName>SVPWM.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\SVPWM.c</FilePath>
+            </File>
+            <File>
+              <FileName>speed_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\speed_control\speed_control.c</FilePath>
             </File>
           </Files>
         </Group>

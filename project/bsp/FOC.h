@@ -51,6 +51,9 @@ typedef struct {
 	float tariq;
 	float tarid;
 	
+	float speed_last_angle;
+	float speed;
+	
 	float (*Get_mechanical_angle)(MT6701_t *encoder);
 	void (*SetPWM)(float pwm_a, float pwm_b, float pwm_c); 
 } FOC_State;

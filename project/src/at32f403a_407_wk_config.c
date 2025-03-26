@@ -226,7 +226,7 @@ void wk_nvic_config(void)
   nvic_irq_enable(USBFS_L_CAN1_RX0_IRQn, 2, 0);
   nvic_irq_enable(CAN1_SE_IRQn, 2, 0);
   nvic_irq_enable(USART1_IRQn, 1, 0);
-  nvic_irq_enable(TMR5_GLOBAL_IRQn, 0, 0);
+  nvic_irq_enable(TMR5_GLOBAL_IRQn, 1, 0);
 }
 
 /* add user code begin 1 */
