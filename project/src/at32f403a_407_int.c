@@ -421,7 +421,8 @@ void TMR5_GLOBAL_IRQHandler(void)
 		at32_led_toggle(LED0);
 		t=0;
 	}
-	CalculateSpeed(PMotor_1, 0.001);
+	CalculateSpeed(PMotor_1, 0.001,PM1_LPF_Speed);
+	CalculateSpeed(PMotor_2, 0.001,PM2_LPF_Speed);
 	
 	
 	tmr_flag_clear(TMR5, TMR_OVF_FLAG);

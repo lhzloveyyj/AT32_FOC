@@ -59,4 +59,41 @@ void LPF_Init(PLPF_Current Pcurrent);
  */
 void LPF_Update(PLPF_Current filter, float Id_input, float Iq_input, float *Id_out, float *Iq_out);
 
+
+
+/**
+ * @brief 速度滤波结构体
+ * 
+ * 该结构体用于对速度信号进行低通滤波
+ */
+typedef struct {
+    LPF_Filter speed; ///< 速度滤波器
+} LPF_Speed;
+
+typedef LPF_Speed *PLPF_Speed;
+
+// M1（第一组电机）的速度滤波器
+extern PLPF_Speed PM1_LPF_Speed;
+
+// M2（第二组电机）的速度滤波器
+extern PLPF_Speed PM2_LPF_Speed;
+
+/**
+ * @brief 初始化速度滤波器
+ * 
+ * 该函数会计算滤波系数，并初始化速度滤波参数。
+ * 
+ * @param Pspeed 指向需要初始化的 LPF_Speed 结构体
+ */
+void LPF_Speed_Init(PLPF_Speed Pspeed);
+
+/**
+ * @brief 低通滤波计算（用于速度信号）
+ * 
+ * @param filter  指向 LPF_Speed 结构体的指针
+ * @param speed_input  需要滤波的速度输入
+ * @return 滤波后的速度
+ */
+void LPF_Speed_Update(PLPF_Speed filter, float speed_input, float *speed_out);
+
 #endif // __FILTER_H

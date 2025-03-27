@@ -239,9 +239,13 @@ int main(void)
   first_get(PMotor_1);
   first_get(PMotor_2);
   
-  //低通滤波器初始化
+  //电流低通滤波器初始化
   LPF_Init(PM1_LPF);
   LPF_Init(PM2_LPF);
+  
+  //速度低通滤波器初始化
+  LPF_Speed_Init(PM1_LPF_Speed);
+  LPF_Speed_Init(PM2_LPF_Speed);
   
   //初始化PID参数
   SetCurrentPIDTar(PMotor_1, 0.0f, 0.0f);
@@ -273,14 +277,13 @@ int main(void)
 	  //can1_transmit_data_sid();
 	  //delay_ms(300);
 	  #if Motor_debug == 1
-	  float speed_angle[3] = {PMotor_1->mechanical_angle , PMotor_1->speed_last_angle, PMotor_1->speed};
 	  //float Tabc[3] = {PSVpwm_1->Ta,PSVpwm_1->Tb,PSVpwm_1->Tc};
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
 	  float Iqd[2] = {PMotor_1->Id, PMotor_1->Iq};
 	  float speed[1] = {PMotor_1->speed};
 	  
-	  USART1_SendFloatArray(speed_angle,3);
+	  USART1_SendFloatArray(speed,1);
 	  if(pid_params_1.set_flag == 0){
 		SetCurrentPIDTar(PMotor_1, pid_params_1.Id, pid_params_1.Iq);
 		  pid_params_1.set_flag = 1;

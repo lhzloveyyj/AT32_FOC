@@ -46,3 +46,43 @@ void LPF_Update(PLPF_Current filter, float Id_input, float Iq_input, float *Id_o
     filter->Iq.filtered += filter->Iq.alpha * (Iq_input - filter->Iq.filtered);
     *Iq_out = filter->Iq.filtered;
 }
+
+
+// M1（第一组电机）的速度滤波器实例
+LPF_Speed M1_LPF_Speed;
+PLPF_Speed PM1_LPF_Speed = &M1_LPF_Speed;
+
+// M2（第二组电机）的速度滤波器实例
+LPF_Speed M2_LPF_Speed;
+PLPF_Speed PM2_LPF_Speed = &M2_LPF_Speed;
+
+/**
+ * @brief  初始化速度滤波器
+ * 
+ * 该函数会初始化速度的低通滤波参数。
+ * 
+ * @param Pspeed 指向需要初始化的 LPF_Speed 结构体
+ */
+void LPF_Speed_Init(PLPF_Speed Pspeed) {
+    float dt = 1.0f / SAMPLE_FREQ;  // 计算采样周期 (s)
+    float alpha = 1.0f / (1.0f + (1.0f / (2.0f * PI * dt * CUTOFF_FREQ))); // 计算滤波系数
+
+    // 初始化速度滤波器
+    Pspeed->speed.alpha = alpha;
+    Pspeed->speed.filtered = 0.0f;
+}
+
+
+/**
+ * @brief 低通滤波计算（用于速度信号）
+ * 
+ * @param filter 指向 LPF_Speed 结构体的指针
+ * @param speed_input 需要滤波的速度输入
+ * @param speed_out 指向存储滤波后速度的变量
+ */
+void LPF_Speed_Update(PLPF_Speed filter, float speed_input, float *speed_out)
+{
+    // 更新速度滤波
+    filter->speed.filtered += filter->speed.alpha * (speed_input - filter->speed.filtered);
+    *speed_out = filter->speed.filtered;
+}
