@@ -1,6 +1,6 @@
 Dependencies for Project 'AT32F403ACGT7_WorkBench', Target 'AT32F403ACGT7_WorkBench': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
-F (..\src\main.c)(0x67E54C69)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\src\main.c)(0x67E569A2)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\inc\at32f403a_407_wk_config.h)(0x67E41503)
 I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
@@ -37,13 +37,14 @@ I (..\inc\wk_gpio.h)(0x67E41503)
 I (..\inc\wk_system.h)(0x67E41503)
 I (..\bsp\delay.h)(0x67BC8662)
 I (..\bsp\mt6701.h)(0x67DED0FF)
-I (..\bsp\FOC.h)(0x67E40B34)
+I (..\bsp\FOC.h)(0x67E55326)
 I (..\bsp\SVPWM.h)(0x67DFD4FC)
 I (..\bsp\filter.h)(0x67E41782)
 I (..\bsp\LOG.h)(0x67D03130)
 I (..\bsp\CAN.h)(0x67DECDB4)
-I (..\bsp\foc_config.h)(0x67DFCB15)
+I (..\bsp\foc_config.h)(0x67E55DE8)
 I (..\bsp\fast_sin.h)(0x67BC8662)
+I (..\bsp\speed_control\speed_control.h)(0x67E563F8)
 F (..\src\at32f403a_407_wk_config.c)(0x67E41503)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\at32f403a_407_wk_config.o --omf_browse .\objects\at32f403a_407_wk_config.crf --depend .\objects\at32f403a_407_wk_config.d)
 I (..\inc\at32f403a_407_wk_config.h)(0x67E41503)
 I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdio.h)(0x60252374)
@@ -70,7 +71,7 @@ I (..\..\libraries\drivers\inc\at32f403a_407_spi.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
 I (..\bsp\usart_1.h)(0x67E2BE1A)
-F (..\src\at32f403a_407_int.c)(0x67E54ABE)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\at32f403a_407_int.o --omf_browse .\objects\at32f403a_407_int.crf --depend .\objects\at32f403a_407_int.d)
+F (..\src\at32f403a_407_int.c)(0x67E56816)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\at32f403a_407_int.o --omf_browse .\objects\at32f403a_407_int.crf --depend .\objects\at32f403a_407_int.d)
 I (..\inc\at32f403a_407_int.h)(0x67E41503)
 I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
 I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x67BC8662)
@@ -96,11 +97,11 @@ I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
 I (..\bsp\LED.h)(0x67BC8662)
 I (..\bsp\MT6701.h)(0x67DED0FF)
-I (..\bsp\foc.h)(0x67E40B34)
+I (..\bsp\foc.h)(0x67E55326)
 I (..\bsp\SVPWM.h)(0x67DFD4FC)
 I (..\bsp\filter.h)(0x67E41782)
 I (..\bsp\usart_1.h)(0x67E2BE1A)
-I (..\bsp\speed_control\speed_control.h)(0x67E418CD)
+I (..\bsp\speed_control\speed_control.h)(0x67E563F8)
 I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdio.h)(0x60252374)
 F (..\src\wk_system.c)(0x67E41503)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\wk_system.o --omf_browse .\objects\wk_system.crf --depend .\objects\wk_system.d)
 I (..\inc\wk_system.h)(0x67E41503)
@@ -717,7 +718,7 @@ I (..\..\libraries\drivers\inc\at32f403a_407_pwc.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_spi.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
-F (..\bsp\FOC.c)(0x67E40F52)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\foc.o --omf_browse .\objects\foc.crf --depend .\objects\foc.d)
+F (..\bsp\FOC.c)(0x67E55901)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\foc.o --omf_browse .\objects\foc.crf --depend .\objects\foc.d)
 I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
 I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x67BC8662)
 I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdint.h)(0x6025237E)
@@ -740,7 +741,7 @@ I (..\..\libraries\drivers\inc\at32f403a_407_pwc.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_spi.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
-I (..\bsp\foc.h)(0x67E40B34)
+I (..\bsp\foc.h)(0x67E55326)
 I (..\bsp\SVPWM.h)(0x67DFD4FC)
 I (..\bsp\filter.h)(0x67E41782)
 I (..\bsp\mt6701.h)(0x67DED0FF)
@@ -748,8 +749,8 @@ I (D:\downloads\MDK\keil5\ARM\ARMCC\include\math.h)(0x60252378)
 I (..\bsp\fast_sin.h)(0x67BC8662)
 I (..\bsp\delay.h)(0x67BC8662)
 I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\bsp\PID.h)(0x67C1E035)
-I (..\bsp\foc_config.h)(0x67DFCB15)
+I (..\bsp\current_control.h)(0x67E558B3)
+I (..\bsp\foc_config.h)(0x67E55DE8)
 F (..\bsp\led.c)(0x67BC8662)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\led.o --omf_browse .\objects\led.crf --depend .\objects\led.d)
 I (..\bsp\led.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_gpio.h)(0x67BC8662)
@@ -776,30 +777,6 @@ I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
 F (..\bsp\filter.c)(0x67E417EB)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\filter.o --omf_browse .\objects\filter.crf --depend .\objects\filter.d)
 I (..\bsp\filter.h)(0x67E41782)
-I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
-I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x67BC8662)
-I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdint.h)(0x6025237E)
-I (..\..\libraries\cmsis\cm4\core_support\cmsis_version.h)(0x67BC8662)
-I (..\..\libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x67BC8662)
-I (..\..\libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x67BC8662)
-I (..\..\libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x67BC8662)
-I (..\..\libraries\cmsis\cm4\device_support\system_at32f403a_407.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_def.h)(0x67BC8662)
-I (..\inc\at32f403a_407_conf.h)(0x67E41503)
-I (..\..\libraries\drivers\inc\at32f403a_407_adc.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_can.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_crm.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_debug.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_dma.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_flash.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_gpio.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_misc.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_pwc.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_spi.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
-I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
-F (..\bsp\PID.c)(0x67C1E161)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\pid.o --omf_browse .\objects\pid.crf --depend .\objects\pid.d)
-I (..\bsp\pid.h)(0x67C1E035)
 I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
 I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x67BC8662)
 I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdint.h)(0x6025237E)
@@ -896,10 +873,10 @@ I (..\..\libraries\drivers\inc\at32f403a_407_pwc.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_spi.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
-I (..\bsp\foc_config.h)(0x67DFCB15)
-F (..\bsp\speed_control\speed_control.c)(0x67E549C9)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\speed_control.o --omf_browse .\objects\speed_control.crf --depend .\objects\speed_control.d)
-I (..\bsp\speed_control\speed_control.h)(0x67E418CD)
-I (..\bsp\foc.h)(0x67E40B34)
+I (..\bsp\foc_config.h)(0x67E55DE8)
+F (..\bsp\speed_control\speed_control.c)(0x67E567C8)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\speed_control.o --omf_browse .\objects\speed_control.crf --depend .\objects\speed_control.d)
+I (..\bsp\speed_control\speed_control.h)(0x67E563F8)
+I (..\bsp\foc.h)(0x67E55326)
 I (..\bsp\SVPWM.h)(0x67DFD4FC)
 I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
 I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x67BC8662)
@@ -925,3 +902,33 @@ I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
 I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
 I (..\bsp\filter.h)(0x67E41782)
 I (..\bsp\mt6701.h)(0x67DED0FF)
+I (D:\downloads\MDK\keil5\ARM\ARMCC\include\math.h)(0x60252378)
+F (..\bsp\current_control.c)(0x67E567F5)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\bsp -I ..\bsp\speed_control --no-multibyte-chars-ID:\downloads\MDK\keil5\pack\ArteryTek\AT32F403A_407_DFP\2.1.9\Device\Include-D__UVISION_VERSION="539" -DAT32F403ACGT7 -DAT32F403ACGT7 -DUSE_STDPERIPH_DRIVER -DAT_START_F403A_V1-o .\objects\current_control.o --omf_browse .\objects\current_control.crf --depend .\objects\current_control.d)
+I (..\bsp\current_control.h)(0x67E558B3)
+I (..\..\libraries\cmsis\cm4\device_support\at32f403a_407.h)(0x67BC8662)
+I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x67BC8662)
+I (D:\downloads\MDK\keil5\ARM\ARMCC\include\stdint.h)(0x6025237E)
+I (..\..\libraries\cmsis\cm4\core_support\cmsis_version.h)(0x67BC8662)
+I (..\..\libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x67BC8662)
+I (..\..\libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x67BC8662)
+I (..\..\libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x67BC8662)
+I (..\..\libraries\cmsis\cm4\device_support\system_at32f403a_407.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_def.h)(0x67BC8662)
+I (..\inc\at32f403a_407_conf.h)(0x67E41503)
+I (..\..\libraries\drivers\inc\at32f403a_407_adc.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_can.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_crm.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_debug.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_dma.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_flash.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_gpio.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_misc.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_pwc.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_spi.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_tmr.h)(0x67BC8662)
+I (..\..\libraries\drivers\inc\at32f403a_407_usart.h)(0x67BC8662)
+I (..\bsp\FOC.h)(0x67E55326)
+I (..\bsp\SVPWM.h)(0x67DFD4FC)
+I (..\bsp\filter.h)(0x67E41782)
+I (..\bsp\mt6701.h)(0x67DED0FF)
+I (D:\downloads\MDK\keil5\ARM\ARMCC\include\math.h)(0x60252378)

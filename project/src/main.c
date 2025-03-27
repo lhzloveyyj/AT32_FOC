@@ -49,6 +49,7 @@
 #include "fast_sin.h"
 #include "usart_1.h"
 #include "filter.h"
+#include "speed_control.h"
 
 /* add user code end private includes */
 
@@ -247,11 +248,15 @@ int main(void)
   LPF_Speed_Init(PM1_LPF_Speed);
   LPF_Speed_Init(PM2_LPF_Speed);
   
-  //初始化PID参数
+  //初始化电流PID参数
   SetCurrentPIDTar(PMotor_1, 0.0f, 0.0f);
   SetCurrentPIDParams(PMotor_1, 0.01f, 0.01f, 0.0f, 6.0f);
   SetCurrentPIDTar(PMotor_2, 0.0f, 0.0f);
   SetCurrentPIDParams(PMotor_2, 0.01f, 0.01f, 0.0f, 6.0f);
+  
+  //初始化速度PID参数
+  SetSpeedPIDTar(PMotor_1, 50);
+  SetSpeedPIDParams(PMotor_1, 0.00005f, 0.00005f, 0.0f, 20.0f);
   
   //SPI1_DMA
   dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
@@ -281,9 +286,9 @@ int main(void)
 	  //float Iabc[3] = {PMotor_1->Ia, PMotor_1->Ib, 1 - PMotor_1->Ia - PMotor_1->Ib};
 	  //float Ialpha_Ibeta[2] = {PMotor_1->Ialpha, PMotor_1->Ibeta};
 	  float Iqd[2] = {PMotor_1->Id, PMotor_1->Iq};
-	  float speed[1] = {PMotor_1->speed};
+	  float s_pid[2] = {PMotor_1->speed, PMotor_1->speedPID.out};
 	  
-	  USART1_SendFloatArray(speed,1);
+	  USART1_SendFloatArray(s_pid,2);
 	  if(pid_params_1.set_flag == 0){
 		SetCurrentPIDTar(PMotor_1, pid_params_1.Id, pid_params_1.Iq);
 		  pid_params_1.set_flag = 1;

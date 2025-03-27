@@ -32,6 +32,8 @@ struct PI_Struct
     float outMax;
 };
 
+
+
 typedef struct {
 	Current_State current;
 	
@@ -53,6 +55,8 @@ typedef struct {
 	
 	float speed_last_angle;
 	float speed;
+	struct PI_Struct speedPID;
+	float tar_speed;
 	
 	float (*Get_mechanical_angle)(MT6701_t *encoder);
 	void (*SetPWM)(float pwm_a, float pwm_b, float pwm_c); 

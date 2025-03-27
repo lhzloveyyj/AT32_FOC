@@ -30,5 +30,5 @@
 .\objects\foc.o: ..\bsp\fast_sin.h
 .\objects\foc.o: ..\bsp\delay.h
 .\objects\foc.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\foc.o: ..\bsp\PID.h
+.\objects\foc.o: ..\bsp\current_control.h
 .\objects\foc.o: ..\bsp\foc_config.h

@@ -27,3 +27,4 @@
 .\objects\speed_control.o: ..\..\libraries\drivers\inc\at32f403a_407_usart.h
 .\objects\speed_control.o: ..\bsp\filter.h
 .\objects\speed_control.o: ..\bsp\mt6701.h
+.\objects\speed_control.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h

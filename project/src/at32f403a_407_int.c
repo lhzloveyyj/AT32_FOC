@@ -424,6 +424,8 @@ void TMR5_GLOBAL_IRQHandler(void)
 	CalculateSpeed(PMotor_1, 0.001,PM1_LPF_Speed);
 	CalculateSpeed(PMotor_2, 0.001,PM2_LPF_Speed);
 	
+	SpeedPIControl(PMotor_1);
+	
 	
 	tmr_flag_clear(TMR5, TMR_OVF_FLAG);
   /* add user code end TMR5_GLOBAL_IRQ 0 */

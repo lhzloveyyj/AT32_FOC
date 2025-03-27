@@ -17,6 +17,7 @@
 #define ADC_REF_VOLTAGE 3.3f                // ADC参考电压
 #define RS 				0.01f               //采样电阻值(R)
 #define GAIN 			50.0f               //电流放大倍数
+#define IQMAX 			40.0f               //最大目标IQ值
 
 #define	Motor_debug	1
 

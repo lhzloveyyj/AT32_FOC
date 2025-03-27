@@ -43,3 +43,4 @@
 .\objects\main.o: ..\bsp\CAN.h
 .\objects\main.o: ..\bsp\foc_config.h
 .\objects\main.o: ..\bsp\fast_sin.h
+.\objects\main.o: ..\bsp\speed_control\speed_control.h

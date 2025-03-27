@@ -559,11 +559,6 @@
               <FilePath>..\bsp\filter.c</FilePath>
             </File>
             <File>
-              <FileName>PID.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\bsp\PID.c</FilePath>
-            </File>
-            <File>
               <FileName>LOG.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\LOG.c</FilePath>
@@ -582,6 +577,11 @@
               <FileName>speed_control.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\bsp\speed_control\speed_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>current_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\current_control.c</FilePath>
             </File>
           </Files>
         </Group>
