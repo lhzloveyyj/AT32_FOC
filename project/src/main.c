@@ -255,8 +255,10 @@ int main(void)
   SetCurrentPIDParams(PMotor_2, 0.01f, 0.01f, 0.0f, 6.0f);
   
   //初始化速度PID参数
-  SetSpeedPIDTar(PMotor_1, 50);
-  SetSpeedPIDParams(PMotor_1, 0.00005f, 0.00005f, 0.0f, 20.0f);
+  SetSpeedPIDTar(PMotor_1, 0);
+  SetSpeedPIDParams(PMotor_1, 0.3f, 0.01f, 0.0f, 40.0f);
+  SetSpeedPIDTar(PMotor_2, 0);
+  SetSpeedPIDParams(PMotor_2, 0.3f, 0.01f, 0.0f, 40.0f);
   
   //SPI1_DMA
   dma_interrupt_enable(DMA1_CHANNEL3, DMA_FDT_INT, TRUE );
@@ -273,6 +275,8 @@ int main(void)
   //ADC3_DMA
   dma_interrupt_enable(DMA1_CHANNEL1, DMA_FDT_INT, TRUE);
 
+	pid_params_1.Current_set_flag = 1;
+	pid_params_2.Current_set_flag = 1;
   /* add user code end 2 */
 
   while(1)
@@ -289,18 +293,36 @@ int main(void)
 	  float s_pid[2] = {PMotor_1->speed, PMotor_1->speedPID.out};
 	  
 	  USART1_SendFloatArray(s_pid,2);
-	  if(pid_params_1.set_flag == 0){
+	  //电流环设置
+	  if(pid_params_1.Current_set_flag == 0){
 		SetCurrentPIDTar(PMotor_1, pid_params_1.Id, pid_params_1.Iq);
-		  pid_params_1.set_flag = 1;
+		  SetCurrentPIDParams(PMotor_1, pid_params_1.Current_KP, pid_params_1.Current_KI, pid_params_1.Current_KD, 6.0f);
+		  pid_params_1.Current_set_flag = 1;
 	  }
 	  
-	  if(pid_params_2.set_flag == 0){
+	  if(pid_params_2.Current_set_flag == 0){
 		SetCurrentPIDTar(PMotor_2, pid_params_2.Id, pid_params_2.Iq);
-		  pid_params_2.set_flag = 1;
+		  SetCurrentPIDParams(PMotor_2, pid_params_2.Current_KP, pid_params_2.Current_KI, pid_params_2.Current_KD, 6.0f);
+		  pid_params_2.Current_set_flag = 1;
 	  }
 	  
+//	  //速度环测试
+//	  if(pid_params_1.Speed_set_flag == 0){
+//		SetSpeedPIDTar(PMotor_1, pid_params_1.Speed);
+//		  SetSpeedPIDParams(PMotor_1, pid_params_1.Speed_KP, pid_params_1.Speed_KI, pid_params_1.Speed_KD, 40.0f);
+//		  pid_params_1.Speed_set_flag = 1;
+//	  }
+//	  
+//	  if(pid_params_2.Speed_set_flag == 0){
+//		SetSpeedPIDTar(PMotor_2, pid_params_2.Speed);
+//		  SetSpeedPIDParams(PMotor_2, pid_params_2.Speed_KP, pid_params_2.Speed_KI, pid_params_2.Speed_KD, 40.0f);
+//		  pid_params_2.Speed_set_flag = 1;
+//	  }
+	  
+	  //上位机参数解析
 	  if(rx1_flag == 1){
 		parse_and_set_pid((const char *)uart1_rx_buffer, &pid_params_1, &pid_params_2);
+		  SetSpeedPIDParams(PMotor_1, 0.3f, 0.01f, 0.0f, 40.0f);
 		  rx1_flag = 0;
 	  }
 		

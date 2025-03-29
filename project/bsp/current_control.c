@@ -1,5 +1,6 @@
 #include "current_control.h"
 #include "math.h"
+#include "stdio.h"
 
 /*************************************************************
 ** Function name:       CurrentPIControlID
@@ -79,6 +80,7 @@ void SetCurrentPIDTar(PFOC_State pFOC,float tarid,float tariq)
 {
     pFOC->tarid = tarid;
     pFOC->tariq = tariq;
+	printf("set tar_id is %lf, tar_iq is %lf\r\n",tarid,tariq);
 }
 
 /******************************************************************************
@@ -97,11 +99,12 @@ void SetCurrentPIDParams(PFOC_State pFOC,float kp,float ki,float kd,float outMax
     pFOC->idPID.ki = ki;
     pFOC->idPID.kd = kd;
     pFOC->idPID.outMax = outMax;
-
-    pFOC->iqPID.kp = kp;
+	
+	pFOC->iqPID.kp = kp;
     pFOC->iqPID.ki = ki;
     pFOC->iqPID.kd = kd;
     pFOC->iqPID.outMax = outMax;
+	printf("set kp is %lf, ki is %lf, kd is %lf\r\n",kp,ki,kd);
 }
 
 

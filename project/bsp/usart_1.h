@@ -17,12 +17,18 @@
 
 // 定义结构体来存储 PID 参数
 typedef struct {
-    float KP;
-    float KI;
-    float KD;
+    float Current_KP;
+    float Current_KI;
+    float Current_KD;
 	float Iq;  // 新增的 LQ 参数
     float Id;  // 新增的 Ld 参数
-	uint8_t set_flag;
+	uint8_t Current_set_flag;
+	
+	float Speed_KP;
+    float Speed_KI;
+    float Speed_KD;
+	float Speed;
+	uint8_t Speed_set_flag;
 } PID_Params;
 
 extern PID_Params pid_params_1;

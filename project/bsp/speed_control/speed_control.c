@@ -1,6 +1,7 @@
 #include "speed_control.h"
 #include "filter.h"
 #include "math.h"
+#include "stdio.h"
 
 void CalculateSpeed(PFOC_State pFOC, float dt, PLPF_Speed pSpeedFilter)
 {
@@ -62,6 +63,7 @@ void SpeedPIControl(PFOC_State pFOC)
 void SetSpeedPIDTar(PFOC_State pFOC,float tarspeed)
 {
     pFOC->tar_speed = tarspeed;
+	printf("set tarspeed is %lf\r\n",tarspeed);
 }
 
 /******************************************************************************
@@ -80,7 +82,7 @@ void SetSpeedPIDParams(PFOC_State pFOC,float kp,float ki,float kd,float outMax)
     pFOC->speedPID.ki = ki;
     pFOC->speedPID.kd = kd;
     pFOC->speedPID.outMax = outMax;
-
+printf("set kp is %lf, ki is %lf, kd is %lf\r\n",kp,ki,kd);
 }
 
 

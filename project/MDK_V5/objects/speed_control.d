@@ -28,3 +28,4 @@
 .\objects\speed_control.o: ..\bsp\filter.h
 .\objects\speed_control.o: ..\bsp\mt6701.h
 .\objects\speed_control.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\speed_control.o: D:\downloads\MDK\keil5\ARM\ARMCC\Bin\..\include\stdio.h

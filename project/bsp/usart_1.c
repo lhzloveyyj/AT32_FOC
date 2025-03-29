@@ -64,6 +64,7 @@ void usartdmarecv(u8 *data,u16 len)
     dma_channel_enable(DMA2_CHANNEL1, TRUE);        //开启通道5（开始接收）	
 }
 
+// 解析 PID 参数并设置
 void parse_and_set_pid(const char *input, PID_Params *pid_params_1, PID_Params *pid_params_2) {
     // 查找名称部分（以 ':' 分隔）
     const char *colon_pos = strchr(input, ':');
@@ -72,49 +73,59 @@ void parse_and_set_pid(const char *input, PID_Params *pid_params_1, PID_Params *
         return;
     }
 
-    // 提取名称部分（即 ':' 前的内容）
+    // 计算名称长度
     size_t name_len = colon_pos - input;
-    char name[name_len + 1];
+    if (name_len >= 20) { // 限制最大长度，防止溢出
+        printf("参数名过长\n");
+        return;
+    }
+
+    // 提取名称部分
+    char name[20];
     strncpy(name, input, name_len);
     name[name_len] = '\0';
 
     // 解析组号
     PID_Params *target_pid = NULL;
-    if (strstr(name, "_1") != NULL) {
-        target_pid = pid_params_1;
-    } else if (strstr(name, "_2") != NULL) {
-        target_pid = pid_params_2;
+    char *suffix = strrchr(name, '_'); // 查找最后的 '_'
+    if (suffix != NULL && (*(suffix + 1) == '1' || *(suffix + 1) == '2')) {
+        int group = *(suffix + 1) - '0';
+        *suffix = '\0'; // 截断 `_1` 或 `_2`
+        target_pid = (group == 1) ? pid_params_1 : pid_params_2;
     } else {
         printf("未知的 PID 组: %s\n", name);
         return;
     }
 
-    // 去掉 "_1" 或 "_2" 后的参数名
-    name[strlen(name) - 2] = '\0';
-
     // 解析数值部分
-    if (strcmp(name, "SET") == 0) {
-        // 解析整数值
-        target_pid->set_flag = (uint8_t)strtol(colon_pos + 1, NULL, 10);
-        printf("set %s: %d\n", input, target_pid->set_flag);
+    if (strcmp(name, "Current_SET") == 0) {
+        target_pid->Current_set_flag = (uint8_t)strtol(colon_pos + 1, NULL, 10);
+        printf("Current_SET %d\n", target_pid->Current_set_flag);
+    } else if (strcmp(name, "Current_KP") == 0) {
+        target_pid->Current_KP = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Current_KI") == 0) {
+        target_pid->Current_KI = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Current_KD") == 0) {
+        target_pid->Current_KD = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Iq") == 0) {
+        target_pid->Iq = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Id") == 0) {
+        target_pid->Id = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Speed_SET") == 0) {
+        target_pid->Speed_set_flag = (uint8_t)strtol(colon_pos + 1, NULL, 10);
+        printf("Speed_SET %d\n", target_pid->Speed_set_flag);
+    } else if (strcmp(name, "Speed_KP") == 0) {
+        target_pid->Speed_KP = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Speed_KI") == 0) {
+        target_pid->Speed_KI = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Speed_KD") == 0) {
+        target_pid->Speed_KD = strtof(colon_pos + 1, NULL);
+    } else if (strcmp(name, "Speed") == 0) {
+        target_pid->Speed = strtof(colon_pos + 1, NULL);
     } else {
-        // 解析浮点数
-        float value = strtof(colon_pos + 1, NULL);
-
-        if (strcmp(name, "KP") == 0) {
-            target_pid->KP = value;
-        } else if (strcmp(name, "KI") == 0) {
-            target_pid->KI = value;
-        } else if (strcmp(name, "KD") == 0) {
-            target_pid->KD = value;
-        } else if (strcmp(name, "Iq") == 0) {
-            target_pid->Iq = value;
-        } else if (strcmp(name, "Id") == 0) {
-            target_pid->Id = value;
-        } else {
-            printf("未知的参数: %s\n", name);
-            return;
-        }
-
+        printf("UNknow name %s\n", name);
+        return;
     }
+
+    printf("set %s is %s\n", name, colon_pos + 1);
 }
