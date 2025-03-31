@@ -11,8 +11,35 @@ volatile uint8_t usart1_rx_dma_status = 0;
 
 volatile uint8_t rx1_flag = 0;
 
-PID_Params pid_params_1 = {0.0f, 0.0f, 0.0f};
-PID_Params pid_params_2 = {0.0f, 0.0f, 0.0f};
+PID_Params pid_params_1 = {
+    .Current_KP = 0.04f,
+    .Current_KI = 0.04f,
+    .Current_KD = 0.0f,
+    .Iq = 0.0f,  // 初始化 LQ 参数
+    .Id = 0.0f,  // 初始化 Ld 参数
+    .Current_set_flag = 1,
+
+    .Speed_KP = 0.3f,
+    .Speed_KI = 0.01f,
+    .Speed_KD = 0.0f,
+    .Speed = 0.0f,
+    .Speed_set_flag = 1
+};
+
+PID_Params pid_params_2 = {
+    .Current_KP = 0.04f,
+    .Current_KI = 0.04f,
+    .Current_KD = 0.0f,
+    .Iq = 0.0f,  // 初始化 LQ 参数
+    .Id = 0.0f,  // 初始化 Ld 参数
+    .Current_set_flag = 1,
+
+    .Speed_KP = 0.3f,
+    .Speed_KI = 0.01f,
+    .Speed_KD = 0.0f,
+    .Speed = 0.0f,
+    .Speed_set_flag = 1
+};
 
 void parse_and_set_pid(const char *input, PID_Params *pid_params_1, PID_Params *pid_params_2);
 
